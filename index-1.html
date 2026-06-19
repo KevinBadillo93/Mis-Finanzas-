@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#060a11">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FinanzasYA">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>FinanzasYA 💰</title>
+<style>
+:root{
+  --bg:#060a11;--bg2:#0d1220;--bg3:#131a2e;--bg4:#1a2340;
+  --card:#0d1423;--card2:#141d33;
+  --border:#1e2d4d;--border2:#2a3d63;
+  --accent:#3b82f6;--acc2:#6366f1;
+  --green:#22c55e;--red:#ef4444;--yellow:#f59e0b;
+  --cyan:#06b6d4;--purple:#a855f7;--orange:#f97316;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#4b5a7a;
+  --r:16px;--r2:12px;--r3:8px;
+  --shadow:0 8px 32px rgba(0,0,0,.6);
+  --nav-h:64px;--top-h:56px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{font-size:15px;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;min-height:100vh;overflow-x:hidden;padding-bottom:var(--nav-h);}
+
+/* TOP HEADER */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--top-h);background:rgba(6,10,17,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;}
+.tb-left{display:flex;align-items:center;gap:10px;}
+.tb-logo{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--acc2));border-radius:9px;display:grid;place-items:center;font-size:1rem;flex-shrink:0;box-shadow:0 3px 10px rgba(59,130,246,.35);}
+.tb-title{font-size:1rem;font-weight:800;letter-spacing:-.4px;}
+.tb-sub{font-size:.63rem;color:var(--text3);margin-top:1px;}
+.tb-right{display:flex;gap:6px;align-items:center;}
+.tb-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:.71rem;font-weight:600;padding:6px 10px;border-radius:var(--r3);cursor:pointer;font-family:inherit;}
+.tb-pill{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.28);color:var(--accent);font-size:.71rem;font-weight:700;padding:6px 11px;border-radius:100px;cursor:pointer;font-family:inherit;}
+
+/* CONTENT */
+.content{padding:calc(var(--top-h) + 14px) 14px 14px;}
+.page{display:none;}
+.page.active{display:block;animation:pgIn .2s ease;}
+@keyframes pgIn{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* BOTTOM NAV */
+.bottomnav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:rgba(13,18,32,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding:0 4px;z-index:100;}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer;border-radius:12px;color:var(--text3);font-size:.6rem;font-weight:600;min-width:50px;text-align:center;transition:color .15s;}
+.bn-item .bn-icon{font-size:1.3rem;line-height:1;}
+.bn-lbl{font-size:.6rem;font-weight:600;}
+.bn-item.active{color:var(--accent);}
+.bn-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);margin:0 auto;opacity:0;transition:opacity .15s;}
+.bn-item.active .bn-dot{opacity:1;}
+
+/* DRAWER */
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:150;}
+.drawer-overlay.open{display:block;}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-radius:24px 24px 0 0;border-top:1px solid var(--border);z-index:160;padding:12px 0 28px;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:82vh;overflow-y:auto;}
+.drawer.open{transform:translateY(0);}
+.drawer-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 14px;}
+.drawer-title{font-size:.62rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:1px;padding:4px 18px 8px;}
+.drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px;}
+.di{display:flex;align-items:center;gap:9px;padding:12px 13px;background:var(--bg3);border-radius:var(--r2);cursor:pointer;border:1px solid var(--border);color:var(--text2);font-size:.81rem;font-weight:500;}
+.di:active{background:var(--bg4);}
+.di.active{background:rgba(59,130,246,.1);color:var(--accent);border-color:rgba(59,130,246,.25);}
+.di .di-e{font-size:1.05rem;width:20px;text-align:center;}
+
+/* BUTTONS */
+.btn{padding:12px 18px;border-radius:var(--r2);border:none;cursor:pointer;font-size:.84rem;font-weight:700;font-family:inherit;display:inline-flex;align-items:center;gap:7px;-webkit-tap-highlight-color:transparent;}
+.btn:active{opacity:.85;transform:scale(.97);}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--acc2));color:#fff;box-shadow:0 3px 12px rgba(59,130,246,.4);}
+.btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border);}
+.btn-ghost:hover,.btn-ghost:active{background:var(--bg4);color:var(--text);}
+.btn-danger{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.22);}
+.btn-success{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.22);}
+.btn-sm{padding:8px 13px;font-size:.77rem;}
+.btn-xs{padding:5px 9px;font-size:.71rem;}
+.btn-icon{width:34px;height:34px;padding:0;border-radius:var(--r3);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.btn-full{width:100%;justify-content:center;padding:14px;}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
+.card2{background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);padding:13px;}
+.card-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;}
+.card-title{font-size:.68rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;}
+.kpi-val{font-size:clamp(1rem,4.5vw,1.55rem);font-weight:800;letter-spacing:-.4px;margin:5px 0 3px;line-height:1.15;word-break:break-all;}
+.kpi-sub{font-size:.68rem;color:var(--text3);}
+
+/* KPI GRID */
+.kpi-grid{display:grid;gap:10px;margin-bottom:14px;}
+.kpi-grid.c2{grid-template-columns:1fr 1fr;}
+.kpi-grid.c3{grid-template-columns:1fr 1fr 1fr;}
+.kpi-grid.c4{grid-template-columns:1fr 1fr;}
+.kpi-grid.c5{grid-template-columns:1fr 1fr;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 15px;position:relative;overflow:hidden;min-width:0;}
+.kpi-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0;}
+.kpi-card.accent::before{background:linear-gradient(90deg,var(--accent),var(--acc2));}
+.kpi-card.green::before{background:var(--green);}
+.kpi-card.red::before{background:var(--red);}
+.kpi-card.yellow::before{background:var(--yellow);}
+.kpi-card.cyan::before{background:var(--cyan);}
+.kpi-card.purple::before{background:var(--purple);}
+.kpi-card.orange::before{background:var(--orange);}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:1fr;gap:12px;}
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}.mb14{margin-bottom:14px;}.mb16{margin-bottom:16px;}
+.mt8{margin-top:8px;}.mt12{margin-top:12px;}.mt16{margin-top:16px;}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:11px 15px;font-size:.81rem;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;user-select:none;}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r2);-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:460px;}
+th{text-align:left;padding:9px 12px;font-size:.63rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);background:var(--bg3);}
+th:first-child{border-radius:var(--r2) 0 0 0;}th:last-child{border-radius:0 var(--r2) 0 0;}
+td{padding:11px 12px;font-size:.8rem;color:var(--text2);border-bottom:1px solid rgba(30,45,77,.4);}
+tr:last-child td{border-bottom:none;}
+td.num{font-weight:700;font-family:"SF Mono",monospace;letter-spacing:-.2px;}
+td.income{color:var(--green);}td.expense{color:var(--red);}
+td.tr{text-align:right;}
+.act-btns{display:flex;gap:4px;justify-content:flex-end;align-items:center;}
+
+/* MOV ROW */
+.mov-list{display:flex;flex-direction:column;}
+.mov-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(30,45,77,.4);}
+.mov-row:last-child{border-bottom:none;}
+.mov-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:1rem;flex-shrink:0;}
+.mov-icon.ing{background:rgba(34,197,94,.12);}.mov-icon.gas{background:rgba(239,68,68,.12);}
+.mov-info{flex:1;min-width:0;}
+.mov-desc{font-size:.83rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mov-cat{font-size:.69rem;color:var(--text3);margin-top:2px;}
+.mov-amount{font-size:.9rem;font-weight:800;flex-shrink:0;}
+.mov-amount.ing{color:var(--green);}.mov-amount.gas{color:var(--red);}
+
+/* FORM */
+.fgroup{margin-bottom:14px;}
+.flabel{display:block;font-size:.73rem;font-weight:700;color:var(--text2);margin-bottom:6px;}
+.finput,.fselect{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r3);padding:13px 14px;color:var(--text);font-family:inherit;font-size:.88rem;outline:none;-webkit-appearance:none;appearance:none;}
+.finput:focus,.fselect:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.12);}
+.finput::placeholder{color:var(--text3);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:100px;font-size:.68rem;font-weight:700;}
+.bg{background:rgba(34,197,94,.12);color:var(--green);}
+.br{background:rgba(239,68,68,.12);color:var(--red);}
+.bb{background:rgba(59,130,246,.12);color:var(--accent);}
+.by{background:rgba(245,158,11,.12);color:var(--yellow);}
+.bp{background:rgba(168,85,247,.12);color:var(--purple);}
+.bc{background:rgba(6,182,212,.12);color:var(--cyan);}
+
+/* PROGRESS */
+.pbar{width:100%;height:6px;background:var(--bg4);border-radius:100px;overflow:hidden;}
+.pfill{height:100%;border-radius:100px;}
+.pbar.thick{height:10px;}
+
+/* HEALTH RING */
+.health-ring{width:78px;height:78px;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.health-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+.hn{font-size:1.3rem;font-weight:800;position:relative;z-index:1;}
+
+/* AI CHAT */
+.ai-chat{display:flex;flex-direction:column;height:380px;}
+.ai-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;-webkit-overflow-scrolling:touch;}
+.ai-msg{max-width:88%;padding:10px 13px;border-radius:var(--r);font-size:.82rem;line-height:1.55;}
+.ai-msg.ai{background:var(--bg3);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px;}
+.ai-msg.user{background:linear-gradient(135deg,var(--accent),var(--acc2));color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
+.ai-in{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);}
+.ai-in input{flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r2);padding:10px 13px;color:var(--text);font-family:inherit;font-size:.84rem;outline:none;}
+.ai-in input:focus{border-color:var(--accent);}
+.dots{display:flex;gap:4px;align-items:center;padding:4px 0;}
+.dot{width:6px;height:6px;background:var(--text3);border-radius:50%;}
+.dot:nth-child(2){opacity:.5;}.dot:nth-child(3){opacity:.25;}
+
+/* IA TIP */
+.ia-mode-btn{padding:9px 18px;border-radius:100px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:.8rem;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.ia-mode-btn.active{background:linear-gradient(135deg,var(--accent),var(--acc2));color:#fff;border-color:transparent;box-shadow:0 2px 10px rgba(59,130,246,.35);}
+
+/* MODAL - bottom sheet en móvil */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:24px 24px 0 0;padding:20px 18px 32px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 -8px 40px rgba(0,0,0,.6);}
+.modal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.modal-title{font-size:.95rem;font-weight:800;}
+.modal-x{background:var(--bg3);border:1px solid var(--border);color:var(--text2);cursor:pointer;font-size:.85rem;padding:6px 10px;border-radius:var(--r3);}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(var(--nav-h) + 12px);left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--border2);border-radius:100px;padding:11px 22px;font-size:.82rem;color:var(--text);box-shadow:var(--shadow);z-index:999;display:none;white-space:nowrap;}
+.toast.show{display:block;}
+.toast.success{border-left:3px solid var(--green);}
+.toast.error{border-left:3px solid var(--red);}
+.toast.info{border-left:3px solid var(--accent);}
+
+/* ALERT */
+.alert{display:flex;gap:11px;padding:12px 13px;border-radius:var(--r2);margin-bottom:10px;border:1px solid;}
+.alert-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+.alert-body{flex:1;}
+.alert-title{font-size:.82rem;font-weight:700;margin-bottom:2px;}
+.alert-msg{font-size:.76rem;line-height:1.4;}
+.alert-warning{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.25);}.alert-warning .alert-title{color:var(--yellow);}
+.alert-danger{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.25);}.alert-danger .alert-title{color:var(--red);}
+.alert-info{background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.25);}.alert-info .alert-title{color:var(--accent);}
+.alert-success{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.25);}.alert-success .alert-title{color:var(--green);}
+
+.goal-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:10px;}
+.goal-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.week-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.cot-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
+.cot-card-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px;}
+.cot-name{font-weight:700;font-size:.88rem;}
+.cot-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.cot-box{border-radius:var(--r3);padding:9px;text-align:center;}
+.cot-box.buy{background:rgba(34,197,94,.07);}.cot-box.sell{background:rgba(239,68,68,.07);}
+.cot-label{font-size:.62rem;color:var(--text3);font-weight:700;text-transform:uppercase;margin-bottom:3px;}
+.cot-val{font-size:.95rem;font-weight:800;}
+.cot-val.green{color:var(--green);}.cot-val.red{color:var(--red);}
+.bud-row{padding:12px 0;border-bottom:1px solid rgba(30,45,77,.4);}
+.bud-row:last-child{border-bottom:none;}
+.bud-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.bud-cat{font-size:.83rem;font-weight:700;}
+.bud-remaining{font-weight:800;font-size:.84rem;}
+.ticker{display:flex;gap:14px;overflow-x:auto;padding:2px 0;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.ticker::-webkit-scrollbar{display:none;}
+.tick-item{flex-shrink:0;text-align:center;}
+.tick-name{font-size:.61rem;color:var(--text3);font-weight:700;text-transform:uppercase;}
+.tick-val{font-size:.88rem;font-weight:800;}
+.tick-sub{font-size:.61rem;color:var(--text3);}
+.empty{text-align:center;padding:32px 20px;color:var(--text3);}
+.empty-icon{font-size:2rem;margin-bottom:9px;}
+.empty p{font-size:.82rem;line-height:1.5;}
+.drop-zone{border:2px dashed var(--border2);border-radius:var(--r);padding:26px 18px;text-align:center;cursor:pointer;background:var(--bg3);}
+.drop-zone:active{border-color:var(--accent);}
+.drop-zone input[type=file]{display:none;}
+.drop-icon{font-size:1.9rem;margin-bottom:7px;}
+.drop-zone p{font-size:.81rem;color:var(--text2);line-height:1.5;}
+.sep{height:1px;background:var(--border);margin:13px 0;}
+.flex{display:flex;}.fc{display:flex;align-items:center;}.fjb{display:flex;justify-content:space-between;}
+.gap4{gap:4px;}.gap8{gap:8px;}.gap12{gap:12px;}.gap16{gap:16px;}
+.fw7{font-weight:700;}.fw8{font-weight:800;}
+.ts{font-size:.77rem;}.txs{font-size:.69rem;}.tmuted{color:var(--text3);}
+.tar{text-align:right;}
+.bar-chart{display:flex;align-items:flex-end;gap:5px;height:70px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;}
+.bar-lbl{font-size:.58rem;color:var(--text3);}
+.codebox{background:var(--bg3);border-radius:var(--r2);padding:12px;font-family:monospace;font-size:.71rem;color:var(--cyan);line-height:1.9;overflow-x:auto;}
+
+/* DESKTOP */
+.sidebar-desktop{display:none;}
+@media(min-width:640px){
+  :root{--nav-h:0px;}
+  body{padding-bottom:0;}
+  .bottomnav,.drawer-overlay,.drawer{display:none!important;}
+  .sidebar-desktop{display:flex;position:fixed;left:0;top:0;bottom:0;width:238px;background:var(--bg2);border-right:1px solid var(--border);flex-direction:column;z-index:100;}
+  .sd-logo{padding:18px 18px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+  .sd-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--acc2));border-radius:9px;display:grid;place-items:center;font-size:1rem;flex-shrink:0;}
+  .sd-logo h1{font-size:1rem;font-weight:800;}
+  .sd-logo span{font-size:.61rem;color:var(--text3);display:block;margin-top:1px;}
+  .sd-nav{flex:1;overflow-y:auto;padding:7px 0;scrollbar-width:none;}
+  .sd-nav::-webkit-scrollbar{display:none;}
+  .sd-sep{font-size:.58rem;font-weight:800;letter-spacing:1.2px;color:var(--text3);text-transform:uppercase;padding:9px 18px 3px;}
+  .sd-item{display:flex;align-items:center;gap:9px;padding:9px 18px;cursor:pointer;color:var(--text2);font-size:.8rem;font-weight:500;border-left:3px solid transparent;border-radius:0 6px 6px 0;margin:0 6px 1px 0;}
+  .sd-item:hover{background:var(--bg3);color:var(--text);}
+  .sd-item.active{background:rgba(59,130,246,.1);color:var(--accent);border-left-color:var(--accent);font-weight:600;}
+  .sd-item .ni{font-size:.87rem;width:17px;text-align:center;flex-shrink:0;}
+  .sd-foot{padding:11px 18px;border-top:1px solid var(--border);font-size:.72rem;color:var(--text2);font-weight:600;}
+  .main-desktop{margin-left:238px;min-height:100vh;display:flex;flex-direction:column;}
+  .content{padding:calc(var(--top-h) + 20px) 22px 22px;}
+  .kpi-grid.c3{grid-template-columns:1fr 1fr 1fr;}
+  .kpi-grid.c4{grid-template-columns:repeat(4,1fr);}
+  .kpi-grid.c5{grid-template-columns:repeat(5,1fr);}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:1fr 1fr 1fr;}
+  .frow3{grid-template-columns:1fr 1fr 1fr;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══ TOP HEADER ══ -->
+<header class="topbar">
+  <div class="tb-left">
+    <div class="tb-logo">💰</div>
+    <div>
+      <div class="tb-title">FinanzasYA</div>
+      <div class="tb-sub" id="topbarDollar">💵 Actualizar cotización</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <button class="tb-pill" onclick="fetchDollar()">🔄</button>
+    <button class="tb-btn" onclick="exportCSV()">⬇</button>
+    <input type="file" id="importFileInput" accept=".csv,.txt" style="display:none" onchange="handleImportFile(event)">
+  </div>
+</header>
+
+<!-- ══ DESKTOP SIDEBAR ══ -->
+<aside class="sidebar-desktop" id="sidebarDesktop">
+  <div class="sd-logo">
+    <div class="sd-logo-icon">💰</div>
+    <div><h1>FinanzasYA</h1><span>Asistente financiero</span></div>
+  </div>
+  <nav class="sd-nav">
+    <div class="sd-sep">Principal</div>
+    <div class="sd-item active" onclick="showPage('dashboard')"><span class="ni">📊</span> Dashboard</div>
+    <div class="sd-item" onclick="showPage('ingresos')"><span class="ni">📥</span> Ingresos</div>
+    <div class="sd-item" onclick="showPage('gastos')"><span class="ni">📤</span> Gastos</div>
+    <div class="sd-sep">Análisis</div>
+    <div class="sd-item" onclick="showPage('ahorros')"><span class="ni">🏦</span> Ahorros</div>
+    <div class="sd-item" onclick="showPage('patrimonio')"><span class="ni">📈</span> Patrimonio</div>
+    <div class="sd-item" onclick="showPage('delivery')"><span class="ni">🛵</span> Delivery</div>
+    <div class="sd-sep">Planificación</div>
+    <div class="sd-item" onclick="showPage('metas')"><span class="ni">🎯</span> Metas</div>
+    <div class="sd-item" onclick="showPage('presupuesto')"><span class="ni">📋</span> Presupuesto</div>
+    <div class="sd-item" onclick="showPage('proyecciones')"><span class="ni">🔭</span> Proyecciones</div>
+    <div class="sd-sep">Inteligencia</div>
+    <div class="sd-item" onclick="showPage('ia')"><span class="ni">🤖</span> IA Financiera</div>
+    <div class="sd-item" onclick="showPage('alertas')"><span class="ni">🔔</span> Alertas</div>
+    <div class="sd-item" onclick="showPage('mercado')"><span class="ni">💹</span> Mercado</div>
+    <div class="sd-sep">Herramientas</div>
+    <div class="sd-item" onclick="showPage('importar')"><span class="ni">📂</span> Importar / Exportar</div>
+  </nav>
+  <div class="sd-foot" id="sdDollar">💵 Actualizar cotización</div>
+</aside>
+
+<!-- ══ BOTTOM NAV (móvil) ══ -->
+<nav class="bottomnav" id="bottomnav"></nav>
+
+<!-- ══ DRAWER ══ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-title">Todas las secciones</div>
+  <div class="drawer-grid">
+    <div class="di" onclick="showPage('ahorros');closeDrawer()"><span class="di-e">🏦</span>Ahorros</div>
+    <div class="di" onclick="showPage('patrimonio');closeDrawer()"><span class="di-e">📈</span>Patrimonio</div>
+    <div class="di" onclick="showPage('delivery');closeDrawer()"><span class="di-e">🛵</span>Delivery</div>
+    <div class="di" onclick="showPage('metas');closeDrawer()"><span class="di-e">🎯</span>Metas</div>
+    <div class="di" onclick="showPage('proyecciones');closeDrawer()"><span class="di-e">🔭</span>Proyecciones</div>
+    <div class="di" onclick="showPage('ia');closeDrawer()"><span class="di-e">🤖</span>IA Financiera</div>
+    <div class="di" onclick="showPage('alertas');closeDrawer()"><span class="di-e">🔔</span>Alertas</div>
+    <div class="di" onclick="showPage('mercado');closeDrawer()"><span class="di-e">💹</span>Mercado</div>
+    <div class="di" onclick="showPage('importar');closeDrawer()"><span class="di-e">📂</span>Importar</div>
+    <div class="di" onclick="document.getElementById('importFileInput').click();closeDrawer()"><span class="di-e">⬆️</span>CSV</div>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main-desktop">
+  <div class="content">
+
+  <!-- ══════════════ DASHBOARD ══════════════ -->
+  <div class="page active" id="page-dashboard">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('dash','resumen',this)">📊 Resumen</div>
+      <div class="tab" onclick="switchTab('dash','movimientos',this)">💳 Movimientos</div>
+      <div class="tab" onclick="switchTab('dash','analisis',this)">🤖 IA</div>
+    </div>
+
+    <!-- TAB RESUMEN -->
+    <div class="tab-content active" id="tab-dash-resumen">
+      <!-- Health banner -->
+      <div class="card mb16" style="background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(99,102,241,0.06));border-color:rgba(59,130,246,0.25);">
+        <div class="fjb" style="align-items:center;flex-wrap:wrap;gap:16px;">
+          <div class="fc gap12">
+            <div class="health-ring" onclick="showHealthDetail()" style="cursor:pointer;" title="Tocá para ver el detalle">
+              <svg viewBox="0 0 78 78" width="78" height="78">
+                <circle cx="39" cy="39" r="33" fill="none" stroke="var(--bg4)" stroke-width="7"/>
+                <circle id="healthArc" cx="39" cy="39" r="33" fill="none" stroke="var(--accent)" stroke-width="7" stroke-dasharray="207.3" stroke-dashoffset="207.3" stroke-linecap="round"/>
+              </svg>
+              <span class="hn" id="healthScore" style="color:var(--accent)">—</span>
+            </div>
+            <div onclick="showHealthDetail()" style="cursor:pointer;">
+              <div class="card-title mb8">Salud Financiera <span style="font-size:.65rem;color:var(--accent);font-weight:700;">ⓘ tocá</span></div>
+              <div id="healthLabel" class="fw7" style="font-size:0.95rem;">Calculando...</div>
+              <div id="healthDesc" class="tmuted ts mt8">Registrá transacciones para comenzar</div>
+            </div>
+          </div>
+          <div class="ticker" id="tickerArea" style="max-width:380px;"></div>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid c5 mb16">
+        <div class="kpi-card accent">
+          <div class="card-title">Patrimonio</div>
+          <div class="kpi-val" id="kpi-patrimonio">$0</div>
+          <div class="kpi-sub" id="kpi-patrimonio-delta">Total neto</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="card-title">Ingresos Mes</div>
+          <div class="kpi-val" style="color:var(--green)" id="kpi-ingresos">$0</div>
+          <div class="kpi-sub" id="kpi-ingresos-delta">Este mes</div>
+        </div>
+        <div class="kpi-card red">
+          <div class="card-title">Gastos Mes</div>
+          <div class="kpi-val" style="color:var(--red)" id="kpi-gastos">$0</div>
+          <div class="kpi-sub" id="kpi-gastos-delta">Este mes</div>
+        </div>
+        <div class="kpi-card cyan">
+          <div class="card-title">Ahorro</div>
+          <div class="kpi-val" id="kpi-ahorro">$0</div>
+          <div class="kpi-sub" id="kpi-ahorro-tasa">Tasa: 0%</div>
+        </div>
+        <div class="kpi-card yellow">
+          <div class="card-title">Fondo Emergencia</div>
+          <div class="kpi-val" id="kpi-fondo">$0</div>
+          <div class="kpi-sub" id="kpi-fondo-meses">0 meses</div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="g2">
+        <div class="card">
+          <div class="card-title mb12">Composición del Patrimonio</div>
+          <div id="patrimonioDesglose"><div class="empty"><div class="empty-icon">🏦</div><p>Actualizá tus saldos<br>en Ahorros</p></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title mb12">Top Gastos del Mes</div>
+          <div id="topGastosChart"><div class="empty"><div class="empty-icon">📊</div><p>Registrá gastos para<br>ver el análisis</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB MOVIMIENTOS -->
+    <div class="tab-content" id="tab-dash-movimientos">
+      <div class="card">
+        <div class="card-hdr">
+          <div class="card-title">Últimos Movimientos</div>
+          <div class="fc gap8">
+            <button class="btn btn-success btn-sm" onclick="showPage('ingresos')">+ Ingreso</button>
+            <button class="btn btn-danger btn-sm" onclick="showPage('gastos')">+ Gasto</button>
+          </div>
+        </div>
+        <div id="lastMovements"><div class="empty"><p>Sin movimientos aún</p></div></div>
+      </div>
+    </div>
+
+    <!-- TAB IA -->
+    <div class="tab-content" id="tab-dash-analisis">
+      <div class="ia-tip mb16">
+        <div class="ia-tip-label">🤖 Análisis Automático</div>
+        <div id="dashboard-ia-tip">Cargando análisis...</div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);">
+          <div class="card-title">Consultá al Asistente IA</div>
+        </div>
+        <div class="ai-chat">
+          <div class="ai-msgs" id="dashAiMessages">
+            <div class="ai-msg ai">¡Hola! Consultame sobre tus finanzas desde el Dashboard.</div>
+          </div>
+          <div class="ai-in">
+            <input id="dashAiInput" placeholder="Ej: ¿Cómo estoy este mes?" onkeydown="if(event.key==='Enter')sendDashAI()">
+            <button class="btn btn-primary btn-sm" onclick="sendDashAI()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ INGRESOS ══════════════ -->
+  <div class="page" id="page-ingresos">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('ingresos','nuevo',this)">➕ Registrar</div>
+      <div class="tab" onclick="switchTab('ingresos','historial',this)">📋 Historial</div>
+      <div class="tab" onclick="switchTab('ingresos','resumen',this)">📊 Resumen</div>
+    </div>
+
+    <!-- TAB NUEVO INGRESO -->
+    <div class="tab-content active" id="tab-ingresos-nuevo">
+      <div class="kpi-grid c2 mb16">
+        <div class="kpi-card green">
+          <div class="card-title">Total Este Mes</div>
+          <div class="kpi-val" style="color:var(--green)" id="ing-total-mes">$0</div>
+          <div class="kpi-sub" id="ing-promedio-dia">Promedio diario: $0</div>
+        </div>
+        <div class="kpi-card accent">
+          <div class="card-title">Último Ingreso</div>
+          <div id="ing-ultimo" class="tmuted ts" style="margin-top:6px;">Sin registros</div>
+        </div>
+      </div>
+      <div class="card" style="max-width:560px;">
+        <div class="card-title mb16">Nuevo Ingreso</div>
+        <div class="frow">
+          <div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="ing-fecha"></div>
+          <div class="fgroup"><label class="flabel">Monto ($)</label><input type="number" class="finput" id="ing-monto" placeholder="0"></div>
+        </div>
+        <div class="fgroup"><label class="flabel">Categoría</label>
+          <select class="fselect" id="ing-cat">
+            <option>Salario</option><option>Delivery</option><option>Propinas Delivery</option>
+            <option>Trabajo independiente</option><option>Regalo</option><option>Venta de objetos</option>
+            <option>Reembolso</option><option>Ingreso extraordinario</option><option>Otros</option>
+          </select>
+        </div>
+        <div class="fgroup"><label class="flabel">Descripción</label><input type="text" class="finput" id="ing-desc" placeholder="Ej: Semana 1 delivery"></div>
+        <div class="fgroup"><label class="flabel">Método de cobro</label>
+          <select class="fselect" id="ing-metodo">
+            <option>Efectivo</option><option>Transferencia</option><option>Cuenta bancaria</option>
+            <option>Billetera virtual</option><option>Criptomonedas</option><option>Otros</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="addIngreso()" style="width:100%">💾 Guardar Ingreso</button>
+      </div>
+    </div>
+
+    <!-- TAB HISTORIAL -->
+    <div class="tab-content" id="tab-ingresos-historial">
+      <div class="card">
+        <div class="card-title mb12">Historial de Ingresos</div>
+        <div id="ingresosTable"><div class="empty"><p>Sin ingresos registrados</p></div></div>
+      </div>
+    </div>
+
+    <!-- TAB RESUMEN -->
+    <div class="tab-content" id="tab-ingresos-resumen">
+      <div class="card">
+        <div class="card-title mb12">Ingresos por Categoría — Mes Actual</div>
+        <div id="ingresosByCat"><div class="empty"><div class="empty-icon">📥</div><p>Sin ingresos este mes</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ GASTOS ══════════════ -->
+  <div class="page" id="page-gastos">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('gastos','nuevo',this)">➕ Registrar</div>
+      <div class="tab" onclick="switchTab('gastos','historial',this)">📋 Historial</div>
+      <div class="tab" onclick="switchTab('gastos','resumen',this)">📊 Resumen</div>
+    </div>
+
+    <!-- TAB NUEVO GASTO -->
+    <div class="tab-content active" id="tab-gastos-nuevo">
+      <div class="kpi-grid c4 mb16">
+        <div class="kpi-card red"><div class="card-title">Total Mes</div><div class="kpi-val" style="color:var(--red)" id="gas-total-mes">$0</div></div>
+        <div class="kpi-card yellow"><div class="card-title">Promedio Diario</div><div class="kpi-val" id="gas-promedio-dia">$0</div></div>
+        <div class="kpi-card purple"><div class="card-title">Mayor Categoría</div><div class="kpi-val" style="font-size:1.1rem" id="gas-mayor-cat">—</div></div>
+        <div class="kpi-card orange" style="--orange:#f97316;"><div class="card-title">Gastos Hormiga</div><div class="kpi-val" id="gas-hormiga">$0</div><div class="kpi-sub">Café, snacks</div></div>
+      </div>
+      <div class="card" style="max-width:560px;">
+        <div class="card-title mb16">Nuevo Gasto</div>
+        <div class="frow">
+          <div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="gas-fecha"></div>
+          <div class="fgroup"><label class="flabel">Monto ($)</label><input type="number" class="finput" id="gas-monto" placeholder="0"></div>
+        </div>
+        <div class="fgroup"><label class="flabel">Categoría</label>
+          <select class="fselect" id="gas-cat">
+            <option>Alquiler</option><option>Servicios</option><option>Internet</option><option>Teléfono</option>
+            <option>Transporte</option><option>Comida</option><option>Delivery</option><option>Mercado</option>
+            <option>Salud</option><option>Impuestos</option><option>Educación</option><option>Entretenimiento</option>
+            <option>Bicicleta</option><option>Mascotas</option><option>Compras</option><option>Café</option>
+            <option>Snacks</option><option>Otros</option>
+          </select>
+        </div>
+        <div class="fgroup"><label class="flabel">Descripción</label><input type="text" class="finput" id="gas-desc" placeholder="Ej: Supermercado semanal"></div>
+        <div class="fgroup"><label class="flabel">Método de pago</label>
+          <select class="fselect" id="gas-metodo">
+            <option>Efectivo</option><option>Débito</option><option>Crédito</option>
+            <option>Transferencia</option><option>Billetera virtual</option><option>Otros</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="addGasto()" style="width:100%">💾 Guardar Gasto</button>
+      </div>
+    </div>
+
+    <!-- TAB HISTORIAL -->
+    <div class="tab-content" id="tab-gastos-historial">
+      <div class="card">
+        <div class="card-hdr">
+          <div class="card-title">Historial de Gastos</div>
+          <div class="fc gap8">
+            <select class="finput" id="gas-filter-mes" style="width:auto;padding:5px 10px;font-size:0.76rem;" onchange="updateGastosFilters();renderGastosTable()"><option value="">Todos los meses</option></select>
+            <select class="finput" id="gas-filter-cat" style="width:auto;padding:5px 10px;font-size:0.76rem;" onchange="renderGastosTable()"><option value="">Todas las cat.</option></select>
+          </div>
+        </div>
+        <div id="gastosTable"><div class="empty"><p>Sin gastos registrados</p></div></div>
+      </div>
+    </div>
+
+    <!-- TAB RESUMEN -->
+    <div class="tab-content" id="tab-gastos-resumen">
+      <div class="card">
+        <div class="card-title mb12">Gastos por Categoría — Mes Actual</div>
+        <div id="gastosByCat"><div class="empty"><div class="empty-icon">📤</div><p>Sin gastos este mes</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ AHORROS ══════════════ -->
+  <div class="page" id="page-ahorros">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('ahorros','pesos',this)">🪙 Pesos</div>
+      <div class="tab" onclick="switchTab('ahorros','dolares',this)">💵 Dólares</div>
+      <div class="tab" onclick="switchTab('ahorros','activos',this)">🏠 Activos</div>
+    </div>
+    <div class="tab-content active" id="tab-ahorros-pesos">
+      <div class="kpi-grid c3 mb16">
+        <div class="kpi-card green"><div class="card-title">Efectivo</div><div class="kpi-val" id="ahorro-efectivo">$0</div></div>
+        <div class="kpi-card accent"><div class="card-title">Banco / Virtual</div><div class="kpi-val" id="ahorro-banco">$0</div></div>
+        <div class="kpi-card cyan"><div class="card-title">Total Pesos</div><div class="kpi-val" style="color:var(--cyan)" id="ahorro-total-pesos">$0</div></div>
+      </div>
+      <div class="card" style="max-width:480px;">
+        <div class="card-title mb12">Actualizar Saldos</div>
+        <div class="frow">
+          <div class="fgroup"><label class="flabel">Efectivo físico ($)</label><input type="number" class="finput" id="saldo-efectivo" placeholder="0"></div>
+          <div class="fgroup"><label class="flabel">Banco / virtual ($)</label><input type="number" class="finput" id="saldo-banco" placeholder="0"></div>
+        </div>
+        <button class="btn btn-primary" onclick="saveSaldosPesos()">Actualizar</button>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-ahorros-dolares">
+      <div class="kpi-grid c4 mb16">
+        <div class="kpi-card green"><div class="card-title">USD Físicos</div><div class="kpi-val">U$S <span id="usd-fisico">0</span></div></div>
+        <div class="kpi-card accent"><div class="card-title">USD Digitales</div><div class="kpi-val">U$S <span id="usd-digital">0</span></div></div>
+        <div class="kpi-card cyan"><div class="card-title">Total USD</div><div class="kpi-val" style="color:var(--cyan)">U$S <span id="usd-total">0</span></div></div>
+        <div class="kpi-card yellow"><div class="card-title">En Pesos (Blue)</div><div class="kpi-val" id="usd-en-pesos">—</div><div class="kpi-sub" id="usd-cotizacion-usado"></div></div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title mb12">Registrar Operación USD</div>
+          <div class="frow"><div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="usd-fecha"></div>
+          <div class="fgroup"><label class="flabel">Tipo</label><select class="fselect" id="usd-tipo"><option>Compra</option><option>Venta</option></select></div></div>
+          <div class="frow"><div class="fgroup"><label class="flabel">Cantidad USD</label><input type="number" class="finput" id="usd-cantidad" placeholder="0"></div>
+          <div class="fgroup"><label class="flabel">Precio ($)</label><input type="number" class="finput" id="usd-precio" placeholder="0"></div></div>
+          <div class="fgroup"><label class="flabel">Modalidad</label><select class="fselect" id="usd-modalidad"><option>Físico (billete)</option><option>Digital (USDT/cripto)</option><option>Cuenta bancaria</option></select></div>
+          <button class="btn btn-primary" onclick="addUSD()" style="width:100%">Registrar</button>
+        </div>
+        <div class="card">
+          <div class="card-title mb12">Historial USD</div>
+          <div class="tbl-wrap"><table><thead><tr><th>Fecha</th><th>Tipo</th><th>USD</th><th>Precio</th><th></th></tr></thead>
+          <tbody id="usdTable"><tr><td colspan="5"><div class="empty"><p>Sin operaciones</p></div></td></tr></tbody></table></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-ahorros-activos">
+      <div class="card mb16">
+        <div class="card-title mb12">Agregar Activo / Deuda</div>
+        <div class="frow3">
+          <div class="fgroup"><label class="flabel">Nombre</label><input type="text" class="finput" id="activo-nombre" placeholder="Ej: Auto, Moto"></div>
+          <div class="fgroup"><label class="flabel">Tipo</label><select class="fselect" id="activo-tipo"><option>Activo</option><option>Deuda</option></select></div>
+          <div class="fgroup"><label class="flabel">Valor ($)</label><input type="number" class="finput" id="activo-valor" placeholder="0"></div>
+        </div>
+        <button class="btn btn-primary" onclick="addActivo()">Agregar</button>
+      </div>
+      <div id="activosList"><div class="empty card"><div class="empty-icon">🏠</div><p>Sin activos registrados</p></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PATRIMONIO ══════════════ -->
+  <div class="page" id="page-patrimonio">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('patrimonio','resumen',this)">📊 Resumen</div>
+      <div class="tab" onclick="switchTab('patrimonio','historial',this)">📸 Snapshots</div>
+    </div>
+    <div class="tab-content active" id="tab-patrimonio-resumen">
+      <div class="kpi-grid c4 mb16">
+        <div class="kpi-card green"><div class="card-title">Activos</div><div class="kpi-val" style="color:var(--green)" id="pat-activos">$0</div></div>
+        <div class="kpi-card red"><div class="card-title">Deudas</div><div class="kpi-val" style="color:var(--red)" id="pat-deudas">$0</div></div>
+        <div class="kpi-card accent"><div class="card-title">Patrimonio Neto</div><div class="kpi-val" id="pat-neto">$0</div></div>
+        <div class="kpi-card yellow"><div class="card-title">Variación</div><div class="kpi-val" id="pat-variacion">—</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title mb12">Evolución del Patrimonio</div>
+        <div id="patrimonioHistChart" style="height:140px;display:flex;align-items:flex-end;gap:6px;padding:8px 0;">
+          <div class="empty" style="width:100%"><p>Sin snapshots aún</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-patrimonio-historial">
+      <div class="card mb16">
+        <div class="card-title mb8">Guardar Punto de Control</div>
+        <p class="tmuted ts mb12">Guardá el patrimonio actual para construir el historial.</p>
+        <button class="btn btn-primary" onclick="savePatrimonioSnapshot()">📸 Guardar Snapshot</button>
+      </div>
+      <div class="card"><div class="card-title mb12">Historial de Snapshots</div><div id="snapshotList"><div class="empty"><p>Sin snapshots guardados</p></div></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ DELIVERY ══════════════ -->
+  <div class="page" id="page-delivery">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('delivery','kpis',this)">📊 KPIs</div>
+      <div class="tab" onclick="switchTab('delivery','semanal',this)">📅 Semanal</div>
+      <div class="tab" onclick="switchTab('delivery','historial',this)">📋 Historial</div>
+    </div>
+    <div class="tab-content active" id="tab-delivery-kpis">
+      <div class="kpi-grid c4 mb16">
+        <div class="kpi-card accent"><div class="card-title">Ganancias (Mes)</div><div class="kpi-val" style="color:var(--accent)" id="del-ganancias">$0</div></div>
+        <div class="kpi-card cyan"><div class="card-title">Propinas (Mes)</div><div class="kpi-val" style="color:var(--cyan)" id="del-propinas">$0</div></div>
+        <div class="kpi-card green"><div class="card-title">Total Generado</div><div class="kpi-val" style="color:var(--green)" id="del-total">$0</div></div>
+        <div class="kpi-card yellow"><div class="card-title">Promedio Diario</div><div class="kpi-val" id="del-promedio">$0</div></div>
+      </div>
+      <div class="kpi-grid c3 mb16">
+        <div class="kpi-card yellow"><div class="card-title">Mejor Semana</div><div class="kpi-val" style="color:var(--yellow)" id="del-mejor-semana">$0</div></div>
+        <div class="kpi-card yellow"><div class="card-title">Mejor Mes</div><div class="kpi-val" style="color:var(--yellow)" id="del-mejor-mes">$0</div></div>
+        <div class="kpi-card purple"><div class="card-title">Promedio Semanal</div><div class="kpi-val" id="del-promedio-sem">$0</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title mb12">Evolución Mensual</div>
+        <div id="deliveryBarChart" style="height:110px;display:flex;align-items:flex-end;gap:6px;padding:8px 0;"><div class="empty" style="width:100%"><p>Sin datos de delivery</p></div></div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-delivery-semanal">
+      <div class="card">
+        <div class="card-title mb12">Detalle Semanal — Mes Actual</div>
+        <div id="deliveryWeekly"><div class="empty"><p>Sin datos este mes</p></div></div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-delivery-historial">
+      <div class="card">
+        <div class="card-title mb12">Historial Ingresos Delivery</div>
+        <div id="deliveryHistTable"><div class="empty"><p>Sin registros delivery</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ METAS ══════════════ -->
+  <div class="page" id="page-metas">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('metas','lista',this)">🎯 Mis Metas</div>
+      <div class="tab" onclick="switchTab('metas','nueva',this)">➕ Nueva Meta</div>
+    </div>
+    <div class="tab-content active" id="tab-metas-lista">
+      <div id="metasList"><div class="empty card"><div class="empty-icon">🎯</div><p>Sin metas creadas aún</p></div></div>
+    </div>
+    <div class="tab-content" id="tab-metas-nueva">
+      <div class="card" style="max-width:500px;">
+        <div class="card-title mb16">Nueva Meta de Ahorro</div>
+        <div class="frow">
+          <div class="fgroup"><label class="flabel">Nombre</label><input type="text" class="finput" id="meta-nombre" placeholder="Ej: Fondo emergencia"></div>
+          <div class="fgroup"><label class="flabel">Emoji</label><input type="text" class="finput" id="meta-emoji" placeholder="🎯" style="font-size:1.2rem;"></div>
+        </div>
+        <div class="frow">
+          <div class="fgroup"><label class="flabel">Objetivo ($)</label><input type="number" class="finput" id="meta-objetivo" placeholder="0"></div>
+          <div class="fgroup"><label class="flabel">Ya tengo ($)</label><input type="number" class="finput" id="meta-actual" placeholder="0"></div>
+        </div>
+        <div class="fgroup"><label class="flabel">Fecha objetivo</label><input type="date" class="finput" id="meta-fecha"></div>
+        <button class="btn btn-primary" onclick="addMeta()" style="width:100%">Crear Meta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PRESUPUESTO ══════════════ -->
+  <div class="page" id="page-presupuesto">
+    <div class="kpi-grid c3 mb16">
+      <div class="kpi-card accent">
+        <div class="card-title">Presupuesto Total del Mes</div>
+        <div class="fc gap8 mt8" style="align-items:center;">
+          <span style="font-size:1rem;font-weight:700;color:var(--text3);">$</span>
+          <input type="number" id="bud-total-limite-input" placeholder="0"
+            style="background:transparent;border:none;border-bottom:2px solid var(--accent);color:var(--text);font-size:1.5rem;font-weight:800;width:100%;outline:none;padding:2px 4px;letter-spacing:-0.5px;"
+            onchange="saveBudgetTotal(this.value)" oninput="saveBudgetTotal(this.value)">
+        </div>
+        <div class="kpi-sub mt8">Tocá para editar tu límite mensual</div>
+      </div>
+      <div class="kpi-card red"><div class="card-title">Ya Gastado</div><div class="kpi-val" style="color:var(--red)" id="bud-total-gastado">$0</div><div class="kpi-sub" id="bud-pct-gastado">0% del total</div></div>
+      <div class="kpi-card green"><div class="card-title">Disponible</div><div class="kpi-val" style="color:var(--green)" id="bud-total-disponible">—</div><div class="kpi-sub">Podés gastar todavía</div></div>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('presupuesto','estado',this)">📊 Estado</div>
+      <div class="tab" onclick="switchTab('presupuesto','categorias',this)">📋 Por Categoría</div>
+    </div>
+
+    <!-- TAB ESTADO -->
+    <div class="tab-content active" id="tab-presupuesto-estado">
+      <div class="card mb16" id="budEstadoGeneral"></div>
+      <div class="card">
+        <div class="card-title mb12">Evolución del Gasto — Mes en Curso</div>
+        <div id="budEvolucion"></div>
+      </div>
+    </div>
+
+    <!-- TAB POR CATEGORÍA -->
+    <div class="tab-content" id="tab-presupuesto-categorias">
+      <div class="card">
+        <div class="card-title mb4">Límites por Categoría</div>
+        <p class="tmuted ts mb12">Dejá vacío para sin límite individual.</p>
+        <div id="budgetForm"></div>
+        <button class="btn btn-primary mt16" onclick="saveBudgets()" style="width:100%">💾 Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PROYECCIONES ══════════════ -->
+  <div class="page" id="page-proyecciones">
+    <div class="kpi-grid c3 mb16">
+      <div class="kpi-card accent"><div class="card-title">En 6 meses</div><div class="kpi-val" id="proy-6m">—</div><div class="kpi-sub" id="proy-6m-desc"></div></div>
+      <div class="kpi-card cyan"><div class="card-title">En 1 año</div><div class="kpi-val" id="proy-1a">—</div><div class="kpi-sub" id="proy-1a-desc"></div></div>
+      <div class="kpi-card purple"><div class="card-title">En 5 años</div><div class="kpi-val" id="proy-5a">—</div><div class="kpi-sub" id="proy-5a-desc"></div></div>
+    </div>
+    <div class="g2">
+      <div class="card"><div class="card-title mb12">Supuestos del Cálculo</div><div id="proySupuestos" class="tmuted ts" style="line-height:1.8;">Registrá al menos un mes completo para activar las proyecciones.</div></div>
+      <div class="card">
+        <div class="card-title mb12">Simulador Manual</div>
+        <div class="fgroup"><label class="flabel">Ingreso mensual est. ($)</label><input type="number" class="finput" id="sim-ingreso" placeholder="0"></div>
+        <div class="fgroup"><label class="flabel">Gasto mensual est. ($)</label><input type="number" class="finput" id="sim-gasto" placeholder="0"></div>
+        <div class="fgroup"><label class="flabel">Patrimonio actual ($)</label><input type="number" class="finput" id="sim-patrimonio" placeholder="0"></div>
+        <button class="btn btn-primary" onclick="simularProyeccion()">Calcular</button>
+        <div class="mt12" id="sim-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ IA FINANCIERA ══════════════ -->
+  <!-- ══════════════ IA FINANCIERA ══════════════ -->
+  <div class="page" id="page-ia">
+    <!-- Selector de modo -->
+    <div style="display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:2px;">
+      <button class="ia-mode-btn active" id="mode-datos" onclick="setIAMode('datos')">📊 Mis Datos</button>
+      <button class="ia-mode-btn" id="mode-internet" onclick="setIAMode('internet')">🌐 Internet</button>
+      <button class="ia-mode-btn" id="mode-libros" onclick="setIAMode('libros')">📚 Libros</button>
+    </div>
+
+    <!-- Chat pantalla completa -->
+    <div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;" id="iaCard">
+      <!-- Messages -->
+      <div class="ai-msgs" id="aiMessages" style="height:38vh;min-height:200px;">
+      </div>
+      <!-- Input siempre visible -->
+      <div style="padding:10px 12px;border-top:1px solid var(--border);background:var(--card);display:flex;gap:8px;align-items:flex-end;">
+        <textarea id="aiInput" placeholder="Escribí tu pregunta..." rows="2"
+          style="flex:1;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r2);padding:10px 13px;color:var(--text);font-family:inherit;font-size:.84rem;outline:none;resize:none;line-height:1.4;max-height:100px;overflow-y:auto;"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI();}"></textarea>
+        <button class="btn btn-primary" onclick="sendAI()" id="aiSendBtn"
+          style="padding:10px 16px;align-self:flex-end;flex-shrink:0;">
+          ➤
+        </button>
+      </div>
+    </div>
+
+    <!-- Preguntas rápidas por modo -->
+    <div class="mt12" id="iaQuickBtns"></div>
+  </div>
+
+  <!-- ══════════════ ALERTAS ══════════════ -->
+  <div class="page" id="page-alertas">
+    <div class="fjb mb16" style="align-items:center;flex-wrap:wrap;gap:12px;">
+      <div><div style="font-size:1rem;font-weight:700;">🔔 Centro de Alertas</div><div class="tmuted ts mt8">Detección automática de situaciones financieras importantes</div></div>
+      <button class="btn btn-ghost" onclick="refreshAlerts()">🔄 Actualizar</button>
+    </div>
+    <div id="alertasContainer"><div class="empty card"><div class="empty-icon">🔔</div><p>Registrá movimientos para activar las alertas</p></div></div>
+  </div>
+
+  <!-- ══════════════ MERCADO ══════════════ -->
+  <div class="page" id="page-mercado">
+    <div class="fjb mb16" style="align-items:center;flex-wrap:wrap;gap:12px;">
+      <div><div style="font-size:1rem;font-weight:700;">💹 Mercado de Divisas</div><div class="tmuted ts mt8" id="mercadoLastUpdate">Actualizá para ver cotizaciones en tiempo real</div></div>
+      <button class="btn btn-primary" onclick="fetchDollar()">🔄 Actualizar Cotizaciones</button>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('mercado','dolar',this)">💵 Dólar</div>
+      <div class="tab" onclick="switchTab('mercado','euro',this)">💶 Euro</div>
+      <div class="tab" onclick="switchTab('mercado','impacto',this)">📊 Mi Patrimonio</div>
+    </div>
+    <div class="tab-content active" id="tab-mercado-dolar">
+      <div id="mercadoCotizacionesDolar"><div class="empty card"><div class="empty-icon">💵</div><p>Presioná Actualizar para cargar cotizaciones</p></div></div>
+    </div>
+    <div class="tab-content" id="tab-mercado-euro">
+      <div id="mercadoCotizacionesEuro"><div class="empty card"><div class="empty-icon">💶</div><p>Presioná Actualizar para cargar el Euro</p></div></div>
+    </div>
+    <div class="tab-content" id="tab-mercado-impacto">
+      <div class="card"><div class="card-title mb12">Impacto en Tu Patrimonio</div><div id="mercadoImpacto" class="tmuted ts">Actualizá las cotizaciones para calcular el valor de tus dólares.</div></div>
+    </div>
+    <div id="mercadoCotizaciones" style="display:none;"></div>
+  </div>
+
+  <!-- ══════════════ IMPORTAR ══════════════ -->
+  <div class="page" id="page-importar">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('importar','csv',this)">📂 Importar CSV</div>
+      <div class="tab" onclick="switchTab('importar','backup',this)">💾 Backup</div>
+    </div>
+    <div class="tab-content active" id="tab-importar-csv">
+      <div class="g2">
+        <div class="card">
+          <div class="card-title mb12">Importar desde CSV</div>
+          <p class="tmuted ts mb12">Columnas requeridas: <strong>fecha, descripcion, monto</strong> (opcionales: <em>categoria, tipo</em>).</p>
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('importFileInput2').click()">
+            <div class="drop-icon">📂</div><p>Tocá para seleccionar o arrastrá tu archivo CSV<br><span style="color:var(--text3);font-size:0.72rem;">Formatos: .csv .txt · separado por comas o punto y coma</span></p>
+            <input type="file" id="importFileInput2" accept=".csv,.txt" onchange="handleImportFile(event)">
+          </div>
+          <div class="sep"></div>
+          <div class="card-title mb8">Formato esperado</div>
+          <div style="background:var(--bg3);border-radius:var(--r2);padding:12px;font-family:monospace;font-size:0.72rem;color:var(--cyan);line-height:1.9;overflow-x:auto;">fecha,descripcion,monto,categoria,tipo<br>2026-06-01,Mercado,15000,Mercado,gasto<br>2026-06-02,PedidosYa semana,85000,Delivery,ingreso</div>
+          <div class="mt12">
+            <div class="card-title mb8">Mapeo de columnas</div>
+            <div class="frow">
+              <div class="fgroup"><label class="flabel">Columna fecha</label><input type="text" class="finput" id="map-fecha" value="fecha"></div>
+              <div class="fgroup"><label class="flabel">Columna monto</label><input type="text" class="finput" id="map-monto" value="monto"></div>
+            </div>
+            <div class="frow">
+              <div class="fgroup"><label class="flabel">Columna descripción</label><input type="text" class="finput" id="map-desc" value="descripcion"></div>
+              <div class="fgroup"><label class="flabel">Tipo por defecto</label><select class="fselect" id="map-tipo-default"><option value="gasto">Gasto</option><option value="ingreso">Ingreso</option></select></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title mb12">Vista Previa</div>
+          <div id="importPreview"><div class="empty"><div class="empty-icon">👀</div><p>Seleccioná un archivo para previsualizar</p></div></div>
+          <div id="importActions" style="display:none;margin-top:14px;">
+            <div class="fc gap8"><button class="btn btn-primary" onclick="confirmImport()">✅ Confirmar</button><button class="btn btn-ghost" onclick="cancelImport()">Cancelar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-importar-backup">
+      <div class="card">
+        <div class="card-title mb12">Exportar Datos</div>
+        <p class="tmuted ts mb12">Descargá tus datos en CSV o como backup completo JSON.</p>
+        <div class="fc gap8 mb16" style="flex-wrap:wrap;">
+          <button class="btn btn-ghost" onclick="exportCSV('ingresos')">⬇️ Exportar Ingresos</button>
+          <button class="btn btn-ghost" onclick="exportCSV('gastos')">⬇️ Exportar Gastos</button>
+          <button class="btn btn-ghost" onclick="exportCSV('todo')">⬇️ Exportar Todo</button>
+        </div>
+        <div class="sep"></div>
+        <div class="card-title mb8">Backup Completo (JSON)</div>
+        <p class="tmuted ts mb8">Backup de toda tu base de datos financiera.</p>
+        <div class="fc gap8">
+          <button class="btn btn-ghost" onclick="exportBackup()">💾 Descargar Backup</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('importBackupInput').click()">📤 Restaurar Backup</button>
+          <input type="file" id="importBackupInput" accept=".json" style="display:none" onchange="restoreBackup(event)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- ══ MODALES ══ -->
+<div class="modal-bg" id="modalEditIngreso">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">✏️ Editar Ingreso</div><button class="modal-x" onclick="closeModal('modalEditIngreso')">✕</button></div>
+    <input type="hidden" id="edit-ing-id">
+    <div class="frow"><div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="edit-ing-fecha"></div><div class="fgroup"><label class="flabel">Monto ($)</label><input type="number" class="finput" id="edit-ing-monto"></div></div>
+    <div class="fgroup"><label class="flabel">Categoría</label><select class="fselect" id="edit-ing-cat"><option>Salario</option><option>Delivery</option><option>Propinas Delivery</option><option>Trabajo independiente</option><option>Regalo</option><option>Venta de objetos</option><option>Reembolso</option><option>Ingreso extraordinario</option><option>Otros</option></select></div>
+    <div class="fgroup"><label class="flabel">Descripción</label><input type="text" class="finput" id="edit-ing-desc"></div>
+    <div class="fgroup"><label class="flabel">Método</label><select class="fselect" id="edit-ing-metodo"><option>Efectivo</option><option>Transferencia</option><option>Cuenta bancaria</option><option>Billetera virtual</option><option>Criptomonedas</option><option>Otros</option></select></div>
+    <div class="fc gap8 mt16"><button class="btn btn-primary" onclick="saveEditIngreso()" style="flex:1">💾 Guardar</button><button class="btn btn-ghost" onclick="closeModal('modalEditIngreso')">Cancelar</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modalEditGasto">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">✏️ Editar Gasto</div><button class="modal-x" onclick="closeModal('modalEditGasto')">✕</button></div>
+    <input type="hidden" id="edit-gas-id">
+    <div class="frow"><div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="edit-gas-fecha"></div><div class="fgroup"><label class="flabel">Monto ($)</label><input type="number" class="finput" id="edit-gas-monto"></div></div>
+    <div class="fgroup"><label class="flabel">Categoría</label><select class="fselect" id="edit-gas-cat"><option>Alquiler</option><option>Servicios</option><option>Internet</option><option>Teléfono</option><option>Transporte</option><option>Comida</option><option>Delivery</option><option>Mercado</option><option>Salud</option><option>Impuestos</option><option>Educación</option><option>Entretenimiento</option><option>Bicicleta</option><option>Mascotas</option><option>Compras</option><option>Café</option><option>Snacks</option><option>Otros</option></select></div>
+    <div class="fgroup"><label class="flabel">Descripción</label><input type="text" class="finput" id="edit-gas-desc"></div>
+    <div class="fgroup"><label class="flabel">Método</label><select class="fselect" id="edit-gas-metodo"><option>Efectivo</option><option>Débito</option><option>Crédito</option><option>Transferencia</option><option>Billetera virtual</option><option>Otros</option></select></div>
+    <div class="fc gap8 mt16"><button class="btn btn-primary" onclick="saveEditGasto()" style="flex:1">💾 Guardar</button><button class="btn btn-ghost" onclick="closeModal('modalEditGasto')">Cancelar</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modalConfirm">
+  <div class="modal" style="max-width:340px;text-align:center;">
+    <div style="font-size:2rem;margin-bottom:12px;">⚠️</div>
+    <div id="modalConfirmText" style="margin-bottom:20px;font-size:0.88rem;color:var(--text2);"></div>
+    <div class="fc gap8" style="justify-content:center;"><button class="btn btn-ghost" onclick="closeModal('modalConfirm')">Cancelar</button><button class="btn btn-danger" id="modalConfirmBtn">Eliminar</button></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+const DB = {
+  ingresos:[], gastos:[], usd:[], activos:[],
+  saldoEfectivo:0, saldoBanco:0,
+  metas:[], snapshots:[], cotizacion:null, budgets:{}, budgetTotal:0, lastCountry:'AR'
+};
+let pendingDeleteFn = null;
+
+// ══════════════════════════════════════════════
+// PERSISTENCE
+// ══════════════════════════════════════════════
+function save(){ try{ localStorage.setItem('finanzasya_v1', JSON.stringify(DB)); }catch(e){} }
+function load(){ try{ const r=localStorage.getItem('finanzasya_v1'); if(r) Object.assign(DB, JSON.parse(r)); }catch(e){} }
+
+// ══════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════
+function fmt(n){ if(!n&&n!==0) return '—'; return '$'+Math.round(n).toLocaleString('es-AR'); }
+function fmtUSD(n){ return 'U$S '+(parseFloat(n)||0).toLocaleString('es-AR',{maximumFractionDigits:2}); }
+function fmtDate(d){ if(!d) return '—'; const[y,m,dd]=d.split('-'); return`${dd}/${m}/${y.slice(2)}`; }
+function todayStr(){ return new Date().toISOString().split('T')[0]; }
+function monthOf(d){ return d ? d.substring(0,7) : ''; }
+function currentMonth(){ return new Date().toISOString().substring(0,7); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2); }
+function setDate(id){ const e=document.getElementById(id); if(e&&!e.value) e.value=todayStr(); }
+
+function showBudTooltip(el, dia, gasto, acum){
+  const tip=document.getElementById('budTooltip');
+  const txt=document.getElementById('budTooltipTxt');
+  if(!tip||!txt) return;
+  if(tip.dataset.dia===String(dia)&&tip.style.display!=='none'){ tip.style.display='none'; tip.dataset.dia=''; return; }
+  tip.dataset.dia=String(dia);
+  const tieneGasto=gasto>0;
+  txt.innerHTML=`<strong>Día ${dia}</strong> &nbsp;·&nbsp; ${tieneGasto?`Gastaste <strong style="color:var(--red)">${fmt(gasto)}</strong>`:'Sin gastos'} &nbsp;·&nbsp; Acumulado: <strong>${fmt(acum)}</strong>`;
+  tip.style.display='block';
+}
+
+// ── BOTTOM NAV ROTATION ──
+const BN_SETS = [
+  [{id:'dashboard',icon:'📊',label:'Inicio'},{id:'ingresos',icon:'📥',label:'Ingresos'},{id:'gastos',icon:'📤',label:'Gastos'},{id:'presupuesto',icon:'💰',label:'Budget'}],
+  [{id:'ahorros',icon:'🏦',label:'Ahorros'},{id:'patrimonio',icon:'📈',label:'Patrimonio'},{id:'delivery',icon:'🛵',label:'Delivery'},{id:'metas',icon:'🎯',label:'Metas'}],
+  [{id:'ia',icon:'🤖',label:'IA'},{id:'alertas',icon:'🔔',label:'Alertas'},{id:'mercado',icon:'💹',label:'Mercado'},{id:'proyecciones',icon:'🔭',label:'Proy.'}],
+];
+let _bnSet=0;
+function renderBottomNav(){
+  const nav=document.getElementById('bottomnav');
+  if(!nav) return;
+  const set=BN_SETS[_bnSet];
+  const cur=document.querySelector('.page.active')?.id?.replace('page-','');
+  // 4 ítems + zona de puntos al centro (tocable para rotar)
+  const items=set.map(item=>{
+    const isActive=cur===item.id;
+    return`<div class="bn-item${isActive?' active':''}" onclick="showPage('${item.id}')">
+      <div class="bn-icon">${item.icon}</div>
+      <div class="bn-lbl">${item.label}</div>
+      <div class="bn-dot"></div>
+    </div>`;
+  }).join('');
+  // Indicador de set — 3 bolitas entre los ítems 2 y 3
+  const dots=BN_SETS.map((_,i)=>`<div onclick="rotateBN()" style="
+    width:${i===_bnSet?'18px':'6px'};height:6px;border-radius:3px;
+    background:${i===_bnSet?'var(--accent)':'var(--border2)'};
+    transition:all .25s ease;cursor:pointer;flex-shrink:0;
+  "></div>`).join('');
+  nav.innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-around;width:100%;gap:0;">
+      ${set.slice(0,2).map(item=>{const a=cur===item.id;return`<div class="bn-item${a?' active':''}" onclick="showPage('${item.id}')"><div class="bn-icon">${item.icon}</div><div class="bn-lbl">${item.label}</div><div class="bn-dot"></div></div>`}).join('')}
+      <div onclick="rotateBN()" style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 10px;cursor:pointer;min-width:44px;">
+        <div style="display:flex;gap:4px;align-items:center;">${dots}</div>
+        <div style="font-size:.58rem;color:var(--text3);font-weight:600;margin-top:2px;">cambiar</div>
+      </div>
+      ${set.slice(2,4).map(item=>{const a=cur===item.id;return`<div class="bn-item${a?' active':''}" onclick="showPage('${item.id}')"><div class="bn-icon">${item.icon}</div><div class="bn-lbl">${item.label}</div><div class="bn-dot"></div></div>`}).join('')}
+    </div>`;
+}
+function rotateBN(){
+  _bnSet=(_bnSet+1)%BN_SETS.length;
+  renderBottomNav();
+}
+
+// ── DETECCIÓN DE PAÍS Y COTIZACIONES GEO-AWARE ──
+const EXCHANGE_APIS = {
+  AR: { fn: fetchDollarAR, label: 'Argentina 🇦🇷', currency: 'ARS' },
+  VE: { fn: fetchDollarVE, label: 'Venezuela 🇻🇪', currency: 'VES' },
+  CL: { fn: fetchDollarCL, label: 'Chile 🇨🇱', currency: 'CLP' },
+  CO: { fn: fetchDollarCO, label: 'Colombia 🇨🇴', currency: 'COP' },
+  UY: { fn: fetchDollarUY, label: 'Uruguay 🇺🇾', currency: 'UYU' },
+  US: { fn: fetchDollarUS, label: 'Estados Unidos 🇺🇸', currency: 'USD' },
+  DEFAULT: { fn: fetchDollarFX, label: 'Internacional 🌍', currency: 'USD' },
+};
+let _detectedCountry = DB.lastCountry || 'AR';
+
+async function detectCountry(){
+  try{
+    const r=await fetch('https://ipapi.co/json/');
+    const d=await r.json();
+    const cc=d.country_code||'AR';
+    if(cc!==_detectedCountry){
+      _detectedCountry=cc; DB.lastCountry=cc; save();
+      const name=(EXCHANGE_APIS[cc]||EXCHANGE_APIS.DEFAULT).label;
+      showToast(`📍 País detectado: ${name}`,'info');
+    }
+    return cc;
+  }catch(e){ return _detectedCountry||'AR'; }
+}
+
+async function fetchDollarAR(){
+  const res=await fetch('https://dolarapi.com/v1/dolares');
+  const data=await res.json();
+  DB.cotizacion={};
+  data.forEach(d=>{ DB.cotizacion[d.nombre]=d; });
+}
+async function fetchDollarVE(){
+  // BCV y paralelo Venezuela
+  const res=await fetch('https://ve.dolarapi.com/v1/dolares');
+  const data=await res.json();
+  DB.cotizacion={};
+  data.forEach(d=>{ DB.cotizacion[d.nombre]={...d,nombre:d.nombre||d.fuente}; });
+}
+async function fetchDollarCL(){
+  const res=await fetch('https://mindicador.cl/api/dolar');
+  const data=await res.json();
+  const val=data.serie?.[0]?.valor||0;
+  DB.cotizacion={Oficial:{nombre:'Oficial',compra:val,venta:val},};
+}
+async function fetchDollarCO(){
+  // Colombia - TRM
+  const res=await fetch('https://www.datos.gov.co/resource/32sa-8pi3.json?$limit=1&$order=vigenciadesde DESC');
+  const data=await res.json();
+  const val=parseFloat(data[0]?.valor)||0;
+  DB.cotizacion={Oficial:{nombre:'TRM Oficial',compra:val,venta:val}};
+}
+async function fetchDollarUY(){
+  const res=await fetch('https://cotizaciones.bcu.gub.uy/wscotizaciones/servlet/wsbcucotizaciones?fecha='+(new Date().toISOString().split('T')[0].replace(/-/g,'/'))+'&moneda=USD&Idioma=SPA');
+  // fallback a exchangerate
+  throw new Error('use fallback');
+}
+async function fetchDollarUS(){
+  // En EEUU mostramos EUR y otras divisas vs USD
+  const res=await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+  const data=await res.json();
+  DB.cotizacion={
+    EUR:{nombre:'Euro',compra:1/data.rates.EUR,venta:1/data.rates.EUR},
+    GBP:{nombre:'Libra',compra:1/data.rates.GBP,venta:1/data.rates.GBP},
+    BRL:{nombre:'Real BRL',compra:1/data.rates.BRL,venta:1/data.rates.BRL},
+  };
+}
+async function fetchDollarFX(){
+  // Fallback internacional: exchangerate-api
+  const res=await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+  const data=await res.json();
+  const cc=_detectedCountry;
+  const localCur=data.rates[cc]||null;
+  DB.cotizacion={};
+  if(localCur) DB.cotizacion['USD→'+cc]={nombre:'USD → '+cc,compra:localCur,venta:localCur};
+  DB.cotizacion['EUR']={nombre:'Euro',compra:1/data.rates.EUR,venta:1/data.rates.EUR};
+}
+
+async function fetchDollar(){
+  const btn=document.querySelector('[onclick="fetchDollar()"]');
+  if(btn) btn.textContent='⏳';
+  try{
+    const cc=await detectCountry();
+    const api=EXCHANGE_APIS[cc]||EXCHANGE_APIS.DEFAULT;
+    try{ await api.fn(); }
+    catch(e){ await fetchDollarAR().catch(()=>fetchDollarFX()); }
+    // Siempre agrega EUR si no está
+    if(!Object.values(DB.cotizacion||{}).find(d=>d.nombre?.toLowerCase().includes('euro'))){
+      fetchEuro();
+    }
+    save(); renderCotizaciones(); updateTopbarDollar();
+    const upEl=document.getElementById('mercadoLastUpdate');
+    const api2=EXCHANGE_APIS[cc]||EXCHANGE_APIS.DEFAULT;
+    if(upEl) upEl.textContent=`${api2.label} · ${new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'})}`;
+  }catch(e){
+    showToast('Error al cargar cotizaciones','error');
+  }
+  if(btn) btn.textContent='🔄';
+}
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll('.sd-item').forEach(n=>n.classList.remove('active'));
+  const sdItem=document.querySelector(`.sd-item[onclick*="'${name}'"]`);
+  if(sdItem) sdItem.classList.add('active');
+  document.querySelectorAll('.di').forEach(n=>n.classList.remove('active'));
+  const diItem=document.querySelector(`.di[onclick*="'${name}'"]`);
+  if(diItem) diItem.classList.add('active');
+  if(DB.cotizacion){const b=DB.cotizacion['Blue'];if(b){const t=`💵 Blue: ${fmt(b.venta)}`;const td=document.getElementById('topbarDollar');const sd=document.getElementById('sdDollar');if(td)td.textContent=t;if(sd)sd.textContent=t;}}
+  renderBottomNav();
+  refreshPage(name);
+}
+
+function openDrawer(){
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+}
+// Legacy compatibility
+function toggleSidebar(){ openDrawer(); }
+function closeSidebar(){ closeDrawer(); }
+
+function switchTab(section, tab, el){
+  const pageId = section==='dash' ? 'page-dashboard' : `page-${section}`;
+  const pg = document.getElementById(pageId);
+  if(pg){ pg.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); pg.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); }
+  if(el) el.classList.add('active');
+  const tc = document.getElementById(`tab-${section}-${tab}`);
+  if(tc) tc.classList.add('active');
+}
+
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function confirmDelete(msg,fn){
+  document.getElementById('modalConfirmText').textContent=msg;
+  document.getElementById('modalConfirmBtn').onclick=()=>{ fn(); closeModal('modalConfirm'); };
+  document.getElementById('modalConfirm').classList.add('open');
+}
+
+let toastTimer=null;
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast ${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ══════════════════════════════════════════════
+// DOLLAR / EURO / MERCADO
+// ══════════════════════════════════════════════
+async function fetchDollar(){
+  try{
+    const res=await fetch('https://dolarapi.com/v1/dolares');
+    const data=await res.json();
+    DB.cotizacion={};
+    data.forEach(d=>{ DB.cotizacion[d.nombre]=d; });
+    save(); renderCotizaciones(); updateTopbarDollar();
+    const upEl=document.getElementById('mercadoLastUpdate');
+    if(upEl) upEl.textContent='Última actualización: '+new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){ document.getElementById('topbarDollar').textContent='Sin cotización'; }
+}
+
+function updateTopbarDollar(){
+  if(!DB.cotizacion) return;
+  const blue=DB.cotizacion['Blue'];
+  if(!blue) return;
+  const txt=`💵 Blue: ${fmt(blue.venta)}`;
+  const td=document.getElementById('topbarDollar'); if(td) td.textContent=txt;
+  const sd=document.getElementById('sdDollar'); if(sd) sd.textContent=txt;
+}
+
+function getBlueSell(){
+  if(!DB.cotizacion) return null;
+  const blue=DB.cotizacion['Blue'];
+  return blue ? parseFloat(blue.venta) : null;
+}
+
+function cotCard(d, accentColor){
+  const spread = d.compra>0 ? ((d.venta-d.compra)/d.compra*100).toFixed(1) : '—';
+  return `<div class="cot-card" style="border-top:3px solid ${accentColor};">
+    <div class="cot-card-hdr">
+      <div class="cot-name">${d.nombre}</div>
+      <span class="badge bb" style="font-size:0.65rem;">Spread ${spread}%</span>
+    </div>
+    <div class="cot-grid">
+      <div class="cot-box buy"><div class="cot-label">Compra</div><div class="cot-val green">${fmt(d.compra)}</div></div>
+      <div class="cot-box sell"><div class="cot-label">Venta</div><div class="cot-val red">${fmt(d.venta)}</div></div>
+    </div>
+  </div>`;
+}
+
+function renderCotizaciones(){
+  if(!DB.cotizacion) return;
+  const dolarColors={'Oficial':'var(--accent)','Blue':'var(--cyan)','Bolsa':'var(--purple)','Cripto':'var(--yellow)','Mayorista':'var(--green)','Tarjeta':'var(--red)'};
+  const dolarEl=document.getElementById('mercadoCotizacionesDolar');
+  let dHtml='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">';
+  Object.values(DB.cotizacion).forEach(d=>{ dHtml+=cotCard(d, dolarColors[d.nombre]||'var(--accent)'); });
+  dHtml+='</div>';
+  if(dolarEl) dolarEl.innerHTML=dHtml;
+  const legEl=document.getElementById('mercadoCotizaciones');
+  if(legEl) legEl.innerHTML=dHtml;
+  fetchEuro();
+  updateUSDenPesos();
+  renderMercadoImpacto();
+}
+
+async function fetchEuro(){
+  const euroEl=document.getElementById('mercadoCotizacionesEuro');
+  if(!euroEl) return;
+  try{
+    const res=await fetch('https://dolarapi.com/v1/cotizaciones/eur');
+    const data=await res.json();
+    const arr=Array.isArray(data)?data:[data];
+    if(!arr.length||!arr[0].compra) throw new Error('sin datos');
+    let html='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">';
+    arr.forEach(d=>{ html+=cotCard(d,'var(--acc2)'); });
+    html+='</div>';
+    euroEl.innerHTML=html;
+  }catch(e){
+    const eur=DB.cotizacion ? Object.values(DB.cotizacion).find(d=>d.moneda==='EUR'||d.nombre?.toLowerCase().includes('euro')) : null;
+    if(eur) euroEl.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">'+cotCard(eur,'var(--acc2)')+'</div>';
+    else euroEl.innerHTML='<div class="card tmuted ts" style="padding:16px;">No se pudo cargar el Euro. Presioná Actualizar de nuevo.</div>';
+  }
+}
+
+function renderMercadoImpacto(){
+  const el=document.getElementById('mercadoImpacto');
+  if(!el||!DB.cotizacion) return;
+  const {fisico,digital}=calcUSDBalance();
+  const total=fisico+digital;
+  if(total===0){ el.innerHTML='<span class="tmuted">Sin posición en dólares registrada.</span>'; return; }
+  const tipos=['Blue','Oficial','Bolsa','Cripto'];
+  let html=`<p class="ts mb12">Tenés <strong>U$S ${total.toFixed(2)}</strong> en total:</p><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;">`;
+  tipos.forEach(t=>{ const d=DB.cotizacion[t]; if(!d) return;
+    html+=`<div class="kpi-card accent" style="text-align:center;padding:12px;"><div class="card-title">${d.nombre}</div><div class="kpi-val" style="font-size:1.1rem;">${fmt(total*d.venta)}</div><div class="kpi-sub">@ ${fmt(d.venta)}</div></div>`;
+  });
+  html+='</div>'; el.innerHTML=html;
+}
+
+// ══════════════════════════════════════════════
+// EDIT FUNCIONES
+// ══════════════════════════════════════════════
+function openEditIngreso(itemId){
+  const item=DB.ingresos.find(i=>i.id===itemId); if(!item) return;
+  document.getElementById('edit-ing-id').value=itemId;
+  document.getElementById('edit-ing-fecha').value=item.fecha;
+  document.getElementById('edit-ing-monto').value=item.monto;
+  document.getElementById('edit-ing-cat').value=item.cat;
+  document.getElementById('edit-ing-desc').value=item.desc||'';
+  document.getElementById('edit-ing-metodo').value=item.metodo;
+  document.getElementById('modalEditIngreso').classList.add('open');
+}
+function saveEditIngreso(){
+  const itemId=document.getElementById('edit-ing-id').value;
+  const item=DB.ingresos.find(i=>i.id===itemId); if(!item) return;
+  const monto=parseFloat(document.getElementById('edit-ing-monto').value);
+  if(!monto||monto<=0){ alert('Monto inválido.'); return; }
+  item.fecha=document.getElementById('edit-ing-fecha').value;
+  item.monto=monto; item.cat=document.getElementById('edit-ing-cat').value;
+  item.desc=document.getElementById('edit-ing-desc').value; item.metodo=document.getElementById('edit-ing-metodo').value;
+  DB.ingresos.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save(); closeModal('modalEditIngreso'); showToast('Ingreso actualizado ✓');
+  refreshPage('ingresos'); refreshDashboard();
+}
+function openEditGasto(itemId){
+  const item=DB.gastos.find(g=>g.id===itemId); if(!item) return;
+  document.getElementById('edit-gas-id').value=itemId;
+  document.getElementById('edit-gas-fecha').value=item.fecha;
+  document.getElementById('edit-gas-monto').value=item.monto;
+  document.getElementById('edit-gas-cat').value=item.cat;
+  document.getElementById('edit-gas-desc').value=item.desc||'';
+  document.getElementById('edit-gas-metodo').value=item.metodo;
+  document.getElementById('modalEditGasto').classList.add('open');
+}
+function saveEditGasto(){
+  const itemId=document.getElementById('edit-gas-id').value;
+  const item=DB.gastos.find(g=>g.id===itemId); if(!item) return;
+  const monto=parseFloat(document.getElementById('edit-gas-monto').value);
+  if(!monto||monto<=0){ alert('Monto inválido.'); return; }
+  item.fecha=document.getElementById('edit-gas-fecha').value;
+  item.monto=monto; item.cat=document.getElementById('edit-gas-cat').value;
+  item.desc=document.getElementById('edit-gas-desc').value; item.metodo=document.getElementById('edit-gas-metodo').value;
+  DB.gastos.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save(); closeModal('modalEditGasto'); showToast('Gasto actualizado ✓');
+  refreshPage('gastos'); refreshDashboard();
+}
+
+// ══════════════════════════════════════════════
+// INGRESOS
+// ══════════════════════════════════════════════
+function addIngreso(){
+  const fecha=document.getElementById('ing-fecha').value;
+  const monto=parseFloat(document.getElementById('ing-monto').value);
+  const cat=document.getElementById('ing-cat').value;
+  const desc=document.getElementById('ing-desc').value;
+  const metodo=document.getElementById('ing-metodo').value;
+  if(!fecha||!monto||monto<=0){ alert('Completá fecha y monto válidos.'); return; }
+  DB.ingresos.push({id:uid(),fecha,monto,cat,desc,metodo});
+  DB.ingresos.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save();
+  document.getElementById('ing-monto').value='';
+  document.getElementById('ing-desc').value='';
+  showToast(`Ingreso de ${fmt(monto)} guardado ✓`);
+  refreshPage('ingresos'); refreshDashboard();
+}
+function deleteIngreso(id){
+  confirmDelete('¿Eliminar este ingreso?',()=>{ DB.ingresos=DB.ingresos.filter(i=>i.id!==id); save(); refreshPage('ingresos'); refreshDashboard(); });
+}
+const CAT_ICON={'Delivery':'🛵','Propinas Delivery':'💸','Salario':'💼','Trabajo independiente':'💻','Regalo':'🎁','Venta de objetos':'📦','Reembolso':'↩️','Ingreso extraordinario':'⭐','Alquiler':'🏠','Servicios':'⚡','Internet':'📡','Teléfono':'📱','Transporte':'🚌','Comida':'🍽️','Mercado':'🛒','Salud':'💊','Impuestos':'📄','Educación':'📚','Entretenimiento':'🎬','Bicicleta':'🚲','Mascotas':'🐾','Compras':'🛍️','Café':'☕','Snacks':'🍿','Otros':'💰'};
+
+function movCard(item, tipo){
+  const icon=CAT_ICON[item.cat]||(tipo==='ing'?'💚':'💸');
+  const colorCls=tipo==='ing'?'ing':'gas';
+  const sign=tipo==='ing'?'+':'−';
+  return`<div class="mov-row">
+    <div class="mov-icon ${colorCls}">${icon}</div>
+    <div class="mov-info">
+      <div class="mov-desc">${item.desc||item.cat}</div>
+      <div class="mov-cat">${item.cat} · ${fmtDate(item.fecha)}</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <div class="mov-amount ${colorCls}">${sign}${fmt(item.monto)}</div>
+      <button class="btn btn-ghost btn-icon btn-xs" onclick="openEdit${tipo==='ing'?'Ingreso':'Gasto'}('${item.id}')" title="Editar" style="font-size:.8rem;">✏️</button>
+      <button class="btn btn-danger btn-icon btn-xs" onclick="delete${tipo==='ing'?'Ingreso':'Gasto'}('${item.id}')" title="Eliminar" style="font-size:.75rem;">✕</button>
+    </div>
+  </div>`;
+}
+
+function renderIngresosTable(){
+  const el=document.getElementById('ingresosTable');
+  const cm=currentMonth();
+  const totalMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  if(!DB.ingresos.length){ el.innerHTML='<div class="empty"><p>Sin ingresos registrados</p></div>'; return; }
+  el.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;padding:0 0 12px;border-bottom:1px solid var(--border);margin-bottom:4px;">
+    <span style="font-size:.72rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;">Total este mes</span>
+    <span style="font-size:1.1rem;font-weight:800;color:var(--green);">+${fmt(totalMes)}</span>
+  </div>
+  <div class="mov-list">${DB.ingresos.map(i=>movCard(i,'ing')).join('')}</div>`;
+}
+
+function renderGastosTable(){
+  const filterMes=document.getElementById('gas-filter-mes')?.value;
+  const filterCat=document.getElementById('gas-filter-cat')?.value;
+  let data=DB.gastos;
+  if(filterMes) data=data.filter(g=>monthOf(g.fecha)===filterMes);
+  if(filterCat) data=data.filter(g=>g.cat===filterCat);
+  const el=document.getElementById('gastosTable');
+  const cm=currentMonth();
+  const totalMes=data.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  if(!data.length){ el.innerHTML='<div class="empty"><p>Sin gastos</p></div>'; return; }
+  el.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;padding:0 0 12px;border-bottom:1px solid var(--border);margin-bottom:4px;">
+    <span style="font-size:.72rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;">Total ${filterMes||'este mes'}</span>
+    <span style="font-size:1.1rem;font-weight:800;color:var(--red);">−${fmt(totalMes)}</span>
+  </div>
+  <div class="mov-list">${data.map(g=>movCard(g,'gas')).join('')}</div>`;
+}
+function renderIngresosByCat(){
+  const cm=currentMonth(); const bycat={};
+  DB.ingresos.filter(i=>monthOf(i.fecha)===cm).forEach(i=>{ bycat[i.cat]=(bycat[i.cat]||0)+i.monto; });
+  const el=document.getElementById('ingresosByCat');
+  if(!Object.keys(bycat).length){ el.innerHTML='<div class="empty"><div class="empty-icon">📥</div><p>Sin ingresos este mes</p></div>'; return; }
+  const total=Object.values(bycat).reduce((a,b)=>a+b,0);
+  const colors={'Delivery':'var(--accent)','Propinas Delivery':'var(--cyan)','Salario':'var(--green)','Trabajo independiente':'var(--purple)'};
+  el.innerHTML=Object.entries(bycat).sort((a,b)=>b[1]-a[1]).map(([cat,v])=>`
+    <div class="mb12"><div class="fjb mb8"><span class="ts fw7">${cat}</span><span class="ts">${fmt(v)} <span class="tmuted">(${Math.round(v/total*100)}%)</span></span></div>
+    <div class="pbar"><div class="pfill" style="width:${Math.round(v/total*100)}%;background:${colors[cat]||'var(--accent)'}"></div></div></div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+// GASTOS
+// ══════════════════════════════════════════════
+function addGasto(){
+  const fecha=document.getElementById('gas-fecha').value;
+  const monto=parseFloat(document.getElementById('gas-monto').value);
+  const cat=document.getElementById('gas-cat').value;
+  const desc=document.getElementById('gas-desc').value;
+  const metodo=document.getElementById('gas-metodo').value;
+  if(!fecha||!monto||monto<=0){ alert('Completá fecha y monto válidos.'); return; }
+  DB.gastos.push({id:uid(),fecha,monto,cat,desc,metodo});
+  DB.gastos.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save();
+  document.getElementById('gas-monto').value='';
+  document.getElementById('gas-desc').value='';
+  showToast(`Gasto de ${fmt(monto)} guardado ✓`);
+  refreshPage('gastos'); refreshDashboard(); refreshAlerts();
+}
+function deleteGasto(id){
+  confirmDelete('¿Eliminar este gasto?',()=>{ DB.gastos=DB.gastos.filter(g=>g.id!==id); save(); refreshPage('gastos'); refreshDashboard(); });
+}
+function updateGastosFilters(){
+  const meses=[...new Set(DB.gastos.map(g=>monthOf(g.fecha)))].sort().reverse();
+  const cats=[...new Set(DB.gastos.map(g=>g.cat))].sort();
+  const selMes=document.getElementById('gas-filter-mes');
+  const selCat=document.getElementById('gas-filter-cat');
+  const pM=selMes?.value; const pC=selCat?.value;
+  if(selMes) selMes.innerHTML='<option value="">Todos los meses</option>'+meses.map(m=>`<option value="${m}"${m===pM?' selected':''}>${m}</option>`).join('');
+  if(selCat) selCat.innerHTML='<option value="">Todas las categorías</option>'+cats.map(c=>`<option value="${c}"${c===pC?' selected':''}>${c}</option>`).join('');
+}
+function renderGastosByCat(){
+  const cm=currentMonth(); const bycat={};
+  DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{ bycat[g.cat]=(bycat[g.cat]||0)+g.monto; });
+  const el=document.getElementById('gastosByCat');
+  if(!Object.keys(bycat).length){ el.innerHTML='<div class="empty"><div class="empty-icon">📤</div><p>Sin gastos este mes</p></div>'; return; }
+  const total=Object.values(bycat).reduce((a,b)=>a+b,0);
+  el.innerHTML=Object.entries(bycat).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([cat,v])=>`
+    <div class="mb12"><div class="fjb mb8"><span class="ts fw7">${cat}</span><span class="ts">${fmt(v)} <span class="tmuted">(${Math.round(v/total*100)}%)</span></span></div>
+    <div class="pbar"><div class="pfill" style="width:${Math.round(v/total*100)}%;background:var(--red)"></div></div></div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+// AHORROS
+// ══════════════════════════════════════════════
+function saveSaldosPesos(){
+  DB.saldoEfectivo=parseFloat(document.getElementById('saldo-efectivo').value)||0;
+  DB.saldoBanco=parseFloat(document.getElementById('saldo-banco').value)||0;
+  save(); refreshPage('ahorros'); refreshDashboard();
+}
+function addUSD(){
+  const fecha=document.getElementById('usd-fecha').value;
+  const tipo=document.getElementById('usd-tipo').value;
+  const cantidad=parseFloat(document.getElementById('usd-cantidad').value);
+  const precio=parseFloat(document.getElementById('usd-precio').value);
+  const modalidad=document.getElementById('usd-modalidad').value;
+  if(!fecha||!cantidad||!precio){ alert('Completá todos los campos.'); return; }
+  DB.usd.push({id:uid(),fecha,tipo,cantidad,precio,modalidad});
+  DB.usd.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save();
+  document.getElementById('usd-cantidad').value='';
+  document.getElementById('usd-precio').value='';
+  refreshPage('ahorros'); refreshDashboard();
+}
+function deleteUSD(id){
+  confirmDelete('¿Eliminar esta operación USD?',()=>{ DB.usd=DB.usd.filter(u=>u.id!==id); save(); refreshPage('ahorros'); refreshDashboard(); });
+}
+function calcUSDBalance(){
+  let fisico=0,digital=0;
+  DB.usd.forEach(u=>{ const s=u.tipo==='Compra'?1:-1; if(u.modalidad==='Físico (billete)') fisico+=s*u.cantidad; else digital+=s*u.cantidad; });
+  return {fisico:Math.max(0,fisico),digital:Math.max(0,digital)};
+}
+function updateUSDenPesos(){
+  const {fisico,digital}=calcUSDBalance(); const total=fisico+digital; const blue=getBlueSell();
+  const f=document.getElementById('usd-fisico'); const d=document.getElementById('usd-digital');
+  const t=document.getElementById('usd-total'); const p=document.getElementById('usd-en-pesos');
+  const c=document.getElementById('usd-cotizacion-usado');
+  if(f) f.textContent=fisico.toFixed(2);
+  if(d) d.textContent=digital.toFixed(2);
+  if(t) t.textContent=total.toFixed(2);
+  if(p) p.textContent=blue?fmt(total*blue):'—';
+  if(c) c.textContent=blue?`Blue: ${fmt(blue)}`:'Sin cotización';
+}
+function renderUSDTable(){
+  const tbody=document.getElementById('usdTable');
+  if(!DB.usd.length){ tbody.innerHTML='<tr><td colspan="5"><div class="empty"><p>Sin operaciones</p></div></td></tr>'; return; }
+  tbody.innerHTML=DB.usd.map(u=>`<tr>
+    <td>${u.fecha}</td><td><span class="badge ${u.tipo==='Compra'?'bg':'br'}">${u.tipo}</span></td>
+    <td class="fw7">U$S ${u.cantidad}</td><td>${fmt(u.precio)}</td>
+    <td><div class="act-btns"><button class="btn btn-ghost btn-icon btn-xs" onclick="openEditUSD('${u.id}')" title="Editar">✏️</button><button class="btn btn-danger btn-icon btn-xs" onclick="deleteUSD('${u.id}')">✕</button></div></td>
+  </tr>`).join('');
+}
+function openEditUSD(id){
+  const u=DB.usd.find(x=>x.id===id); if(!u)return;
+  document.getElementById('edit-usd-id').value=id;
+  document.getElementById('edit-usd-fecha').value=u.fecha;
+  document.getElementById('edit-usd-tipo').value=u.tipo;
+  document.getElementById('edit-usd-cantidad').value=u.cantidad;
+  document.getElementById('edit-usd-precio').value=u.precio;
+  document.getElementById('edit-usd-modalidad').value=u.modalidad;
+  document.getElementById('modalEditUSD').classList.add('open');
+}
+function saveEditUSD(){
+  const id=document.getElementById('edit-usd-id').value;
+  const u=DB.usd.find(x=>x.id===id); if(!u)return;
+  u.fecha=document.getElementById('edit-usd-fecha').value;
+  u.tipo=document.getElementById('edit-usd-tipo').value;
+  u.cantidad=parseFloat(document.getElementById('edit-usd-cantidad').value)||0;
+  u.precio=parseFloat(document.getElementById('edit-usd-precio').value)||0;
+  u.modalidad=document.getElementById('edit-usd-modalidad').value;
+  save(); closeModal('modalEditUSD'); showToast('Operación USD actualizada ✓');
+  refreshPage('ahorros'); refreshDashboard();
+}
+function addActivo(){
+  const nombre=document.getElementById('activo-nombre').value;
+  const tipo=document.getElementById('activo-tipo').value;
+  const valor=parseFloat(document.getElementById('activo-valor').value);
+  if(!nombre||!valor){ alert('Completá nombre y valor.'); return; }
+  DB.activos.push({id:uid(),nombre,tipo,valor});
+  save();
+  document.getElementById('activo-nombre').value='';
+  document.getElementById('activo-valor').value='';
+  refreshPage('ahorros'); refreshDashboard(); showToast('Activo agregado ✓');
+}
+function deleteActivo(id){
+  confirmDelete('¿Eliminar este activo?',()=>{ DB.activos=DB.activos.filter(a=>a.id!==id); save(); refreshPage('ahorros'); refreshDashboard(); });
+}
+function openEditActivo(id){
+  const a=DB.activos.find(x=>x.id===id); if(!a)return;
+  document.getElementById('edit-act-id').value=id;
+  document.getElementById('edit-act-nombre').value=a.nombre;
+  document.getElementById('edit-act-tipo').value=a.tipo;
+  document.getElementById('edit-act-valor').value=a.valor;
+  document.getElementById('modalEditActivo').classList.add('open');
+}
+function saveEditActivo(){
+  const id=document.getElementById('edit-act-id').value;
+  const a=DB.activos.find(x=>x.id===id); if(!a)return;
+  a.nombre=document.getElementById('edit-act-nombre').value;
+  a.tipo=document.getElementById('edit-act-tipo').value;
+  a.valor=parseFloat(document.getElementById('edit-act-valor').value)||0;
+  save(); closeModal('modalEditActivo'); showToast('Activo actualizado ✓');
+  refreshPage('ahorros'); refreshDashboard();
+}
+function renderActivosList(){
+  const el=document.getElementById('activosList');
+  if(!DB.activos.length){ el.innerHTML='<div class="empty card"><div class="empty-icon">🏠</div><p>Sin activos registrados</p></div>'; return; }
+  el.innerHTML=DB.activos.map(a=>`<div class="goal-card">
+    <div class="fjb" style="align-items:center;">
+      <div><div class="fw7">${a.nombre}</div><span class="badge ${a.tipo==='Activo'?'bg':'br'}" style="margin-top:6px;display:inline-flex;">${a.tipo}</span></div>
+      <div class="fc gap8">
+        <span class="fw7" style="color:${a.tipo==='Activo'?'var(--green)':'var(--red)'}">${a.tipo==='Deuda'?'−':''}${fmt(a.valor)}</span>
+        <button class="btn btn-ghost btn-icon btn-xs" onclick="openEditActivo('${a.id}')" title="Editar">✏️</button>
+        <button class="btn btn-danger btn-icon btn-xs" onclick="deleteActivo('${a.id}')">✕</button>
+      </div>
+    </div></div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+// PATRIMONIO
+// ══════════════════════════════════════════════
+function calcPatrimonio(){
+  const blue=getBlueSell()||0;
+  const {fisico,digital}=calcUSDBalance();
+  const usdValue=(fisico+digital)*blue;
+  const activosOtros=DB.activos.filter(a=>a.tipo==='Activo').reduce((s,a)=>s+a.valor,0);
+  const deudas=DB.activos.filter(a=>a.tipo==='Deuda').reduce((s,a)=>s+a.valor,0);
+  const activos=DB.saldoEfectivo+DB.saldoBanco+usdValue+activosOtros;
+  return {activos,deudas,neto:activos-deudas,usdValue,efectivo:DB.saldoEfectivo,banco:DB.saldoBanco};
+}
+function savePatrimonioSnapshot(){
+  const p=calcPatrimonio();
+  DB.snapshots.push({fecha:todayStr(),neto:p.neto,activos:p.activos,deudas:p.deudas});
+  save(); refreshPage('patrimonio');
+}
+function deleteSnapshot(i){ DB.snapshots.splice(i,1); save(); refreshPage('patrimonio'); }
+function renderSnapshotList(){
+  const el=document.getElementById('snapshotList');
+  if(!el)return;
+  if(!DB.snapshots.length){el.innerHTML='<div class="empty"><p>Sin snapshots guardados</p></div>';return;}
+  el.innerHTML='<div class="tbl-wrap"><table><thead><tr><th>Fecha</th><th>Activos</th><th>Deudas</th><th class="tr">Neto</th><th></th></tr></thead><tbody>'+
+    DB.snapshots.slice().reverse().map((s,i)=>`<tr>
+      <td>${s.fecha}</td><td style="color:var(--green)">${fmt(s.activos)}</td><td style="color:var(--red)">${fmt(s.deudas)}</td>
+      <td class="num tr" style="color:${s.neto>=0?'var(--green)':'var(--red)'}">${fmt(s.neto)}</td>
+      <td><button class="btn btn-danger btn-icon btn-xs" onclick="deleteSnapshot(${DB.snapshots.length-1-i})">✕</button></td>
+    </tr>`).join('')+'</tbody></table></div>';
+}
+function renderPatrimonioBarChart(){
+  const el=document.getElementById('patrimonioHistChart');
+  if(!DB.snapshots.length){ el.innerHTML='<div class="empty" style="width:100%"><p>Sin snapshots aún</p></div>'; return; }
+  const snaps=DB.snapshots.slice(-12);
+  const max=Math.max(...snaps.map(s=>Math.abs(s.neto)));
+  el.innerHTML=snaps.map(s=>{ const h=max>0?Math.round(Math.abs(s.neto)/max*100):10;
+    return `<div class="bar-col"><div class="bar" style="height:${h}%;background:${s.neto>=0?'var(--cyan)':'var(--red)'};"></div><div class="bar-lbl">${s.fecha.substring(5)}</div></div>`; }).join('');
+}
+
+// ══════════════════════════════════════════════
+// DELIVERY
+// ══════════════════════════════════════════════
+function calcDelivery(){
+  const cm=currentMonth(); const months={};
+  DB.ingresos.filter(i=>i.cat==='Delivery'||i.cat==='Propinas Delivery').forEach(i=>{
+    const m=monthOf(i.fecha); if(!months[m]) months[m]={delivery:0,propinas:0};
+    if(i.cat==='Delivery') months[m].delivery+=i.monto; else months[m].propinas+=i.monto;
+  });
+  const cur=months[cm]||{delivery:0,propinas:0};
+  const allMonths=Object.entries(months);
+  const bestMonth=allMonths.reduce((b,[m,d])=>d.delivery+d.propinas>b.v?{m,v:d.delivery+d.propinas}:b,{m:'—',v:0});
+  const sems={};
+  DB.ingresos.filter(i=>(i.cat==='Delivery'||i.cat==='Propinas Delivery')&&monthOf(i.fecha)===cm).forEach(i=>{
+    const w=Math.ceil(new Date(i.fecha+'T00:00:00').getDate()/7);
+    sems[w]=(sems[w]||0)+i.monto;
+  });
+  const bestWeek=Object.values(sems).length?Math.max(...Object.values(sems)):0;
+  const diasMes=new Date().getDate();
+  const totalMes=cur.delivery+cur.propinas;
+  return {ganancias:cur.delivery,propinas:cur.propinas,total:totalMes,promedioDia:diasMes>0?totalMes/diasMes:0,promedioSem:totalMes/Math.ceil(diasMes/7),bestWeek,bestMonth:bestMonth.v,months};
+}
+function renderDeliveryBarChart(){
+  const {months}=calcDelivery(); const el=document.getElementById('deliveryBarChart');
+  const entries=Object.entries(months).sort((a,b)=>a[0].localeCompare(b[0])).slice(-6);
+  if(!entries.length){ el.innerHTML='<div class="empty" style="width:100%"><p>Sin datos de delivery</p></div>'; return; }
+  const max=Math.max(...entries.map(([,d])=>d.delivery+d.propinas));
+  el.innerHTML=entries.map(([m,d])=>{ const t=d.delivery+d.propinas; const h=max>0?Math.round(t/max*100):10;
+    return `<div class="bar-col"><div class="bar" style="height:${h}%;background:var(--accent);"></div><div class="bar-lbl">${m.substring(5)}</div></div>`; }).join('');
+}
+function renderDeliveryWeekly(){
+  const cm=currentMonth(); const weeks={};
+  DB.ingresos.filter(i=>(i.cat==='Delivery'||i.cat==='Propinas Delivery')&&monthOf(i.fecha)===cm).forEach(i=>{
+    const d=new Date(i.fecha+'T00:00:00');
+    const w=`Semana ${Math.ceil(d.getDate()/7)}`;
+    if(!weeks[w]) weeks[w]={delivery:0,propinas:0};
+    if(i.cat==='Delivery') weeks[w].delivery+=i.monto; else weeks[w].propinas+=i.monto;
+  });
+  return weeks;
+}
+
+// ══════════════════════════════════════════════
+// METAS
+// ══════════════════════════════════════════════
+function addMeta(){
+  const nombre=document.getElementById('meta-nombre').value;
+  const objetivo=parseFloat(document.getElementById('meta-objetivo').value);
+  const actual=parseFloat(document.getElementById('meta-actual').value)||0;
+  const fecha=document.getElementById('meta-fecha').value;
+  const emoji=document.getElementById('meta-emoji').value||'🎯';
+  if(!nombre||!objetivo){ alert('Completá nombre y monto objetivo.'); return; }
+  DB.metas.push({id:uid(),nombre,objetivo,actual,fecha,emoji});
+  save();
+  document.getElementById('meta-nombre').value=''; document.getElementById('meta-objetivo').value='';
+  document.getElementById('meta-actual').value=''; document.getElementById('meta-emoji').value='';
+  renderMetasList();
+}
+function deleteMeta(id){ confirmDelete('¿Eliminar esta meta?',()=>{ DB.metas=DB.metas.filter(m=>m.id!==id); save(); renderMetasList(); }); }
+function openEditMeta(id){
+  const m=DB.metas.find(x=>x.id===id); if(!m)return;
+  document.getElementById('edit-met-id').value=id;
+  document.getElementById('edit-met-nombre').value=m.nombre;
+  document.getElementById('edit-met-emoji').value=m.emoji||'🎯';
+  document.getElementById('edit-met-objetivo').value=m.objetivo;
+  document.getElementById('edit-met-actual').value=m.actual;
+  document.getElementById('edit-met-fecha').value=m.fecha||'';
+  document.getElementById('modalEditMeta').classList.add('open');
+}
+function saveEditMeta(){
+  const id=document.getElementById('edit-met-id').value;
+  const m=DB.metas.find(x=>x.id===id); if(!m)return;
+  m.nombre=document.getElementById('edit-met-nombre').value;
+  m.emoji=document.getElementById('edit-met-emoji').value||'🎯';
+  m.objetivo=parseFloat(document.getElementById('edit-met-objetivo').value)||0;
+  m.actual=parseFloat(document.getElementById('edit-met-actual').value)||0;
+  m.fecha=document.getElementById('edit-met-fecha').value;
+  save(); closeModal('modalEditMeta'); showToast('Meta actualizada ✓'); renderMetasList();
+}
+function renderMetasList(){
+  const el=document.getElementById('metasList');
+  if(!DB.metas.length){ el.innerHTML='<div class="empty card"><div class="empty-icon">🎯</div><p>Sin metas creadas aún</p></div>'; return; }
+  el.innerHTML=DB.metas.map(m=>{
+    const pct=Math.min(100,Math.round(m.actual/m.objetivo*100));
+    const restante=Math.max(0,m.objetivo-m.actual);
+    let eta='—'; if(m.fecha){ const dias=Math.ceil((new Date(m.fecha)-new Date())/86400000); eta=dias>0?`${dias} días`:'Vencida'; }
+    const color=pct>=100?'var(--green)':pct>=50?'var(--accent)':'var(--yellow)';
+    return `<div class="goal-card">
+      <div class="goal-hdr">
+        <div><div class="fw7" style="font-size:0.9rem;">${m.emoji} ${m.nombre}</div><div class="tmuted ts mt8">${fmt(m.actual)} de ${fmt(m.objetivo)} · Falta ${fmt(restante)} · ${eta}</div></div>
+        <div class="fc gap8">
+          <span class="fw8" style="font-size:1.1rem;color:${color}">${pct}%</span>
+          <button class="btn btn-ghost btn-icon btn-xs" onclick="openEditMeta('${m.id}')" title="Editar">✏️</button>
+          <button class="btn btn-danger btn-icon btn-xs" onclick="deleteMeta('${m.id}')">✕</button>
+        </div>
+      </div>
+      <div class="pbar thick"><div class="pfill" style="width:${pct}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// PROYECCIONES
+// ══════════════════════════════════════════════
+function calcProyecciones(){
+  const months=[...new Set([...DB.ingresos,...DB.gastos].map(t=>monthOf(t.fecha)))].sort();
+  if(months.length<1) return null;
+  const avgIng=months.reduce((s,m)=>s+DB.ingresos.filter(i=>monthOf(i.fecha)===m).reduce((a,i)=>a+i.monto,0),0)/months.length;
+  const avgGas=months.reduce((s,m)=>s+DB.gastos.filter(g=>monthOf(g.fecha)===m).reduce((a,g)=>a+g.monto,0),0)/months.length;
+  const ahorro=avgIng-avgGas;
+  const pat=calcPatrimonio().neto;
+  return {avgIng,avgGas,ahorro,pat,p6m:pat+ahorro*6,p1a:pat+ahorro*12,p5a:pat+ahorro*60};
+}
+function simularProyeccion(){
+  const ing=parseFloat(document.getElementById('sim-ingreso').value)||0;
+  const gas=parseFloat(document.getElementById('sim-gasto').value)||0;
+  const pat=parseFloat(document.getElementById('sim-patrimonio').value)||0;
+  const ahorro=ing-gas;
+  const el=document.getElementById('sim-result');
+  el.innerHTML=`<div class="card2 ts">
+    <div class="mb8"><strong>Ahorro mensual:</strong> <span style="color:${ahorro>=0?'var(--green)':'var(--red)'}">${fmt(ahorro)}</span></div>
+    <div class="mb8">6 meses: <strong>${fmt(pat+ahorro*6)}</strong></div>
+    <div class="mb8">1 año: <strong>${fmt(pat+ahorro*12)}</strong></div>
+    <div>5 años: <strong>${fmt(pat+ahorro*60)}</strong></div>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════
+// ALERTAS
+// ══════════════════════════════════════════════
+function generateAlerts(){
+  const alerts=[]; const cm=currentMonth();
+  const ingMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gasMes=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const ahorro=ingMes-gasMes; const tasa=ingMes>0?(ahorro/ingMes)*100:0;
+  if(ingMes>0&&tasa<10) alerts.push({type:'danger',icon:'📉',title:'Tasa de ahorro baja',msg:`Tu tasa de ahorro es ${tasa.toFixed(1)}%. Se recomienda al menos 10-20%.`});
+  const gasDelivery=DB.gastos.filter(g=>g.cat==='Delivery'&&monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  if(ingMes>0&&gasDelivery/ingMes>0.15) alerts.push({type:'warning',icon:'🛵',title:'Alto gasto en delivery',msg:`Los pedidos de delivery representan ${Math.round(gasDelivery/ingMes*100)}% de tus ingresos.`});
+  const hormiga=DB.gastos.filter(g=>['Café','Snacks'].includes(g.cat)&&monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  if(hormiga>5000) alerts.push({type:'warning',icon:'🐜',title:'Gastos hormiga',msg:`Acumulás ${fmt(hormiga)} en cafés y snacks este mes.`});
+  const allDates=[...DB.ingresos,...DB.gastos].map(t=>t.fecha).sort().reverse();
+  if(allDates.length>0){ const dias=Math.floor((new Date()-new Date(allDates[0]+'T00:00:00'))/86400000); if(dias>=5) alerts.push({type:'info',icon:'📋',title:'Sin registros recientes',msg:`Hace ${dias} días que no actualizás tus finanzas.`}); }
+  else alerts.push({type:'info',icon:'👋',title:'Comenzá a registrar',msg:'Aún no tenés movimientos. Empezá cargando ingresos y gastos.'});
+  const {fisico,digital}=calcUSDBalance();
+  if(fisico+digital===0&&ingMes>50000) alerts.push({type:'warning',icon:'💵',title:'Sin dolarización',msg:'Tenés ingresos pero sin posición en dólares. Considerá cubrirte de la inflación.'});
+  if(gasMes>ingMes&&ingMes>0) alerts.push({type:'danger',icon:'🚨',title:'Gastos superan ingresos',msg:`Este mes gastaste ${fmt(gasMes-ingMes)} más de lo que ingresaste.`});
+  Object.entries(DB.budgets).forEach(([cat,limit])=>{
+    const spent=DB.gastos.filter(g=>g.cat===cat&&monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+    if(spent>limit) alerts.push({type:'warning',icon:'📋',title:`Presupuesto superado: ${cat}`,msg:`Gastaste ${fmt(spent)} de ${fmt(limit)} presupuestado.`});
+  });
+  return alerts;
+}
+function refreshAlerts(){
+  const alerts=generateAlerts(); const el=document.getElementById('alertasContainer');
+  if(!alerts.length){ el.innerHTML='<div class="alert alert-success"><div class="alert-icon">✅</div><div class="alert-body"><div class="alert-title">Todo en orden</div><div class="alert-msg">No hay alertas activas.</div></div></div>'; return; }
+  el.innerHTML=alerts.map(a=>`<div class="alert alert-${a.type}"><div class="alert-icon">${a.icon}</div><div class="alert-body"><div class="alert-title">${a.title}</div><div class="alert-msg">${a.msg}</div></div></div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+// IA
+// ══════════════════════════════════════════════
+function getFinancialContext(){
+  const cm=currentMonth();
+  const ingMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gasMes=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const ahorro=ingMes-gasMes; const tasa=ingMes>0?((ahorro/ingMes)*100).toFixed(1):0;
+  const pat=calcPatrimonio(); const {fisico,digital}=calcUSDBalance(); const blue=getBlueSell();
+  const catGastos={}; DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{ catGastos[g.cat]=(catGastos[g.cat]||0)+g.monto; });
+  const topGastos=Object.entries(catGastos).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([c,v])=>`${c}: ${fmt(v)}`).join(', ');
+  const del=calcDelivery(); const metas=DB.metas.map(m=>`${m.nombre}: ${Math.round(m.actual/m.objetivo*100)}%`).join(', ');
+
+  return `Sos un asistente financiero personal experto con acceso a internet en tiempo real.
+
+PERFIL DEL USUARIO:
+- Vive en Buenos Aires, Argentina. Trabaja como repartidor en PedidosYa.
+- Maneja pesos argentinos (ARS). Contexto: inflación, dólar blue, cepo cambiario.
+
+DATOS FINANCIEROS ACTUALES (${cm}):
+- Ingresos: ${fmt(ingMes)} | Gastos: ${fmt(gasMes)} | Ahorro: ${fmt(ahorro)} (${tasa}%)
+- Top gastos: ${topGastos||'sin datos'}
+- Patrimonio neto: ${fmt(pat.neto)} | Efectivo: ${fmt(pat.efectivo)} | Banco: ${fmt(pat.banco)}
+- USD: físicos ${fisico.toFixed(2)} + digitales ${digital.toFixed(2)} | Blue: ${blue?fmt(blue):'n/d'}
+- Delivery: ${fmt(del.total)} (base ${fmt(del.ganancias)} + propinas ${fmt(del.propinas)})
+- Metas: ${metas||'ninguna'}
+- Registros: ${DB.ingresos.length} ingresos, ${DB.gastos.length} gastos
+
+CAPACIDADES:
+- Tenés acceso a internet: podés buscar precios actuales, noticias económicas, cotizaciones, inflación del INDEC, tasas de plazo fijo, rendimiento de FCI, etc.
+- Conocés libros clave de finanzas personales: "Padre Rico Padre Pobre" (Kiyosaki), "El hombre más rico de Babilonia" (Clason), "El inversor inteligente" (Graham), "Psicología del dinero" (Housel), "Los secretos de la mente millonaria" (Eker), y economía argentina moderna.
+- Podés recomendar estrategias específicas para Argentina: plazo fijo UVA, FCI money market, dólar MEP, CEDEAR, criptomonedas, etc.
+
+INSTRUCCIONES:
+- Cuando necesites datos actuales (inflación, cotizaciones, tasas), USÁ la herramienta de búsqueda web.
+- Respondé SIEMPRE en español rioplatense, directo y práctico.
+- Si la pregunta es sobre economía general o libros, buscá en internet para dar info actualizada.
+- Indicá con 🌐 cuando uses datos de internet y 📚 cuando cites libros o autores.
+- Máximo 250 palabras salvo análisis completo solicitado.`;
+}
+// ══ IA INDEPENDIENTE — SIN ANTHROPIC ══
+const LIBROS_KB={
+'padre rico':`📚 **Padre Rico, Padre Pobre** — Kiyosaki\n\n**Idea central:** Los ricos no trabajan por dinero, hacen que el dinero trabaje para ellos.\n\n**Los 3 conceptos:**\n• **Activo:** pone plata en tu bolsillo (inversiones, alquileres)\n• **Pasivo:** saca plata de tu bolsillo (deudas, gastos fijos)\n• **La carrera de la rata:** trabajar→ganar→gastar→necesitar más trabajo\n\n**Aplicado a tu caso:**\n→ Tu moto es un activo (genera ingresos)\n→ El sueldo en pesos se devalúa → convertilo en activos reales\n→ Meta: que parte de tu ingreso trabaje sin que vos trabajes\n\n💬 *"El problema con la pobreza no es el dinero, es el miedo y el conocimiento"*`,
+'babilonia':`🏛️ **El Hombre Más Rico de Babilonia** — Clason\n\n**Las 7 leyes del oro:**\n1. Guardá el **10% de todo lo que ganás** antes de gastar\n2. Controlá gastos — no confundas necesidades con deseos\n3. Hacé que tu dinero trabaje — invertí lo que ahorrás\n4. Protegé tu capital — no especulés con lo que no podés perder\n5. Convertí tu vivienda en inversión\n6. Asegurá ingresos futuros\n7. Mejorate constantemente — conocimiento = más ingresos\n\n**Para vos hoy:** Si ganás $100, guardá $10 antes de tocarlos. Ese es el primer paso.`,
+'psicologia':`🧠 **Psicología del Dinero** — Morgan Housel\n\n• **Ser razonable > ser racional** — Las decisiones perfectas no siempre funcionan en la vida real\n• **El tiempo es el arma más poderosa** — El interés compuesto necesita tiempo, no genialidad\n• **Suficiente es suficiente** — Muchos arruinan lo bueno queriendo lo perfecto\n• **El ahorro es libertad** — No es para comprar cosas, es para tener opciones\n\n💬 *"El mayor retorno no es un fondo ni una acción. Es el control sobre tu tiempo."*`,
+'inversor':`📖 **El Inversor Inteligente** — Benjamin Graham\n\n1. **Inversor vs especulador**\n   → Especular = apostar a que algo suba\n   → Invertir = comprar valor real a buen precio\n2. **Margen de seguridad** → Nunca pagues más de lo que vale algo\n3. **Mr. Market** → El mercado es emocional. Comprá cuando todos venden con miedo.\n\n**Para Argentina:** Los CEDEARs son una forma práctica de aplicar estos principios.`,
+'cedears':`📈 **CEDEARs — Invertir desde Argentina**\n\nSon certificados de acciones extranjeras (Apple, Amazon, Tesla) que comprás en pesos.\n\n**Ventajas:**\n→ Protección contra inflación y devaluación\n→ Seguís el dólar CCL automáticamente\n→ Podés empezar con poco dinero\n\n**Cómo empezar:** Abrí cuenta en IOL, Ualá Bis o Bull Market\n\n**Más populares:** AAPL, GOOGL, MSFT, AMZN`,
+'plazo fijo':`🏦 **Plazo Fijo vs Dólares**\n\n**Plazo Fijo Tradicional:** Tasa fija mensual. Si la inflación es mayor, perdés.\n\n**Plazo Fijo UVA:** Ajusta por inflación (CER). Requiere 90+ días mínimo. Protege mejor el valor real.\n\n**Dólares:** Protección más fuerte. Dólar MEP es legal desde homebanking.\n\n**Recomendación:** 70% dólares (reserva) + 30% plazo fijo UVA para liquidez.\n\n*Para tasas del momento, usá el modo 🌐 Internet*`,
+'empezar':`💡 **Cómo empezar a invertir desde cero**\n\n**Paso 1 — Fundamentos:**\nLeé "El hombre más rico de Babilonia" → regla del 10%\n\n**Paso 2 — Protegé lo ahorrado:**\n→ Comprá dólares (MEP es legal desde el banco)\n→ O FCI money market para liquidez diaria\n\n**Paso 3 — Crecé:**\n→ CEDEARs para acciones extranjeras en pesos\n→ Plazo fijo UVA para el resto\n\n**Con tu ingreso de delivery:**\n→ 10% directo a dólares cada cobro\n→ Resto dividido entre gastos y fondo de emergencia`
+};
+
+const IA_QUICK={
+  datos:[
+    {icon:'📊',txt:'¿Cómo estoy este mes?'},
+    {icon:'💸',txt:'¿Dónde gasto más?'},
+    {icon:'🏦',txt:'¿Cuánto puedo ahorrar?'},
+    {icon:'⚠️',txt:'¿Tengo algún problema financiero?'},
+    {icon:'📅',txt:'Plan para el próximo mes'},
+    {icon:'🎯',txt:'¿Cómo voy con mis metas?'},
+  ],
+  internet:[
+    {icon:'💵',txt:'¿Cuánto está el dólar blue hoy?'},
+    {icon:'📈',txt:'¿Cómo está la inflación en Argentina?'},
+    {icon:'🏦',txt:'¿Conviene plazo fijo o dólares?'},
+    {icon:'📰',txt:'Noticias económicas de Argentina hoy'},
+    {icon:'💎',txt:'¿Vale la pena invertir en CEDEARs?'},
+    {icon:'🔮',txt:'¿Qué va a pasar con el dólar?'},
+  ],
+  libros:[
+    {icon:'📚',txt:'Resumen de Padre Rico Padre Pobre'},
+    {icon:'🏛️',txt:'Las 7 leyes de El hombre más rico de Babilonia'},
+    {icon:'🧠',txt:'Psicología del dinero — lección principal'},
+    {icon:'📖',txt:'El inversor inteligente para principiantes'},
+    {icon:'💡',txt:'¿Cómo empezar a invertir desde cero?'},
+    {icon:'📈',txt:'¿Qué son los CEDEARs?'},
+  ]
+};
+
+let _iaMode='datos';
+
+function setIAMode(mode){
+  _iaMode=mode;
+  document.querySelectorAll('.ia-mode-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('mode-'+mode); if(btn) btn.classList.add('active');
+  const msgs={
+    datos:'Hola 👋 Estoy viendo todos tus datos financieros. Preguntame cómo vas este mes, en qué gastás más, cuánto podés ahorrar, o pedime un plan para el próximo mes.',
+    internet:'Modo internet activado 🌐 Me conecto directo a dolarapi.com para traerte cotizaciones en tiempo real. También puedo orientarte sobre inflación, tasas y dónde buscar noticias económicas.',
+    libros:'Modo libros 📚 Tengo los resúmenes de los mejores libros de finanzas: Padre Rico Padre Pobre, El hombre más rico de Babilonia, Psicología del dinero, El inversor inteligente y más. ¿Cuál te interesa?'
+  };
+  const el=document.getElementById('aiMessages');
+  if(el){ el.innerHTML=''; aiAddMsg('aiMessages', msgs[mode], 'ai'); }
+  renderIAQuick();
+}
+
+function renderIAQuick(){
+  const el=document.getElementById('iaQuickBtns'); if(!el) return;
+  const btns=IA_QUICK[_iaMode]||[];
+  el.innerHTML=`<div class="card-title mb8">⚡ Preguntas rápidas</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      ${btns.map(b=>`<button class="btn btn-ghost" style="justify-content:flex-start;font-size:.77rem;padding:10px 12px;text-align:left;" onclick="quickAsk(${JSON.stringify(b.txt)})">${b.icon} ${b.txt}</button>`).join('')}
+    </div>`;
+}
+
+function aiAddMsg(cId,html,role){
+  const el=document.getElementById(cId); if(!el) return null;
+  const d=document.createElement('div'); d.className='ai-msg '+role;
+  d.innerHTML=html.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  el.appendChild(d); el.scrollTop=el.scrollHeight; return d;
+}
+function aiTyping(cId){ return aiAddMsg(cId,'<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>','ai'); }
+
+function respondDatos(q){
+  const cm=currentMonth();
+  const iM=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gM=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const aho=iM-gM; const tas=iM>0?((aho/iM)*100).toFixed(1):0;
+  const pat=calcPatrimonio(); const {fisico,digital}=calcUSDBalance();
+  const catGas={}; DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{catGas[g.cat]=(catGas[g.cat]||0)+g.monto;});
+  const sorted=Object.entries(catGas).sort((a,b)=>b[1]-a[1]);
+  const top=sorted[0]; const del=calcDelivery(); const ql=q.toLowerCase();
+
+  if(ql.includes('cómo estoy')||ql.includes('este mes')||ql.includes('salud')||ql.includes('resumen')||ql.includes('análisis')){
+    if(!iM) return 'Todavía no tenés ingresos registrados este mes. Empezá cargando tus ingresos y gastos para que pueda analizarte la situación.';
+    const e=parseFloat(tas)>=20?'🟢':parseFloat(tas)>=0?'🟡':'🔴';
+    const coment=parseFloat(tas)>=20
+      ?'Vas muy bien. Estás ahorrando más del 20%, que es exactamente lo que recomiendan los expertos en finanzas personales. Seguí así.'
+      :parseFloat(tas)>=10?'No está mal, pero hay margen para mejorar. Intentá llegar al 20% reduciendo algún gasto variable.'
+      :parseFloat(tas)>=0?'La tasa de ahorro está baja. Te conviene revisar en qué estás gastando más y ver qué podés recortar.'
+      :'Ojo, este mes estás gastando más de lo que ganás. Eso es déficit y conviene corregirlo rápido antes de que se acumule.';
+    return`${e} Este mes vas así:\n\nGanaste **${fmt(iM)}**, gastaste **${fmt(gM)}** y te quedaron **${fmt(aho)}** — eso es un ahorro del **${tas}%**.\n\n${top?`Lo que más te pesó fue **${top[0]}** con **${fmt(top[1])}** (${gM>0?Math.round(top[1]/gM*100):0}% de tus gastos).`:''}\n\n${coment}`;
+  }
+  if(ql.includes('gasto')||ql.includes('gasté')||ql.includes('más')){
+    if(!sorted.length) return 'No registraste gastos este mes todavía. Cargalos en la sección Gastos y te digo dónde se va el dinero.';
+    const topMsg=top?` El que más impacta es **${top[0]}** con **${fmt(top[1])}**, que representa el ${gM>0?Math.round(top[1]/gM*100):0}% del total.`:'';
+    return`En ${cm} gastaste en total **${fmt(gM)}**.${topMsg}\n\nEl desglose:\n${sorted.slice(0,6).map(([c,v])=>`• **${c}** — ${fmt(v)} (${gM>0?Math.round(v/gM*100):0}%)`).join('\n')}`;
+  }
+  if(ql.includes('ahorrar')||ql.includes('ahorro')){
+    if(!iM) return 'Todavía no tenés ingresos cargados este mes. Agregá tus ingresos para calcular cuánto podés ahorrar.';
+    const ideal=iM*0.2; const actual=Math.max(0,aho);
+    if(actual>=ideal) return`Estás ahorrando **${fmt(actual)}** (${tas}%), que supera el objetivo del 20%. Excelente. Si querés, ese excedente de **${fmt(actual-ideal)}** podría ir a dólares o a alguna meta de ahorro.`;
+    return`Ahora mismo estás guardando **${fmt(actual)}** (${tas}%). Para llegar al 20% que se recomienda, necesitarías ahorrar **${fmt(ideal)}** por mes — es decir, te faltan **${fmt(ideal-actual)}**.\n\n${top?`Una opción es reducir un poco en **${top[0]}**, que es donde más gastás.`:'Revisá tus gastos variables para encontrar dónde recortar.'}`;
+  }
+  if(ql.includes('meta')||ql.includes('objetivo')){
+    if(!DB.metas.length) return 'No tenés metas creadas todavía. Andá a la sección Metas, creá una — puede ser un fondo de emergencia, comprar algo o ahorrar para un viaje — y te voy mostrando cómo vas.';
+    const resumen=DB.metas.map(m=>{const p=Math.min(100,Math.round(m.actual/m.objetivo*100)); return`**${m.emoji} ${m.nombre}** — llevás el ${p}% (${fmt(m.actual)} de ${fmt(m.objetivo)})`;}).join('\n');
+    return`Así están tus metas:\n\n${resumen}\n\n${DB.metas.some(m=>m.actual/m.objetivo>=1)?'Felicitaciones, ya completaste al menos una meta. 🎉':'Seguí sumando a tus metas de a poco, consistencia es la clave.'}`;
+  }
+  if(ql.includes('plan')||ql.includes('próximo')){
+    if(!iM) return 'Necesito que tengas ingresos registrados este mes para armar un plan realista. Cargá tus ingresos primero.';
+    return`Para el próximo mes, basándome en lo que ganaste (${fmt(iM)}), te propongo esto:\n\n• **Límite de gastos:** ${fmt(iM*0.8)} (80% de tus ingresos)\n• **Ahorro mínimo:** ${fmt(iM*0.2)} (el 20%)\n\n${sorted.length?`Dónde podés apriétar un poco:\n${sorted.slice(0,3).map(([c,v])=>`→ **${c}** ${fmt(v)} → si bajás 10% ahorrás ${fmt(v*0.1)}`).join('\n')}`:''}\n\nUna vez que definas el número, configuralo en la sección **Budget** para que te avise cuando te estés pasando.`;
+  }
+  if(ql.includes('problema')||ql.includes('riesgo')||ql.includes('alerta')){
+    const al=[];
+    if(parseFloat(tas)<0) al.push('🚨 Estás en déficit — gastás **'+fmt(Math.abs(aho))+' más** de lo que ganás');
+    if(parseFloat(tas)<10&&parseFloat(tas)>=0) al.push('⚠️ Tasa de ahorro muy baja ('+tas+'%) — lo ideal es llegar al 20%');
+    if(fisico+digital===0&&iM>0) al.push('⚠️ Sin dólares como reserva — la inflación erosiona tus pesos');
+    if(!DB.metas.length) al.push('📌 Sin metas definidas — es difícil ahorrar sin un objetivo claro');
+    if(!al.length) return 'No encontré problemas graves. Tu situación está bajo control. Seguí registrando para que pueda darte análisis más precisos.';
+    return`Encontré algunas cosas para revisar:\n\n${al.join('\n')}\n\nSi querés, preguntame cómo atacar alguno de estos puntos.`;
+  }
+  if(ql.includes('delivery')||ql.includes('pedidosya')){
+    if(!del.tot) return 'No hay ingresos de delivery registrados este mes. Cargalos en la sección Ingresos con la categoría Delivery.';
+    return`En ${cm} generaste **${fmt(del.tot)}** con el delivery — **${fmt(del.base)}** de base más **${fmt(del.prop)}** de propinas. El promedio diario te da **${fmt(del.prom)}**.${del.bw?` Tu mejor semana fue de **${fmt(del.bw)}**`:''}`;
+  }
+  // Respuesta genérica conversacional
+  if(!iM&&!gM) return 'Todavía no tenés datos cargados. Empezá registrando tus ingresos y gastos — con eso puedo analizarte la situación real.';
+  return`Mirando tus números de ${cm}: ganaste **${fmt(iM)}**, gastaste **${fmt(gM)}** y tu ahorro fue **${fmt(aho)}** (${tas}%). Patrimonio total: **${fmt(pat.neto)}**.\n\nPodés preguntarme algo más específico — gastos, ahorro, metas, delivery o plan para el próximo mes.`;
+}
+
+function respondLibros(q){
+  const ql=q.toLowerCase();
+  if(ql.includes('padre rico')||ql.includes('kiyosaki')) return LIBROS_KB['padre rico'];
+  if(ql.includes('babilonia')||ql.includes('7 leyes')||ql.includes('ley')) return LIBROS_KB['babilonia'];
+  if(ql.includes('psicolog')||ql.includes('housel')) return LIBROS_KB['psicologia'];
+  if(ql.includes('inversor')||ql.includes('graham')) return LIBROS_KB['inversor'];
+  if(ql.includes('cedear')) return LIBROS_KB['cedears'];
+  if(ql.includes('plazo fijo')||ql.includes('plazo')) return LIBROS_KB['plazo fijo'];
+  if(ql.includes('empezar')||ql.includes('principiante')||ql.includes('cero')) return LIBROS_KB['empezar'];
+  return`No tengo ese tema específico, pero puedo contarte sobre:\n\n• **Padre Rico Padre Pobre** — activos y pasivos\n• **El hombre más rico de Babilonia** — las 7 leyes del dinero\n• **Psicología del dinero** — comportamiento financiero\n• **El inversor inteligente** — inversión en valor\n• **CEDEARs** — acciones extranjeras en pesos\n• **Plazo fijo UVA vs dólares**\n• **Cómo empezar a invertir desde cero**\n\n¿Sobre cuál querés que te cuente?`;
+}
+
+async function respondInternet(q){
+  const ql=q.toLowerCase();
+  if(ql.includes('dólar')||ql.includes('blue')||ql.includes('cotizaci')){
+    try{
+      const r=await fetch('https://dolarapi.com/v1/dolares'); const d=await r.json();
+      const blue=d.find(x=>x.nombre==='Blue');
+      const oficial=d.find(x=>x.nombre==='Oficial');
+      const cripto=d.find(x=>x.nombre==='Cripto');
+      const bolsa=d.find(x=>x.nombre==='Bolsa');
+      return`💵 **Cotizaciones en tiempo real** 🌐\n\n${blue?`**Blue:** Compra ${fmt(blue.compra)} · Venta ${fmt(blue.venta)}\n`:''}${oficial?`**Oficial:** Compra ${fmt(oficial.compra)} · Venta ${fmt(oficial.venta)}\n`:''}${bolsa?`**MEP/Bolsa:** ${fmt(bolsa.venta)}\n`:''}${cripto?`**Cripto:** ${fmt(cripto.venta)}\n`:''}\n_Fuente: dolarapi.com_`;
+    }catch(e){ return'❌ No se pudo conectar con dolarapi.com. Verificá tu internet.'; }
+  }
+  if(ql.includes('plazo fijo')||ql.includes('tasa')||ql.includes('banco')){
+    try{
+      const r=await fetch('https://dolarapi.com/v1/dolares'); const d=await r.json();
+      const blue=d.find(x=>x.nombre==='Blue');
+      return`🏦 **Plazo fijo vs Dólares** 🌐\n\n**Dólar blue actual:** ${blue?fmt(blue.venta):'n/d'}\n\nPara conocer tasas actuales de plazo fijo:\n→ **BCRA:** bcra.gob.ar/tasas\n→ **Ualá, Naranja X** suelen tener las mejores tasas\n→ Plazo fijo UVA: ajusta por inflación (ideal para +90 días)\n\n**Regla general:**\nSi la tasa del plazo fijo < inflación → mejor dólares\nSi la tasa > inflación → conviene plazo fijo UVA`;
+    }catch(e){}
+    return'🏦 Para tasas actuales visitá bcra.gob.ar/tasas o comparar en Ualá, Naranja X o tu banco.';
+  }
+  if(ql.includes('inflación')||ql.includes('inflacion')){
+    return`📈 **Inflación Argentina** 🌐\n\nPara el dato exacto y actualizado:\n→ **INDEC oficial:** indec.gob.ar\n→ **Inflación acumulada:** buscar "IPC INDEC"\n\n**Lo que sé:**\nArgentina tiene una de las inflaciones más altas del mundo. La mejor protección para tu dinero es:\n1. Dólares (MEP o blue)\n2. Plazo fijo UVA (ajusta por CER)\n3. CEDEARs (sigue el dólar implícitamente)\n\n💡 Tip: Comprá dólares antes del 10 de cada mes cuando suelen subir.`;
+  }
+  if(ql.includes('cedear')||ql.includes('acciones')){
+    return`📈 **CEDEARs hoy** 🌐\n\nPara precios en tiempo real:\n→ **IOL:** invertironline.com\n→ **Ualá Bis:** uala.com.ar\n→ **Bull Market Brokers:** bullmarketbrokers.com\n\n**Los más negociados hoy:**\n• AAPL (Apple)\n• GOOGL (Google)\n• MSFT (Microsoft)\n• AMZN (Amazon)\n• BMA, GGAL (bancos argentinos)\n\n¿Querés que te explique cómo empezar? Cambiá al modo 📚 Libros.`;
+  }
+  if(ql.includes('noticias')||ql.includes('economía')||ql.includes('economia')){
+    return`📰 **Economía Argentina** 🌐\n\nPara noticias de hoy:\n→ **Infobae:** infobae.com/economia\n→ **La Nación:** lanacion.com.ar/economia\n→ **Ámbito:** ambito.com\n→ **El Cronista:** cronista.com\n\nTambién podés buscar en Google: "economía argentina hoy"\n\n¿Querés saber algo específico del dólar o tasas? Preguntame directamente.`;
+  }
+  // Cotización rápida como fallback para cualquier consulta de mercado
+  try{
+    const r=await fetch('https://dolarapi.com/v1/dolares'); const d=await r.json();
+    const blue=d.find(x=>x.nombre==='Blue');
+    return`🌐 **Dato en tiempo real:**\n\n**Dólar Blue:** ${blue?`Compra ${fmt(blue.compra)} / Venta ${fmt(blue.venta)}`:'No disponible'}\n\nPara tu consulta específica sobre "${q}", te recomiendo:\n→ Google: "${q} Argentina"\n→ Infobae economía\n→ Ámbito financiero`;
+  }catch(e){
+    return`🌐 No pude conectarme en este momento.\n\nPara tu consulta sobre "${q}":\n→ Buscá en Google directamente\n→ dolarapi.com para cotizaciones\n→ indec.gob.ar para inflación\n→ bcra.gob.ar para tasas`;
+  }
+}
+
+async function sendAI(forceMsg){
+  const input=document.getElementById('aiInput');
+  const msg=forceMsg||(input?input.value.trim():'');
+  if(!msg) return;
+  if(input) input.value='';
+  aiAddMsg('aiMessages', msg, 'user');
+  const btn=document.getElementById('aiSendBtn'); if(btn){btn.disabled=true;btn.textContent='⏳';}
+  const typing=aiAddMsg('aiMessages',
+    '<div style="display:flex;align-items:center;gap:8px;"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span style="font-size:.72rem;color:var(--text3);">'+(_iaMode==='internet'?'Conectando...':'Analizando...')+'</span></div>','ai');
+  let resp='';
+  try{
+    if(_iaMode==='datos') resp=respondDatos(msg);
+    else if(_iaMode==='libros') resp=respondLibros(msg);
+    else resp=await respondInternet(msg);
+  }catch(e){ resp='Algo salió mal, intentá de nuevo.'; }
+  if(typing) typing.remove();
+  aiAddMsg('aiMessages', resp, 'ai');
+  if(btn){btn.disabled=false;btn.textContent='➤';}
+}
+
+function quickAsk(q){ sendAI(q); }
+function generateAutoAnalysis(){ _iaMode='datos'; setIAMode('datos'); setTimeout(()=>quickAsk('Análisis completo de mi situación financiera'),100); }
+
+async function sendDashAI(){
+  const input=document.getElementById('dashAiInput'); const msg=(input?.value||'').trim(); if(!msg) return;
+  aiAddMsg('dashAiMessages',msg,'user'); input.value='';
+  const t=aiTyping('dashAiMessages');
+  const resp=respondDatos(msg);
+  setTimeout(()=>{ if(t) t.remove(); aiAddMsg('dashAiMessages',resp,'ai'); },400);
+}
+
+// ══════════════════════════════════════════════
+// PRESUPUESTO
+// ══════════════════════════════════════════════
+const GAS_CATS=['Alquiler','Servicios','Internet','Teléfono','Transporte','Comida','Delivery','Mercado','Salud','Impuestos','Educación','Entretenimiento','Bicicleta','Mascotas','Compras','Café','Snacks','Otros'];
+function renderBudgetForm(){
+  const el=document.getElementById('budgetForm'); if(!el) return;
+  el.innerHTML=GAS_CATS.map(cat=>`<div class="fjb" style="align-items:center;padding:9px 0;border-bottom:1px solid rgba(30,45,77,0.4);">
+    <span class="ts fw7">${cat}</span>
+    <input type="number" class="finput" style="width:130px;padding:6px 10px;font-size:0.82rem;" id="budget-input-${cat.replace(/\s/g,'_')}" value="${DB.budgets[cat]||''}" placeholder="Sin límite">
+  </div>`).join('');
+}
+function saveBudgets(){
+  GAS_CATS.forEach(cat=>{ const el=document.getElementById(`budget-input-${cat.replace(/\s/g,'_')}`); if(el){ const v=parseFloat(el.value); if(v>0) DB.budgets[cat]=v; else delete DB.budgets[cat]; } });
+  save(); renderBudgetStatus(); showToast('Presupuestos guardados ✓');
+}
+function saveBudgetTotal(val){
+  const v=parseFloat(val)||0;
+  DB.budgetTotal=v; save();
+  renderBudgetStatus();
+}
+function renderBudgetStatus(){
+  const cm=currentMonth(); const catGas={};
+  DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{ catGas[g.cat]=(catGas[g.cat]||0)+g.monto; });
+  const totalGastado=Object.values(catGas).reduce((a,b)=>a+b,0);
+  const totalLimite=DB.budgetTotal||Object.keys(DB.budgets).reduce((s,c)=>s+(DB.budgets[c]||0),0);
+  const totalDisponible=Math.max(0,totalLimite-totalGastado);
+  const pctTotal=totalLimite>0?Math.round(totalGastado/totalLimite*100):0;
+
+  // Sync input field
+  const inp=document.getElementById('bud-total-limite-input');
+  if(inp&&document.activeElement!==inp) inp.value=totalLimite||'';
+
+  const gEl=document.getElementById('bud-total-gastado');
+  const dEl=document.getElementById('bud-total-disponible');
+  const pEl=document.getElementById('bud-pct-gastado');
+  if(gEl) gEl.textContent=fmt(totalGastado);
+  if(dEl){ dEl.textContent=totalLimite>0?fmt(totalDisponible):'—'; dEl.style.color=totalDisponible>0?'var(--green)':'var(--red)'; }
+  if(pEl) pEl.textContent=totalLimite>0?`${pctTotal}% del total`:'Ingresá un límite arriba';
+
+  // ── ESTADO GENERAL ──
+  const egEl=document.getElementById('budEstadoGeneral');
+  if(egEl){
+    let estadoIcon,estadoColor,estadoTitulo,estadoMsg;
+    if(!totalLimite){ estadoIcon='💡'; estadoColor='var(--accent)'; estadoTitulo='Configurá tu presupuesto'; estadoMsg='Ingresá un monto en "Presupuesto Total del Mes" para ver el seguimiento.'; }
+    else if(pctTotal>=100){ estadoIcon='🚨'; estadoColor='var(--red)'; estadoTitulo='Presupuesto superado'; estadoMsg=`Excediste tu límite en <strong>${fmt(totalGastado-totalLimite)}</strong>. Revisá tus gastos inmediatamente.`; }
+    else if(pctTotal>=80){ estadoIcon='⚠️'; estadoColor='var(--yellow)'; estadoTitulo='Gastos elevados'; estadoMsg=`Usaste el ${pctTotal}% de tu presupuesto. Quedan <strong>${fmt(totalDisponible)}</strong>. Cuidado con los gastos restantes del mes.`; }
+    else if(pctTotal>=50){ estadoIcon='🟡'; estadoColor='var(--yellow)'; estadoTitulo='Gastos moderados'; estadoMsg=`Vas por la mitad del mes con ${pctTotal}% del presupuesto usado. Disponible: <strong>${fmt(totalDisponible)}</strong>.`; }
+    else{ estadoIcon='✅'; estadoColor='var(--green)'; estadoTitulo='Gastos controlados'; estadoMsg=`Usaste solo el ${pctTotal}% del presupuesto. Disponible: <strong>${fmt(totalDisponible)}</strong>. Vas muy bien.`; }
+
+    // Top categoría
+    const sorted=Object.entries(catGas).sort((a,b)=>b[1]-a[1]);
+    const topCat=sorted[0];
+    const topMsg=topCat?`<br><span style="color:var(--text3);font-size:0.75rem;">📌 Mayor gasto: <strong style="color:var(--text)">${topCat[0]}</strong> con ${fmt(topCat[1])} (${totalGastado>0?Math.round(topCat[1]/totalGastado*100):0}% de tus gastos)</span>`:'';
+
+    egEl.innerHTML=`
+      <div style="display:flex;gap:14px;align-items:flex-start;">
+        <div style="font-size:1.8rem;flex-shrink:0;">${estadoIcon}</div>
+        <div style="flex:1;">
+          <div style="font-weight:800;font-size:0.95rem;color:${estadoColor};margin-bottom:4px;">${estadoTitulo}</div>
+          <div style="font-size:0.82rem;color:var(--text2);line-height:1.5;">${estadoMsg}${topMsg}</div>
+          ${totalLimite>0?`<div style="margin-top:12px;"><div class="pbar" style="height:10px;border-radius:8px;"><div class="pfill" style="width:${pctTotal}%;background:${estadoColor};transition:width .5s ease;border-radius:8px;"></div></div><div style="display:flex;justify-content:space-between;margin-top:4px;"><span style="font-size:0.68rem;color:var(--text3);">$0</span><span style="font-size:0.68rem;color:var(--text3);">${fmt(totalLimite)}</span></div></div>`:''}
+        </div>
+      </div>`;
+  }
+
+  // ── EVOLUCIÓN DIARIA DEL MES ──
+  const evEl=document.getElementById('budEvolucion');
+  if(evEl){
+    const diasData={};
+    DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{
+      const dia=parseInt(g.fecha.split('-')[2]);
+      diasData[dia]=(diasData[dia]||0)+g.monto;
+    });
+    const hoy=new Date().getDate();
+    const diasMes=new Date(new Date().getFullYear(),new Date().getMonth()+1,0).getDate();
+    let acum=0; const acumDias=[];
+    for(let d=1;d<=hoy;d++){ acum+=(diasData[d]||0); acumDias.push({dia:d,gasto:diasData[d]||0,acum}); }
+    if(!acumDias.length){ evEl.innerHTML='<div class="empty"><p>Sin gastos registrados este mes</p></div>'; return; }
+    const maxAcum=Math.max(...acumDias.map(x=>x.acum),1);
+    const ritmoProyectado=acum/hoy*diasMes;
+    const ritmoBien=totalLimite>0&&ritmoProyectado<=totalLimite;
+    const diasConGasto=acumDias.filter(x=>x.gasto>0);
+
+    const bars=acumDias.map(x=>{
+      const h=Math.max(5,Math.round(x.acum/maxAcum*100));
+      const col=totalLimite&&x.acum>totalLimite?'var(--red)':totalLimite&&x.acum>totalLimite*0.8?'var(--yellow)':'var(--accent)';
+      return`<div onclick="showBudTooltip(this,${x.dia},${x.gasto},${x.acum})"
+        style="flex:1;height:${h}%;background:${col};border-radius:3px 3px 0 0;min-width:4px;cursor:pointer;position:relative;transition:opacity .1s;"
+        onmouseenter="this.style.opacity='.7'" onmouseleave="this.style.opacity='1'"></div>`;
+    }).join('');
+
+    evEl.innerHTML=`
+      <div id="budTooltip" style="display:none;background:var(--card2);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 13px;margin-bottom:10px;font-size:.82rem;">
+        <span id="budTooltipTxt"></span>
+      </div>
+      <div style="display:flex;gap:2px;align-items:flex-end;height:80px;margin-bottom:8px;">${bars}</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:14px;">
+        <span style="font-size:.68rem;color:var(--text3);">Día 1</span>
+        <span style="font-size:.68rem;color:var(--text3);">Día ${hoy} (hoy)</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+        <div style="background:var(--bg3);border-radius:var(--r2);padding:9px 12px;">
+          <div style="font-size:.63rem;color:var(--text3);font-weight:800;text-transform:uppercase;margin-bottom:3px;">Gasto diario prom.</div>
+          <div style="font-weight:800;font-size:.95rem;">${fmt(acum/hoy)}</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:var(--r2);padding:9px 12px;">
+          <div style="font-size:.63rem;color:var(--text3);font-weight:800;text-transform:uppercase;margin-bottom:3px;">Proyección al cierre</div>
+          <div style="font-weight:800;font-size:.95rem;color:${ritmoBien?'var(--green)':'var(--red)'};">${fmt(ritmoProyectado)}</div>
+        </div>
+        ${totalLimite?`<div style="background:var(--bg3);border-radius:var(--r2);padding:9px 12px;grid-column:span 2;">
+          <div style="font-size:.63rem;color:var(--text3);font-weight:800;text-transform:uppercase;margin-bottom:3px;">Margen diario restante</div>
+          <div style="font-weight:800;font-size:.95rem;color:var(--cyan);">${diasMes-hoy>0?fmt((totalLimite-acum)/(diasMes-hoy)):'—'}</div>
+        </div>`:''}
+      </div>
+      <div style="font-size:.68rem;color:var(--text3);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Últimos días con gasto</div>
+      ${diasConGasto.slice(-7).map(x=>`
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(30,45,77,.4);">
+          <span style="font-size:.8rem;color:var(--text2);">Día ${x.dia}</span>
+          <span style="font-size:.8rem;font-weight:700;">${fmt(x.gasto)}</span>
+        </div>`).join('')}`;
+  }
+
+  // ── CATEGORÍAS (tab separado) ──
+  const configured=Object.keys(DB.budgets);
+  const summaryEl=document.getElementById('budgetSummary');
+  const statusEl=document.getElementById('budgetStatus');
+  if(summaryEl){
+    if(!configured.length){ summaryEl.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Configurá presupuestos por categoría</p></div>'; }
+    else summaryEl.innerHTML=configured.map(cat=>{
+      const limit=DB.budgets[cat]; const spent=catGas[cat]||0;
+      const remaining=Math.max(0,limit-spent); const over=spent>limit;
+      const pct=Math.min(100,Math.round(spent/limit*100));
+      const color=pct>=100?'var(--red)':pct>=80?'var(--yellow)':'var(--green)';
+      const icon=pct>=100?'🔴':pct>=80?'🟡':'🟢';
+      return`<div class="bud-row"><div class="bud-top"><span class="bud-cat">${icon} ${cat}</span><span class="bud-remaining" style="color:${color}">${over?'⚠️ −'+fmt(spent-limit).replace('$',''):'↓ '+fmt(remaining)}</span></div>
+        <div class="fjb mb8"><span class="ts tmuted">Gastado: ${fmt(spent)}</span><span class="ts tmuted">Límite: ${fmt(limit)}</span></div>
+        <div class="pbar thick"><div class="pfill" style="width:${pct}%;background:${color}"></div></div>
+        <div class="ts tmuted" style="text-align:right;margin-top:4px;">${pct}% usado</div></div>`;
+    }).join('');
+  }
+}
+
+// ══════════════════════════════════════════════
+// DASHBOARD REFRESH
+// ══════════════════════════════════════════════
+function getDashboardTip(){
+  const cm=currentMonth();
+  const ingMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gasMes=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const tasa=ingMes>0?((ingMes-gasMes)/ingMes*100):0;
+  const {fisico,digital}=calcUSDBalance();
+  if(ingMes===0) return '👋 Comenzá registrando tus ingresos de esta semana para activar el análisis.';
+  const tips=[];
+  if(tasa<0) tips.push(`🚨 Tus gastos superan ingresos en <strong>${fmt(gasMes-ingMes)}</strong>. Revisá tus gastos urgente.`);
+  else if(tasa<10) tips.push(`⚠️ Tasa de ahorro baja (${tasa.toFixed(1)}%). Intentá reducir gastos variables.`);
+  else if(tasa>=20) tips.push(`✅ Excelente tasa de ahorro del ${tasa.toFixed(1)}%. Considerá destinar parte a dólares o metas.`);
+  if(fisico+digital===0&&ingMes>0) tips.push('💵 Sin dólares registrados. La inflación erosiona tus ahorros en pesos.');
+  const budgetsOver=Object.entries(DB.budgets).filter(([cat])=>{ const spent=DB.gastos.filter(g=>g.cat===cat&&monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0); return spent>DB.budgets[cat]; }).map(([cat])=>cat);
+  if(budgetsOver.length) tips.push(`📋 Superaste el presupuesto en: <strong>${budgetsOver.join(', ')}</strong>.`);
+  return tips.length>0?tips[Math.floor(Math.random()*tips.length)]:'👍 Tu situación financiera está bajo control. Seguí registrando para análisis más precisos.';
+}
+
+function renderTicker(){
+  const el=document.getElementById('tickerArea');
+  if(!el) return;
+  if(!DB.cotizacion){ el.innerHTML='<div class="tmuted txs">Sin cotizaciones — presioná Actualizar</div>'; return; }
+  el.innerHTML=['Oficial','Blue','Bolsa','Cripto'].map(t=>{ const d=DB.cotizacion[t]; if(!d) return '';
+    return `<div class="tick-item"><div class="tick-name">${d.nombre}</div><div class="tick-val">${fmt(d.venta)}</div><div class="tick-sub">compra ${fmt(d.compra)}</div></div>`; }).join('');
+}
+
+function refreshDashboard(){
+  const cm=currentMonth();
+  const ingMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gasMes=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const ahorro=ingMes-gasMes; const tasa=ingMes>0?(ahorro/ingMes)*100:0;
+  const pat=calcPatrimonio();
+
+  document.getElementById('kpi-ingresos').textContent=fmt(ingMes);
+  document.getElementById('kpi-gastos').textContent=fmt(gasMes);
+  document.getElementById('kpi-ahorro').textContent=fmt(ahorro);
+  document.getElementById('kpi-ahorro-tasa').textContent=`Tasa: ${tasa.toFixed(1)}%`;
+  document.getElementById('kpi-patrimonio').textContent=fmt(pat.neto);
+  document.getElementById('kpi-fondo').textContent=fmt(pat.efectivo+pat.banco);
+  const mesesFondo=gasMes>0?((pat.efectivo+pat.banco)/gasMes).toFixed(1):0;
+  document.getElementById('kpi-fondo-meses').textContent=`${mesesFondo} meses`;
+
+  // Health score
+  let score=50;
+  if(tasa>=20) score+=20; else if(tasa>=10) score+=10; else if(tasa<0) score-=20;
+  if(pat.neto>0) score+=10;
+  const {fisico,digital}=calcUSDBalance();
+  if(fisico+digital>0) score+=10;
+  if(parseFloat(mesesFondo)>=3) score+=10;
+  score=Math.min(100,Math.max(0,score));
+  document.getElementById('healthScore').textContent=score;
+  const arc=document.getElementById('healthArc'); const C=207.3;
+  arc.style.strokeDashoffset=C-(C*score/100);
+  const hlEl=document.getElementById('healthLabel'); const hdEl=document.getElementById('healthDesc');
+  const hs=document.getElementById('healthScore');
+  if(score>=75){ hlEl.textContent='🟢 Excelente'; arc.style.stroke='var(--green)'; hs.style.color='var(--green)'; hdEl.textContent='Tu situación financiera es sólida.'; }
+  else if(score>=45){ hlEl.textContent='🟡 Moderada'; arc.style.stroke='var(--yellow)'; hs.style.color='var(--yellow)'; hdEl.textContent='Hay áreas de mejora identificadas.'; }
+  else{ hlEl.textContent='🔴 Riesgosa'; arc.style.stroke='var(--red)'; hs.style.color='var(--red)'; hdEl.textContent='Atención: revisá gastos e ingresos.'; }
+
+  // Top gastos chart — detallado con nombre, monto, % y barra
+  const catGas={}; DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{ catGas[g.cat]=(catGas[g.cat]||0)+g.monto; });
+  const topEl=document.getElementById('topGastosChart');
+  const sorted=Object.entries(catGas).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const totalGas=Object.values(catGas).reduce((a,b)=>a+b,0);
+  if(sorted.length){
+    const catColors={'Alquiler':'var(--red)','Comida':'var(--orange)','Mercado':'var(--yellow)','Transporte':'var(--cyan)','Delivery':'var(--purple)','Entretenimiento':'var(--acc2)'};
+    topEl.innerHTML=sorted.map(([c,v],i)=>{
+      const pct=totalGas>0?Math.round(v/totalGas*100):0;
+      const col=catColors[c]||['var(--red)','var(--orange)','var(--yellow)','var(--cyan)','var(--purple)','var(--acc2)'][i%6];
+      const nivel=pct>=30?'🔴 Alto':pct>=15?'🟡 Moderado':'🟢 Bajo';
+      return `<div style="margin-bottom:10px;">
+        <div class="fjb mb4"><span class="ts fw7">${c}</span><span class="ts" style="color:${col};font-weight:700;">${fmt(v)} <span style="color:var(--text3);font-weight:400;">(${pct}%)</span></span></div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="pbar" style="flex:1;height:7px;"><div class="pfill" style="width:${pct}%;background:${col};"></div></div>
+          <span style="font-size:0.65rem;color:var(--text3);white-space:nowrap;">${nivel}</span>
+        </div>
+      </div>`;
+    }).join('');
+  } else topEl.innerHTML='<div class="empty"><div class="empty-icon">📊</div><p>Sin gastos aún</p></div>';
+
+  // Patrimonio
+  const patEl=document.getElementById('patrimonioDesglose');
+  const blue=getBlueSell(); const usdVal=(fisico+digital)*(blue||0);
+  const items=[['Efectivo',pat.efectivo,'var(--green)'],['Banco',pat.banco,'var(--accent)'],['USD',usdVal,'var(--yellow)'],...DB.activos.filter(a=>a.tipo==='Activo').map(a=>[a.nombre,a.valor,'var(--purple)'])].filter(([,v])=>v>0);
+  if(items.length){ const tot=items.reduce((s,[,v])=>s+v,0);
+    patEl.innerHTML=items.map(([n,v,c])=>`<div class="mb12"><div class="fjb mb8"><span class="ts">${n}</span><span class="ts fw7">${fmt(v)}</span></div><div class="pbar"><div class="pfill" style="width:${Math.round(v/tot*100)}%;background:${c}"></div></div></div>`).join('');
+  } else patEl.innerHTML='<div class="empty"><div class="empty-icon">🏦</div><p>Actualizá tus saldos en Ahorros</p></div>';
+
+  // Last movements — tarjetas móviles
+  const all=[...DB.ingresos.map(i=>({...i,tipo:'Ingreso'})),...DB.gastos.map(g=>({...g,tipo:'Gasto'}))].sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,10);
+  const tbody=document.getElementById('lastMovements');
+  if(!all.length){ tbody.innerHTML='<div class="empty"><p>Sin movimientos aún</p></div>'; }
+  else{
+    const catIcon={'Delivery':'🛵','Propinas Delivery':'💸','Salario':'💼','Alquiler':'🏠','Comida':'🍽️','Mercado':'🛒','Transporte':'🚌','Café':'☕','Salud':'💊','Entretenimiento':'🎬','Internet':'📡','Teléfono':'📱','Bicicleta':'🚲','Impuestos':'📄','Educación':'📚','Compras':'🛍️','Servicios':'⚡'};
+    tbody.innerHTML='<div class="mov-list">'+all.map(t=>`
+      <div class="mov-row">
+        <div class="mov-icon ${t.tipo==='Ingreso'?'ing':'gas'}">${catIcon[t.cat]||(t.tipo==='Ingreso'?'💚':'💸')}</div>
+        <div class="mov-info">
+          <div class="mov-desc">${t.desc||t.cat}</div>
+          <div class="mov-cat">${t.cat} · ${t.fecha}</div>
+        </div>
+        <div class="mov-amount ${t.tipo==='Ingreso'?'ing':'gas'}">${t.tipo==='Ingreso'?'+':'−'}${fmt(t.monto)}</div>
+      </div>`).join('')+'</div>';
+  }
+
+  const tipEl=document.getElementById('dashboard-ia-tip');
+  if(tipEl) tipEl.innerHTML=getDashboardTip();
+  renderTicker();
+}
+
+// ══════════════════════════════════════════════
+// REFRESH PAGE
+// ══════════════════════════════════════════════
+function refreshPage(name){
+  if(name==='dashboard') refreshDashboard();
+  else if(name==='ingresos'){
+    setDate('ing-fecha'); renderIngresosTable(); renderIngresosByCat();
+    const cm=currentMonth(); const ingMes=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+    document.getElementById('ing-total-mes').textContent=fmt(ingMes);
+    const dias=new Date().getDate();
+    document.getElementById('ing-promedio-dia').textContent=`Promedio diario: ${fmt(ingMes/dias)}`;
+    if(DB.ingresos.length){ const last=DB.ingresos[0]; document.getElementById('ing-ultimo').innerHTML=`<strong>${fmt(last.monto)}</strong> · ${last.cat} · ${last.fecha}`; }
+  }
+  else if(name==='gastos'){
+    setDate('gas-fecha'); updateGastosFilters(); renderGastosTable(); renderGastosByCat();
+    const cm=currentMonth(); const gasMes=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+    document.getElementById('gas-total-mes').textContent=fmt(gasMes);
+    const dias=new Date().getDate(); document.getElementById('gas-promedio-dia').textContent=fmt(gasMes/dias);
+    const catGas={}; DB.gastos.filter(g=>monthOf(g.fecha)===cm).forEach(g=>{ catGas[g.cat]=(catGas[g.cat]||0)+g.monto; });
+    const mayorCat=Object.entries(catGas).sort((a,b)=>b[1]-a[1])[0];
+    document.getElementById('gas-mayor-cat').textContent=mayorCat?mayorCat[0]:'—';
+    const hormiga=DB.gastos.filter(g=>['Café','Snacks'].includes(g.cat)&&monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+    document.getElementById('gas-hormiga').textContent=fmt(hormiga);
+  }
+  else if(name==='ahorros'){
+    setDate('usd-fecha');
+    document.getElementById('saldo-efectivo').value=DB.saldoEfectivo||'';
+    document.getElementById('saldo-banco').value=DB.saldoBanco||'';
+    document.getElementById('ahorro-efectivo').textContent=fmt(DB.saldoEfectivo);
+    document.getElementById('ahorro-banco').textContent=fmt(DB.saldoBanco);
+    document.getElementById('ahorro-total-pesos').textContent=fmt(DB.saldoEfectivo+DB.saldoBanco);
+    updateUSDenPesos(); renderUSDTable(); renderActivosList();
+  }
+  else if(name==='patrimonio'){
+    const p=calcPatrimonio();
+    document.getElementById('pat-activos').textContent=fmt(p.activos);
+    document.getElementById('pat-deudas').textContent=fmt(p.deudas);
+    document.getElementById('pat-neto').textContent=fmt(p.neto);
+    document.getElementById('pat-neto').style.color=p.neto>=0?'var(--green)':'var(--red)';
+    renderPatrimonioBarChart(); renderSnapshotList();
+    if(DB.snapshots.length>=2){ const last=DB.snapshots[DB.snapshots.length-1]; const prev=DB.snapshots[DB.snapshots.length-2]; const diff=last.neto-prev.neto;
+      const ve=document.getElementById('pat-variacion'); ve.textContent=fmt(diff); ve.style.color=diff>=0?'var(--green)':'var(--red)'; }
+  }
+  else if(name==='delivery'){
+    const del=calcDelivery();
+    document.getElementById('del-ganancias').textContent=fmt(del.ganancias);
+    document.getElementById('del-propinas').textContent=fmt(del.propinas);
+    document.getElementById('del-total').textContent=fmt(del.total);
+    document.getElementById('del-promedio').textContent=fmt(del.promedioDia);
+    document.getElementById('del-promedio-sem').textContent=fmt(del.promedioSem);
+    document.getElementById('del-mejor-semana').textContent=fmt(del.bestWeek);
+    document.getElementById('del-mejor-mes').textContent=fmt(del.bestMonth);
+    renderDeliveryBarChart();
+    const weeks=renderDeliveryWeekly(); const wEl=document.getElementById('deliveryWeekly');
+    if(wEl){ if(!Object.keys(weeks).length){ wEl.innerHTML='<div class="empty"><p>Sin datos este mes</p></div>'; }
+      else wEl.innerHTML=Object.entries(weeks).map(([w,d])=>`<div class="week-card"><div><div class="fw7 ts">${w}</div><div class="tmuted txs mt8">Base: ${fmt(d.delivery)} · Propinas: ${fmt(d.propinas)}</div></div><div class="fw8" style="color:var(--green)">${fmt(d.delivery+d.propinas)}</div></div>`).join(''); }
+    const histEl=document.getElementById('deliveryHistTable');
+    if(histEl){
+      const items=DB.ingresos.filter(i=>i.cat==='Delivery'||i.cat==='Propinas Delivery').slice(0,40);
+      if(!items.length){ histEl.innerHTML='<div class="empty"><p>Sin registros delivery</p></div>'; }
+      else{
+        const totalDel=items.reduce((s,i)=>s+i.monto,0);
+        histEl.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;padding:0 0 12px;border-bottom:1px solid var(--border);margin-bottom:4px;">
+          <span style="font-size:.72rem;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;">Total registrado</span>
+          <span style="font-size:1.1rem;font-weight:800;color:var(--green);">+${fmt(totalDel)}</span>
+        </div>
+        <div class="mov-list">${items.map(i=>movCard(i,'ing')).join('')}</div>`;
+      }
+    }
+  }
+  else if(name==='metas') renderMetasList();
+  else if(name==='proyecciones'){
+    const p=calcProyecciones();
+    if(p){
+      document.getElementById('proy-6m').textContent=fmt(p.p6m);
+      document.getElementById('proy-1a').textContent=fmt(p.p1a);
+      document.getElementById('proy-5a').textContent=fmt(p.p5a);
+      document.getElementById('proy-6m-desc').textContent=`Ahorro est.: ${fmt(p.ahorro)}/mes`;
+      document.getElementById('proy-1a-desc').textContent=`Ingresos prom.: ${fmt(p.avgIng)}`;
+      document.getElementById('proy-5a-desc').textContent=`Gastos prom.: ${fmt(p.avgGas)}`;
+      document.getElementById('proySupuestos').innerHTML=`Ingresos prom./mes: <strong>${fmt(p.avgIng)}</strong><br>Gastos prom./mes: <strong>${fmt(p.avgGas)}</strong><br>Ahorro est.: <strong style="color:${p.ahorro>=0?'var(--green)':'var(--red)'}">${fmt(p.ahorro)}</strong><br>Patrimonio actual: <strong>${fmt(p.pat)}</strong>`;
+      const sp=document.getElementById('sim-patrimonio'); if(!sp.value) sp.value=Math.round(p.pat);
+    }
+  }
+  else if(name==='alertas') refreshAlerts();
+  else if(name==='mercado'){ renderCotizaciones(); renderMercadoImpacto(); }
+  else if(name==='presupuesto'){
+    renderBudgetForm();
+    const inp=document.getElementById('bud-total-limite-input');
+    if(inp) inp.value=DB.budgetTotal||'';
+    renderBudgetStatus();
+  }
+  else if(name==='importar') initDropZone();
+}
+
+// ══════════════════════════════════════════════
+// IMPORT / EXPORT
+// ══════════════════════════════════════════════
+let pendingImportData=[];
+function handleImportFile(event){
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ try{ parseCSVPreview(e.target.result); }catch(err){ showToast('Error al leer el archivo: '+err.message,'error'); } };
+  reader.readAsText(file,'UTF-8'); event.target.value='';
+}
+function parseCSVPreview(text){
+  const sep=text.includes(';')?';':',';
+  const lines=text.trim().split(/\r?\n/);
+  if(lines.length<2){ showToast('El archivo parece vacío','error'); return; }
+  const headers=lines[0].split(sep).map(h=>h.trim().toLowerCase().replace(/"/g,''));
+  const colFecha=headers.indexOf(document.getElementById('map-fecha')?.value?.toLowerCase()||'fecha');
+  const colMonto=headers.indexOf(document.getElementById('map-monto')?.value?.toLowerCase()||'monto');
+  const colDesc=headers.indexOf(document.getElementById('map-desc')?.value?.toLowerCase()||'descripcion');
+  const colCat=headers.indexOf('categoria'); const colTipo=headers.indexOf('tipo');
+  if(colFecha<0||colMonto<0){ showToast('No encontré columnas de fecha y monto.','error'); return; }
+  const rows=[]; const errors=[];
+  lines.slice(1).forEach((line,i)=>{
+    if(!line.trim()) return;
+    const cells=line.split(sep).map(c=>c.trim().replace(/^"|"$/g,''));
+    const fecha=cells[colFecha];
+    const montoRaw=cells[colMonto]?.replace(/[$.]/g,'').replace(',','.')||'0';
+    const monto=parseFloat(montoRaw.replace(/\./g,'').replace(',','.'));
+    const desc=colDesc>=0?cells[colDesc]:'';
+    const cat=colCat>=0?cells[colCat]:'';
+    const tipoRaw=colTipo>=0?cells[colTipo]?.toLowerCase():'';
+    const tipo=tipoRaw==='ingreso'?'ingreso':(document.getElementById('map-tipo-default')?.value||'gasto');
+    if(!fecha||isNaN(monto)||monto<=0){ errors.push(`Fila ${i+2}: inválida`); return; }
+    let fechaFmt=fecha;
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(fecha)||/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fecha)){ const[d,m,y]=fecha.split('/'); fechaFmt=`${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`; }
+    rows.push({fecha:fechaFmt,monto,desc,cat,tipo});
+  });
+  pendingImportData=rows;
+  const previewEl=document.getElementById('importPreview'); const actionsEl=document.getElementById('importActions');
+  if(!previewEl){ showPage('importar'); setTimeout(()=>renderImportPreview(rows,errors),100); return; }
+  renderImportPreview(rows,errors);
+}
+function renderImportPreview(rows,errors){
+  const previewEl=document.getElementById('importPreview'); const actionsEl=document.getElementById('importActions');
+  if(!previewEl) return;
+  const ing=rows.filter(r=>r.tipo==='ingreso').length; const gas=rows.filter(r=>r.tipo==='gasto').length;
+  let html=`<div class="mb12"><span class="badge bg">${ing} ingresos</span> <span class="badge br" style="margin-left:6px;">${gas} gastos</span>${errors.length?`<span class="badge by" style="margin-left:6px;">${errors.length} errores</span>`:''}</div>`;
+  html+='<div class="tbl-wrap" style="max-height:260px;overflow-y:auto;"><table><thead><tr><th>Fecha</th><th>Desc.</th><th>Cat.</th><th>Tipo</th><th class="tr">Monto</th></tr></thead><tbody>';
+  rows.slice(0,30).forEach(r=>{ html+=`<tr><td>${r.fecha}</td><td>${r.desc||'—'}</td><td>${r.cat||'—'}</td><td><span class="badge ${r.tipo==='ingreso'?'bg':'br'}">${r.tipo}</span></td><td class="num ${r.tipo==='ingreso'?'income':'expense'} tr">${fmt(r.monto)}</td></tr>`; });
+  if(rows.length>30) html+=`<tr><td colspan="5" class="tmuted txs" style="padding:8px 12px;">... y ${rows.length-30} más</td></tr>`;
+  html+='</tbody></table></div>';
+  if(errors.length) html+=`<div class="mt8 txs tmuted">${errors.slice(0,5).join(' · ')}</div>`;
+  previewEl.innerHTML=html;
+  if(actionsEl) actionsEl.style.display=rows.length?'block':'none';
+}
+function confirmImport(){
+  if(!pendingImportData.length) return;
+  let addedIng=0,addedGas=0;
+  pendingImportData.forEach(r=>{
+    if(r.tipo==='ingreso'){ DB.ingresos.push({id:uid(),fecha:r.fecha,monto:r.monto,cat:r.cat||'Otros',desc:r.desc,metodo:'Importado'}); addedIng++; }
+    else{ DB.gastos.push({id:uid(),fecha:r.fecha,monto:r.monto,cat:r.cat||'Otros',desc:r.desc,metodo:'Importado'}); addedGas++; }
+  });
+  DB.ingresos.sort((a,b)=>b.fecha.localeCompare(a.fecha)); DB.gastos.sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  save(); pendingImportData=[];
+  document.getElementById('importPreview').innerHTML='<div class="empty"><div class="empty-icon">✅</div><p>Importación completada</p></div>';
+  document.getElementById('importActions').style.display='none';
+  showToast(`Importado: ${addedIng} ingresos y ${addedGas} gastos`,'success'); refreshDashboard();
+}
+function cancelImport(){
+  pendingImportData=[];
+  document.getElementById('importPreview').innerHTML='<div class="empty"><div class="empty-icon">👀</div><p>Cancelado</p></div>';
+  document.getElementById('importActions').style.display='none';
+}
+function initDropZone(){
+  const dz=document.getElementById('dropZone'); if(!dz||dz._init) return; dz._init=true;
+  dz.addEventListener('dragover',e=>{ e.preventDefault(); dz.classList.add('dragover'); });
+  dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
+  dz.addEventListener('drop',e=>{ e.preventDefault(); dz.classList.remove('dragover'); const file=e.dataTransfer.files[0];
+    if(file){ const r=new FileReader(); r.onload=ev=>parseCSVPreview(ev.target.result); r.readAsText(file,'UTF-8'); } });
+}
+function exportCSV(tipo='todo'){
+  let rows=[]; const header='fecha,tipo,categoria,descripcion,metodo,monto';
+  if(tipo==='ingresos'||tipo==='todo') DB.ingresos.forEach(i=>rows.push(`${i.fecha},ingreso,${i.cat},"${i.desc||''}",${i.metodo},${i.monto}`));
+  if(tipo==='gastos'||tipo==='todo') DB.gastos.forEach(g=>rows.push(`${g.fecha},gasto,${g.cat},"${g.desc||''}",${g.metodo},${g.monto}`));
+  downloadText([header,...rows].join('\n'),`finanzas_${tipo}_${todayStr()}.csv`,'text/csv');
+  showToast('CSV descargado ✓');
+}
+function exportBackup(){ downloadText(JSON.stringify(DB,null,2),`finanzasya_backup_${todayStr()}.json`,'application/json'); showToast('Backup descargado ✓'); }
+function restoreBackup(event){
+  const file=event.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{ try{ Object.assign(DB,JSON.parse(e.target.result)); save(); showToast('Backup restaurado ✓'); refreshDashboard(); showPage('dashboard'); }catch(err){ showToast('Archivo inválido','error'); } };
+  reader.readAsText(file); event.target.value='';
+}
+function downloadText(content,filename,mime){
+  const blob=new Blob([content],{type:mime}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+// ── SALUD FINANCIERA DETALLE ──
+function showHealthDetail(){
+  const score=parseInt(document.getElementById('healthScore').textContent)||0;
+  const label=document.getElementById('healthLabel').textContent||'';
+  const cm=currentMonth();
+  const iM=DB.ingresos.filter(i=>monthOf(i.fecha)===cm).reduce((s,i)=>s+i.monto,0);
+  const gM=DB.gastos.filter(g=>monthOf(g.fecha)===cm).reduce((s,g)=>s+g.monto,0);
+  const aho=iM-gM; const tas=iM>0?((aho/iM)*100).toFixed(1):0;
+  const {fisico,digital}=calcUSDBalance(); const mesesFondo=gM>0?((DB.saldoEfectivo+DB.saldoBanco)/gM).toFixed(1):0;
+
+  const criterios=[
+    {ok:parseFloat(tas)>=20, pts:20, label:'Tasa de ahorro ≥20%', val:`Tu tasa: ${tas}%`, tip:'Ahorrar al menos el 20% de tus ingresos es la base de la salud financiera.'},
+    {ok:parseFloat(tas)>=10&&parseFloat(tas)<20, pts:10, label:'Tasa de ahorro ≥10%', val:`Tu tasa: ${tas}%`, tip:'Buen comienzo. El objetivo es llegar al 20%.'},
+    {ok:parseFloat(tas)<0, pts:-20, label:'Gastos superan ingresos', val:`Déficit: ${fmt(Math.abs(aho))}`, tip:'Urgente: estás gastando más de lo que ganás.'},
+    {ok:calcPatrimonio().neto>0, pts:10, label:'Patrimonio neto positivo', val:`Patrimonio: ${fmt(calcPatrimonio().neto)}`, tip:'Tenés más activos que deudas. ✅'},
+    {ok:fisico+digital>0, pts:10, label:'Dólares como reserva', val:`U$S ${(fisico+digital).toFixed(2)}`, tip:'Tener dólares protege tus ahorros de la inflación.'},
+    {ok:parseFloat(mesesFondo)>=3, pts:10, label:'Fondo emergencia ≥3 meses', val:`${mesesFondo} meses`, tip:'Se recomienda tener al menos 3 meses de gastos guardados.'},
+  ];
+
+  const rows=criterios.map(c=>`
+    <div style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid rgba(30,45,77,.4);align-items:flex-start;">
+      <div style="font-size:1.1rem;flex-shrink:0;">${c.ok?'✅':c.pts<0?'🚨':'⬜'}</div>
+      <div style="flex:1;">
+        <div style="font-size:.83rem;font-weight:700;color:${c.ok?'var(--green)':c.pts<0?'var(--red)':'var(--text2)'};">${c.label}</div>
+        <div style="font-size:.75rem;color:var(--text3);margin-top:2px;">${c.val}</div>
+        <div style="font-size:.75rem;color:var(--text2);margin-top:4px;line-height:1.4;">${c.tip}</div>
+      </div>
+      <div style="font-size:.75rem;font-weight:800;color:${c.pts>0?'var(--green)':c.pts<0?'var(--red)':'var(--text3)'};flex-shrink:0;">${c.pts>0?'+':''}${c.pts} pts</div>
+    </div>`).join('');
+
+  const col=score>=75?'var(--green)':score>=45?'var(--yellow)':'var(--red)';
+  document.getElementById('healthModalContent').innerHTML=`
+    <div style="text-align:center;margin-bottom:18px;">
+      <div style="font-size:2.8rem;font-weight:800;color:${col};">${score}</div>
+      <div style="font-size:1rem;font-weight:800;color:${col};margin-top:4px;">${label}</div>
+      <div style="font-size:.78rem;color:var(--text3);margin-top:6px;">Puntaje sobre 100 basado en 5 criterios financieros</div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--r2);overflow:hidden;margin-bottom:14px;">
+      <div style="height:8px;background:linear-gradient(90deg,var(--red) 0%,var(--yellow) 45%,var(--green) 75%);border-radius:var(--r2);position:relative;">
+        <div style="position:absolute;top:-4px;left:${score}%;transform:translateX(-50%);width:16px;height:16px;background:${col};border-radius:50%;border:3px solid var(--card);box-shadow:0 0 8px ${col};"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 8px 0;font-size:.62rem;color:var(--text3);">
+        <span>Crítica</span><span>Moderada</span><span>Excelente</span>
+      </div>
+    </div>
+    ${rows}`;
+  document.getElementById('modalHealthDetail').classList.add('open');
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+load(); renderBottomNav(); setIAMode('datos'); refreshDashboard();
+if(DB.cotizacion){ renderCotizaciones(); updateTopbarDollar(); }
+setDate('ing-fecha'); setDate('gas-fecha'); setDate('usd-fecha');
+setTimeout(()=>{ renderBudgetForm(); },0);
+</script>
+<!-- MODAL EDITAR USD -->
+<div class="modal-bg" id="modalEditUSD">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">✏️ Editar Operación USD</div><button class="modal-x" onclick="closeModal('modalEditUSD')">✕</button></div>
+    <input type="hidden" id="edit-usd-id">
+    <div class="frow"><div class="fgroup"><label class="flabel">Fecha</label><input type="date" class="finput" id="edit-usd-fecha"></div><div class="fgroup"><label class="flabel">Tipo</label><select class="fselect" id="edit-usd-tipo"><option>Compra</option><option>Venta</option></select></div></div>
+    <div class="frow"><div class="fgroup"><label class="flabel">Cantidad (USD)</label><input type="number" class="finput" id="edit-usd-cantidad"></div><div class="fgroup"><label class="flabel">Precio ($)</label><input type="number" class="finput" id="edit-usd-precio"></div></div>
+    <div class="fgroup"><label class="flabel">Modalidad</label><select class="fselect" id="edit-usd-modalidad"><option>Físico (billete)</option><option>Digital (USDT/cripto)</option><option>Cuenta bancaria</option></select></div>
+    <div class="fc gap8 mt16"><button class="btn btn-primary" onclick="saveEditUSD()" style="flex:1">💾 Guardar</button><button class="btn btn-ghost" onclick="closeModal('modalEditUSD')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR ACTIVO -->
+<div class="modal-bg" id="modalEditActivo">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">✏️ Editar Activo / Deuda</div><button class="modal-x" onclick="closeModal('modalEditActivo')">✕</button></div>
+    <input type="hidden" id="edit-act-id">
+    <div class="frow"><div class="fgroup"><label class="flabel">Nombre</label><input type="text" class="finput" id="edit-act-nombre"></div><div class="fgroup"><label class="flabel">Tipo</label><select class="fselect" id="edit-act-tipo"><option>Activo</option><option>Deuda</option></select></div></div>
+    <div class="fgroup"><label class="flabel">Valor ($)</label><input type="number" class="finput" id="edit-act-valor"></div>
+    <div class="fc gap8 mt16"><button class="btn btn-primary" onclick="saveEditActivo()" style="flex:1">💾 Guardar</button><button class="btn btn-ghost" onclick="closeModal('modalEditActivo')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR META -->
+<div class="modal-bg" id="modalEditMeta">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">✏️ Editar Meta</div><button class="modal-x" onclick="closeModal('modalEditMeta')">✕</button></div>
+    <input type="hidden" id="edit-met-id">
+    <div class="frow"><div class="fgroup"><label class="flabel">Nombre</label><input type="text" class="finput" id="edit-met-nombre"></div><div class="fgroup"><label class="flabel">Emoji</label><input type="text" class="finput" id="edit-met-emoji" style="font-size:1.1rem;"></div></div>
+    <div class="frow"><div class="fgroup"><label class="flabel">Objetivo ($)</label><input type="number" class="finput" id="edit-met-objetivo"></div><div class="fgroup"><label class="flabel">Ya tengo ($)</label><input type="number" class="finput" id="edit-met-actual"></div></div>
+    <div class="fgroup"><label class="flabel">Fecha objetivo</label><input type="date" class="finput" id="edit-met-fecha"></div>
+    <div class="fc gap8 mt16"><button class="btn btn-primary" onclick="saveEditMeta()" style="flex:1">💾 Guardar</button><button class="btn btn-ghost" onclick="closeModal('modalEditMeta')">Cancelar</button></div>
+  </div>
+</div>
+
+<!-- MODAL SALUD FINANCIERA -->
+<div class="modal-bg" id="modalHealthDetail">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">💚 Salud Financiera</div>
+      <button class="modal-x" onclick="closeModal('modalHealthDetail')">✕</button>
+    </div>
+    <div id="healthModalContent"></div>
+    <button class="btn btn-primary btn-full mt16" onclick="closeModal('modalHealthDetail')">Entendido</button>
+  </div>
+</div>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed:', err));
+  });
+}
+</script>
+
+</body>
+</html>
