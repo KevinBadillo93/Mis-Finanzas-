@@ -1,0 +1,2502 @@
+{
+  "_app": "MisFinanzas",
+  "_version": "v20260902i",
+  "_exportedAt": "2026-09-05T18:23:00.460Z",
+  "data": {
+    "ingresos": [
+      {
+        "id": "mtonf03zkd1tqrwce6d",
+        "fecha": "2026-09-05",
+        "monto": 20723,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtn7znhngvpz57b6bff",
+        "fecha": "2026-09-04",
+        "monto": 23127.05,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtnssxamv6cjm1djoz",
+        "fecha": "2026-09-04",
+        "monto": 50599,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtlsopnsoxujybkf9kl",
+        "fecha": "2026-09-03",
+        "monto": 324422.67,
+        "cat": "Delivery",
+        "desc": "Honorarios ",
+        "metodo": "Transferencia",
+        "mesAnterior": true
+      },
+      {
+        "id": "mtluj1m8vdi1d6969tj",
+        "fecha": "2026-09-03",
+        "monto": 84531,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia",
+        "mesAnterior": true
+      },
+      {
+        "id": "mthirhmodevvgnyj9jl",
+        "fecha": "2026-08-31",
+        "monto": 920,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mti18hu68wjt6yhlaza",
+        "fecha": "2026-08-31",
+        "monto": 19872,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtg5mjapcfedjqhyrjr",
+        "fecha": "2026-08-30",
+        "monto": 5538,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtgmz0fi8tupwtfn9k8",
+        "fecha": "2026-08-30",
+        "monto": 460,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtf6ymtab5te242apgq",
+        "fecha": "2026-08-29",
+        "monto": 16049,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Transferencia",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtf7pvpgog5zhguh1dd",
+        "fecha": "2026-08-29",
+        "monto": 21698,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo",
+        "mesAnterior": false
+      },
+      {
+        "id": "mtd6p1b0m7hf86ug9wn",
+        "fecha": "2026-08-28",
+        "monto": 2089,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mtdrkppqgyf3k2bai7b",
+        "fecha": "2026-08-28",
+        "monto": 3039,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mtbssm0oertppu3283p",
+        "fecha": "2026-08-27",
+        "monto": 2849,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mtbsu0l23a5hh3069cm",
+        "fecha": "2026-08-27",
+        "monto": 106144,
+        "cat": "Delivery",
+        "desc": "Honorarios ",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mtbwr7a4ki9raxsmesk",
+        "fecha": "2026-08-27",
+        "monto": 61750,
+        "cat": "Delivery",
+        "desc": "Propina ",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mtcb410tpbx1m5rorun",
+        "fecha": "2026-08-27",
+        "monto": 7507,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mtae6a8xi6gdyfk39c8",
+        "fecha": "2026-08-26",
+        "monto": 30463.4,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mtav943ivm4hucsgtyq",
+        "fecha": "2026-08-26",
+        "monto": 51701.45,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt92x8m67zenzluiq3e",
+        "fecha": "2026-08-25",
+        "monto": 7756.84,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt9iljzf5ilcz8526d",
+        "fecha": "2026-08-25",
+        "monto": 1729,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt7uerg0yeoduedm1j",
+        "fecha": "2026-08-24",
+        "monto": 9877,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt8j6hfi016mo5wvddnun",
+        "fecha": "2026-08-24",
+        "monto": 3129,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt6o4doiapxvm6vbhzg",
+        "fecha": "2026-08-23",
+        "monto": 2089,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt64tx67swq8mjwjwhg",
+        "fecha": "2026-08-23",
+        "monto": 69634.2,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt4ovq3ifuyyc36w7ke",
+        "fecha": "2026-08-22",
+        "monto": 27806,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt5csw927ki98d93ho9",
+        "fecha": "2026-08-22",
+        "monto": 35000,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mt5ctbda10ix6kbqjih9",
+        "fecha": "2026-08-22",
+        "monto": 24930,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt1uq3wu2d3tb2wzuig",
+        "fecha": "2026-08-20",
+        "monto": 65100,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mt1wt4miwx90k0sfj2f",
+        "fecha": "2026-08-20",
+        "monto": 110146.37,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mt0e70ym5tk5et3w0pl",
+        "fecha": "2026-08-19",
+        "monto": 2089,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt0wjixcw3rwcztbmv9",
+        "fecha": "2026-08-19",
+        "monto": 18788,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mt1zk0d8us62ok2ba8",
+        "fecha": "2026-08-19",
+        "monto": 10877,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msyyyxeiq2ey2yzugsm",
+        "fecha": "2026-08-18",
+        "monto": 4007,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mszgexgvc7zw1sf4fos",
+        "fecha": "2026-08-18",
+        "monto": 545,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msxkclvy09s8ncckaqr",
+        "fecha": "2026-08-17",
+        "monto": 62010.5,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mswoepvd6imdj8q77eb",
+        "fecha": "2026-08-16",
+        "monto": 32727.06,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msw56403lahwur4h4",
+        "fecha": "2026-08-16",
+        "monto": 15358,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mstumk62h2nc407gpko",
+        "fecha": "2026-08-15",
+        "monto": 7438,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msuo6zulikfxgkzej3",
+        "fecha": "2026-08-15",
+        "monto": 41765,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msv9wrvezk1y9b2mjsb",
+        "fecha": "2026-08-15",
+        "monto": 43026,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mstex93b632jgqvox14",
+        "fecha": "2026-08-14",
+        "monto": 2844,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msrm0rgl3indwv8ea1",
+        "fecha": "2026-08-13",
+        "monto": 30000,
+        "cat": "Otros",
+        "desc": "Dinero que le preste a Gustavo ",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "msrpyyi5hfuczq6rcw6",
+        "fecha": "2026-08-13",
+        "monto": 23150,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "msqvzwlqzps2oh73l0k",
+        "fecha": "2026-08-12",
+        "monto": 44576.31,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mspgqjrtphn1gxqu3n",
+        "fecha": "2026-08-11",
+        "monto": 3848,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mskp5qw7fcx22gbr5wb",
+        "fecha": "2026-08-08",
+        "monto": 64826,
+        "cat": "Delivery",
+        "desc": "Adel adelanto de efectivo",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msl86rihbt3lzg8sxe",
+        "fecha": "2026-08-08",
+        "monto": 67849,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "msjskbd0ye3udp5fawa",
+        "fecha": "2026-08-07",
+        "monto": 3589,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mshqumhby0qxmmug05",
+        "fecha": "2026-08-06",
+        "monto": 3505,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mshsy388atexwiqfi68",
+        "fecha": "2026-08-06",
+        "monto": 15854.98,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Billetera virtual"
+      },
+      {
+        "id": "msdkwlraayzahzraxyq",
+        "fecha": "2026-08-01",
+        "monto": 20062,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "ms7sdzjwars8uoypgue",
+        "fecha": "2026-07-30",
+        "monto": 15524.95,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "ms7sehhzaiezqyj89ng",
+        "fecha": "2026-07-30",
+        "monto": 61495.61,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "ms2a4eiihnor3rqeyx",
+        "fecha": "2026-07-25",
+        "monto": 7248,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mrzqgpkihb0eshdesj",
+        "fecha": "2026-07-24",
+        "monto": 42408,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mrntfpwc6b5z4l9e0u7",
+        "fecha": "2026-07-16",
+        "monto": 28250,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mrnuv0zfl5tgie908in",
+        "fecha": "2026-07-16",
+        "monto": 99799.44,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mrh7rffwa5p3qmg6nll",
+        "fecha": "2026-07-11",
+        "monto": 31089,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mrfrj8vwrdl0fjqplab",
+        "fecha": "2026-07-10",
+        "monto": 690,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mreczg8dbthr136r8mc",
+        "fecha": "2026-07-09",
+        "monto": 18417,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mrcw83q50s2xk4lf4l5j",
+        "fecha": "2026-07-08",
+        "monto": 26000,
+        "cat": "Delivery",
+        "desc": "Adelanto de efectivo ",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mr3qtb3gl7ahy9xymx9",
+        "fecha": "2026-07-02",
+        "monto": 13500,
+        "cat": "Propinas Delivery",
+        "desc": "última Sem Junio ",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mr3xrk9mh4a7ls21un",
+        "fecha": "2026-07-02",
+        "monto": 20916,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mr12voteklboc007p2",
+        "fecha": "2026-06-28",
+        "monto": 64676,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mqz77eovgas95bre39s",
+        "fecha": "2026-06-26",
+        "monto": 17000,
+        "cat": "Reembolso",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz774yv1fzwv00z6qj",
+        "fecha": "2026-06-25",
+        "monto": 11000,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz76ickx2hx8gxjy9e",
+        "fecha": "2026-06-23",
+        "monto": 80744,
+        "cat": "Delivery",
+        "desc": "Adel/Efectivo",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mqz75r3auyzyec2b1bb",
+        "fecha": "2026-06-18",
+        "monto": 6850,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz7519f1h1yvucekp9",
+        "fecha": "2026-06-16",
+        "monto": 42727,
+        "cat": "Delivery",
+        "desc": "Ade/Efectivo",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mqz730rcixu0391al8",
+        "fecha": "2026-06-11",
+        "monto": 26810,
+        "cat": "Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz73uxcs7euhz83p6",
+        "fecha": "2026-06-11",
+        "monto": 12200,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz713uusxruhi0sjgb",
+        "fecha": "2026-06-09",
+        "monto": 34888,
+        "cat": "Delivery",
+        "desc": "Ade/efectivo",
+        "metodo": "Efectivo"
+      },
+      {
+        "id": "mqz6yrp4a0orhpp0ift",
+        "fecha": "2026-06-04",
+        "monto": 17606,
+        "cat": "Propinas Delivery",
+        "desc": "",
+        "metodo": "Transferencia"
+      },
+      {
+        "id": "mqz6zrwh363kz8l9v8k",
+        "fecha": "2026-06-04",
+        "monto": 8750,
+        "cat": "Delivery",
+        "desc": "Salario",
+        "metodo": "Transferencia"
+      }
+    ],
+    "gastos": [
+      {
+        "id": "mtj766fr0e8ujqrcb9b",
+        "fecha": "2026-09-01",
+        "monto": 17580,
+        "cat": "Verdulería",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Maple de huevos, Queso, Banana, Ajo, Cilantro, Cebolla ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mtj76nswnqa7ba7c38",
+        "fecha": "2026-09-01",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mtj79774a2p7uzo962g",
+        "fecha": "2026-09-01",
+        "monto": 5100,
+        "cat": "Verdulería",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Cebolla, Ajo, Verdeo",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mtaflx23uoavlbhlveh",
+        "fecha": "2026-08-26",
+        "monto": 355500,
+        "cat": "Alquiler",
+        "catMain": "🏠 Vivienda",
+        "desc": "",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": true
+      },
+      {
+        "id": "mt6ateufoea6mtxv8io",
+        "fecha": "2026-08-23",
+        "monto": 9070,
+        "cat": "Verdulería",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Tomate, Cebolla, Verdeo, Cilantro, Pimentón, Ajo, Ají, Banana",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mt4p2bai759czfiv4wo",
+        "fecha": "2026-08-22",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mt3p1qf4jlyy9cgidnp",
+        "fecha": "2026-08-21",
+        "monto": 11700,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche, Palta",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mt1infwhu1n0r4sxs6",
+        "fecha": "2026-08-20",
+        "monto": 104879.5,
+        "cat": "Tarjeta de crédito",
+        "catMain": "💳 Deudas",
+        "desc": "Mercado Pago ",
+        "metodo": "Billetera virtual",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mt1uinj11gew1y5efmbi",
+        "fecha": "2026-08-20",
+        "monto": 32000,
+        "cat": "Bicicleta",
+        "catMain": "💼 Trabajo",
+        "desc": "Bicicleta ",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mt1ye6nc9xw4paw1jx4",
+        "fecha": "2026-08-20",
+        "monto": 5437.5,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Jabón para platos, canela, ají molido ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mt1yfdjhne3si23hff",
+        "fecha": "2026-08-20",
+        "monto": 5935,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Pimentón en polvo, Papel higiénico, Papel de cocina ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mt1zppwvmxcn4igk9nn",
+        "fecha": "2026-08-20",
+        "monto": 21907.9,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Toallitas húmedas, alcohol, Shampoo,Galletas",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "msw5781eh7cmpla0j5g",
+        "fecha": "2026-08-16",
+        "monto": 1800,
+        "cat": "Panadería",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Chipa",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "msur7q6lb79mbcn44m4",
+        "fecha": "2026-08-15",
+        "monto": 21900,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Maple de huevos / Verduras / Banana",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msunj17zwhb6gaa17k7",
+        "fecha": "2026-08-14",
+        "monto": 3600,
+        "cat": "Panadería",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Chipa ",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "msunreqylc4u70kbcni",
+        "fecha": "2026-08-14",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro Wifi ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msqamtbov6ul2fhpnue",
+        "fecha": "2026-08-12",
+        "monto": 42785,
+        "cat": "Teléfono",
+        "catMain": "🏠 Vivienda",
+        "desc": "Movistar ",
+        "metodo": "Transferencia",
+        "tipo": "",
+        "proxMes": false
+      },
+      {
+        "id": "msqb3dug8h1ozosj6tr",
+        "fecha": "2026-08-12",
+        "monto": 11171.54,
+        "cat": "Monotributo",
+        "catMain": "🏛️ Impuestos",
+        "desc": "RK",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msot2a2lxtppl35js6l",
+        "fecha": "2026-08-11",
+        "monto": 124000,
+        "cat": "Bicicleta",
+        "catMain": "💼 Trabajo",
+        "desc": "Bicicleta ",
+        "metodo": "Efectivo",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "msotkn05dedgg8bpjz6",
+        "fecha": "2026-08-11",
+        "monto": 1500,
+        "cat": "Reparaciones",
+        "catMain": "💼 Trabajo",
+        "desc": "Cinta aisladora",
+        "metodo": "Efectivo",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "msnlog4o90oc1py6i89",
+        "fecha": "2026-08-10",
+        "monto": 10200,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msgi17infyres9n3zam",
+        "fecha": "2026-08-05",
+        "monto": 5500,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Maple de Huevos ",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msgi1g74azy4k5yl7u",
+        "fecha": "2026-08-05",
+        "monto": 4300,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msgkluvb9im90bniaqp",
+        "fecha": "2026-08-05",
+        "monto": 8500,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche ",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msgkm4bn67870cv88ch",
+        "fecha": "2026-08-05",
+        "monto": 1650,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Papel de cocina",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msdkyr4brzvwg0sz0ea",
+        "fecha": "2026-08-03",
+        "monto": 20996.58,
+        "cat": "Préstamos",
+        "catMain": "💳 Deudas",
+        "desc": "Naranja X",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "msdl1fcjk7uwn1hlzpd",
+        "fecha": "2026-08-03",
+        "monto": 8000,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Verduras",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msah5r9ee3hqu5929lj",
+        "fecha": "2026-08-01",
+        "monto": 2600,
+        "cat": "Café",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Mac Donalds",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "msah6iqpy7o9jwvkvjf",
+        "fecha": "2026-08-01",
+        "monto": 12490,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche/Papel Higiénico ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "msahdexonbtq5xjs11",
+        "fecha": "2026-08-01",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "ms83ok90ozf07los6sn",
+        "fecha": "2026-07-30",
+        "monto": 6800,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso y salchicha ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "ms59r61yi1ppti21ap",
+        "fecha": "2026-07-28",
+        "monto": 355500,
+        "cat": "Alquiler",
+        "catMain": "🏠 Vivienda",
+        "desc": "",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": true
+      },
+      {
+        "id": "ms0nch8m5k6ijxha798",
+        "fecha": "2026-07-25",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrzqift35r7h30udlm2",
+        "fecha": "2026-07-23",
+        "monto": 5900,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso",
+        "metodo": "Efectivo",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrtmm0vt1o66rjqrc5n",
+        "fecha": "2026-07-20",
+        "monto": 10000,
+        "cat": "Reparaciones",
+        "catMain": "💼 Trabajo",
+        "desc": "Frenos de la bici",
+        "metodo": "Efectivo",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrrsrd7s8022j2t7mjt",
+        "fecha": "2026-07-19",
+        "monto": 79262.1,
+        "cat": "Tarjeta de crédito",
+        "catMain": "💳 Deudas",
+        "desc": "Tarjeta de Crédito/MP",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrs8cjffmln92mucjpb",
+        "fecha": "2026-07-19",
+        "monto": 4799,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrs8d61xxqk2b6d4oq",
+        "fecha": "2026-07-19",
+        "monto": 2599,
+        "cat": "Café",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Mc Donalds",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mroecl93mux75rgzg3j",
+        "fecha": "2026-07-17",
+        "monto": 2400,
+        "cat": "Gastos no clasificados",
+        "catMain": "📦 Otros",
+        "desc": "Antecedentes Penales",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrpc9miuoxfvxzlceb",
+        "fecha": "2026-07-17",
+        "monto": 10456.5,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Papel/Esponja/Mostaza/Mayonesa/PaFritas",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrr1o126ezrm6loqshd",
+        "fecha": "2026-07-17",
+        "monto": 7000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Helado/Rappi",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrr1p5vp5op4d9lfxsg",
+        "fecha": "2026-07-17",
+        "monto": 3465,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Takis/Carrefour ",
+        "metodo": "Billetera virtual",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrnthjzzu7b6b6piz9f",
+        "fecha": "2026-07-16",
+        "monto": 12290,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Lomo Saltado/PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrofcwinwmjmbfip0ho",
+        "fecha": "2026-07-16",
+        "monto": 17100,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Pollo,Palta,Harina,Papa,Banana",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrmheqta948kyza2ars",
+        "fecha": "2026-07-15",
+        "monto": 17250,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Tómate, Cebolla,Verdeo, Morrón, Cilantro, Huevos ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrmhfosp6f9mff7l8bf",
+        "fecha": "2026-07-15",
+        "monto": 3500,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrj9u2pkwa2wxr7168",
+        "fecha": "2026-07-13",
+        "monto": 17802.34,
+        "cat": "Teléfono",
+        "catMain": "🏠 Vivienda",
+        "desc": "Movistar ",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrj9uzh3wdclwtr7hj8",
+        "fecha": "2026-07-13",
+        "monto": 3710,
+        "cat": "Gastos no clasificados",
+        "catMain": "📦 Otros",
+        "desc": "Ecobici",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mrjacoum2wbm2acxcdh",
+        "fecha": "2026-07-13",
+        "monto": 9560.92,
+        "cat": "Monotributo",
+        "catMain": "🏛️ Impuestos",
+        "desc": "RK",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrje36bxt7opfhvyrui",
+        "fecha": "2026-07-13",
+        "monto": 5000,
+        "cat": "Reparaciones",
+        "catMain": "💼 Trabajo",
+        "desc": "Parche de bicicleta ",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mrij4xzmxgw95dvx3",
+        "fecha": "2026-07-12",
+        "monto": 13654,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Tequeños/PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrgmu8jrif39d6apgm",
+        "fecha": "2026-07-11",
+        "monto": 2597,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Ahí molido/Pimienta ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrgmun9fznwxfjsu1o",
+        "fecha": "2026-07-11",
+        "monto": 10200,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrgmv1kibnkgj8k6r4",
+        "fecha": "2026-07-11",
+        "monto": 7500,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Café Instantáneo ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mrij3o9voj8o4csjbw7",
+        "fecha": "2026-07-11",
+        "monto": 12165,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Empanadas ",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrfshsgdgjlsnzwl2b",
+        "fecha": "2026-07-10",
+        "monto": 12000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Hamburguesa",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrgsdauuy23cvq2ppo",
+        "fecha": "2026-07-10",
+        "monto": 4800,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro Wifi 🛜",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrdlu87by0jg5tfgrfn",
+        "fecha": "2026-07-09",
+        "monto": 3300,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Churros/Rappi",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrdlum405ol54lskehg",
+        "fecha": "2026-07-09",
+        "monto": 8000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Mercado",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mrf6t1fxc5vjk8kdcrv",
+        "fecha": "2026-07-09",
+        "monto": 10000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Hamburguesa/PedidosYa",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrcwar89p3549k4g2ca",
+        "fecha": "2026-07-08",
+        "monto": 11980,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Sandwich/PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrarzcgneypp24xie1d",
+        "fecha": "2026-07-07",
+        "monto": 12289,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Pizza/PedidosYa ",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrb9jedf7iaiwrhhvvm",
+        "fecha": "2026-07-07",
+        "monto": 12289,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Pizza Sbarro/PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrb9k6x8s99g1awd4xm",
+        "fecha": "2026-07-07",
+        "monto": 11450,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Sandwich/PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mrb9kkal1l4evdqfpfw",
+        "fecha": "2026-07-07",
+        "monto": 11979,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Suchi",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mra1y6dj2io1oh7yrhw",
+        "fecha": "2026-07-06",
+        "monto": 7000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Franui/Bombón de Frutilla/Rappi ",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr6ztnz848c37tnmhxt",
+        "fecha": "2026-07-04",
+        "monto": 11880,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Lomo saltado de Pollo/ PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr6zwkawf39n9v566m",
+        "fecha": "2026-07-04",
+        "monto": 4981.49,
+        "cat": "Hobbies",
+        "catMain": "🎮 Entretenimiento",
+        "desc": "Spotify",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mr6ub2c0kk1h4lyz1rh",
+        "fecha": "2026-07-03",
+        "monto": 12890,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "KFC/PEDIDOS YA",
+        "metodo": "Efectivo",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr6ucqdstczmjq01wt8",
+        "fecha": "2026-07-03",
+        "monto": 11702.9,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": " Carne Picada/Palta/Salsa/ PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mr3xsijtbcm5k3pwtda",
+        "fecha": "2026-07-02",
+        "monto": 15000,
+        "cat": "Reparaciones",
+        "catMain": "💼 Trabajo",
+        "desc": "Camara de bicicleta ",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mr3xtyecattlufq9mru",
+        "fecha": "2026-07-02",
+        "monto": 17000,
+        "cat": "Gastos no clasificados",
+        "catMain": "📦 Otros",
+        "desc": "Corte de Caballo ",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mr3xuo5oqi5ib17owpf",
+        "fecha": "2026-07-02",
+        "monto": 3600,
+        "cat": "Comida",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Docena de chipa",
+        "metodo": "Efectivo",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mr4a9otr9woxnmsp6il",
+        "fecha": "2026-07-02",
+        "monto": 12909,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr700nivo6l47e7vpuq",
+        "fecha": "2026-07-02",
+        "monto": 12909,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Warp de Carne Picante/ PedidosYa",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr2dn4hgzfvierjsjkn",
+        "fecha": "2026-07-01",
+        "monto": 5300,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso salado ",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mr2do8r3s4fyl27pf1",
+        "fecha": "2026-07-01",
+        "monto": 13000,
+        "cat": "Reparaciones del hogar",
+        "catMain": "🏠 Vivienda",
+        "desc": "Zocalo de puerta",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mr1bxz6oml850yakgam",
+        "fecha": "2026-06-30",
+        "monto": 7051.2,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche, mantequilla, Harina de maiz",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mqzmjt4khz7n7lubzxk",
+        "fecha": "2026-06-29",
+        "monto": 12000,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqzx2tmf83rxord01tu",
+        "fecha": "2026-06-29",
+        "monto": 12390,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mr128u07p4u1qtaw4gm",
+        "fecha": "2026-06-29",
+        "monto": 325500,
+        "cat": "Alquiler",
+        "catMain": "🏠 Vivienda",
+        "desc": "",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": true
+      },
+      {
+        "id": "mqy63zp2ltzrhkme05n",
+        "fecha": "2026-06-28",
+        "monto": 12905,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy661h1n1gx6w87t0e",
+        "fecha": "2026-06-27",
+        "monto": 4800,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": true
+      },
+      {
+        "id": "mqy62pizt4p1kpskdif",
+        "fecha": "2026-06-24",
+        "monto": 13325,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy63k7tk8w9b6ot0e",
+        "fecha": "2026-06-24",
+        "monto": 12905,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5xuhf1kzqacr1ozx",
+        "fecha": "2026-06-23",
+        "monto": 11906,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5xcd8k24bu9jjkl",
+        "fecha": "2026-06-22",
+        "monto": 11880,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy60v7xkbebx5oniih",
+        "fecha": "2026-06-21",
+        "monto": 4981.49,
+        "cat": "Música",
+        "catMain": "🎮 Entretenimiento",
+        "desc": "Spotify",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5wlb6h9xx1okv7h",
+        "fecha": "2026-06-19",
+        "monto": 12785,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5w48memlgyzshqfd",
+        "fecha": "2026-06-18",
+        "monto": 11880,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5vkqfhtt9szqhkug",
+        "fecha": "2026-06-17",
+        "monto": 4800,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5mq4wm89kw7j0m1",
+        "fecha": "2026-06-16",
+        "monto": 150000,
+        "cat": "Tarjeta de crédito",
+        "catMain": "💳 Deudas",
+        "desc": "Mercado Pago",
+        "metodo": "Transferencia",
+        "tipo": "impulsivo",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5nk2mf04hr8erf4",
+        "fecha": "2026-06-16",
+        "monto": 2890,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Bundin",
+        "metodo": "Transferencia",
+        "tipo": "",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5quwg3vftple4sjk",
+        "fecha": "2026-06-16",
+        "monto": 4800,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Queso",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5rhmtmsohhzg5lr",
+        "fecha": "2026-06-16",
+        "monto": 12000,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Verduras",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5sqd0h9aze7ysss",
+        "fecha": "2026-06-16",
+        "monto": 10685,
+        "cat": "Supermercado",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Leche / Harina Pan",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5tm8i6nb2cfgcc8",
+        "fecha": "2026-06-16",
+        "monto": 17271,
+        "cat": "Medicamentos",
+        "catMain": "❤️ Salud",
+        "desc": "Minoxidil",
+        "metodo": "Transferencia",
+        "tipo": "planificado",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5upg7xnuc1c9f4fs",
+        "fecha": "2026-06-16",
+        "monto": 11325,
+        "cat": "Delivery",
+        "catMain": "🍽️ Alimentación",
+        "desc": "",
+        "metodo": "Transferencia",
+        "tipo": "hormiga",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5jke004bskwmws9bw",
+        "fecha": "2026-06-12",
+        "monto": 9561,
+        "cat": "Impuestos",
+        "catMain": "🏛️ Impuestos",
+        "desc": "Monotributo KR",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5kkj9asul5rkp2pa",
+        "fecha": "2026-06-12",
+        "monto": 21750,
+        "cat": "Tarjeta de crédito",
+        "catMain": "💳 Deudas",
+        "desc": "Mercado Credito",
+        "metodo": "Transferencia",
+        "tipo": "impulsivo",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5l9sya0tm7zlm1l",
+        "fecha": "2026-06-12",
+        "monto": 17002,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Movistar",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5im8wv5pffgk5bk",
+        "fecha": "2026-06-09",
+        "monto": 36000,
+        "cat": "Comida",
+        "catMain": "🍽️ Alimentación",
+        "desc": "Asado con gustavo",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5hrxrlu2afg0kb6d",
+        "fecha": "2026-06-08",
+        "monto": 5000,
+        "cat": "Reparaciones",
+        "catMain": "💼 Trabajo",
+        "desc": "Parche para bicicleta",
+        "metodo": "Transferencia",
+        "tipo": "extra",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5gim0pv0p2uz168",
+        "fecha": "2026-06-04",
+        "monto": 4800,
+        "cat": "Internet",
+        "catMain": "🏠 Vivienda",
+        "desc": "Telecentro wifi",
+        "metodo": "Transferencia",
+        "tipo": "fijo",
+        "proxMes": false
+      },
+      {
+        "id": "mqy5b7pa51bxjavm8fg",
+        "fecha": "2026-06-01",
+        "monto": 325500,
+        "cat": "Alquiler",
+        "catMain": "🏠 Vivienda",
+        "desc": "",
+        "metodo": "Efectivo",
+        "tipo": "fijo",
+        "proxMes": false
+      }
+    ],
+    "usd": [
+      {
+        "id": "mr703f7bsvzle0giboo",
+        "fecha": "2026-07-04",
+        "tipo": "Saldo inicial",
+        "cantidad": 9.23,
+        "precio": 0,
+        "modalidad": "Digital (USDT/cripto)"
+      },
+      {
+        "id": "mqzn6z8o461w1k38c6k",
+        "fecha": "2026-06-29",
+        "tipo": "Saldo inicial",
+        "cantidad": 6620,
+        "precio": 0,
+        "modalidad": "Físico (billete)"
+      }
+    ],
+    "activos": [],
+    "saldoEfectivo": 348800.54999999993,
+    "saldoBanco": 846059.84,
+    "saldoBaseEfectivo": 254351.49999999994,
+    "saldoBaseBanco": 846059.84,
+    "saldoFechaCorte": "2026-09-04",
+    "recordatorios": [
+      {
+        "id": "mt3p4m6bui7imd2kdr",
+        "nombre": "Préstamo Naranja X",
+        "fecha": "2026-09-10",
+        "monto": 20037.16,
+        "activo": true,
+        "repetir": false
+      },
+      {
+        "id": "mt3p6exce23no5cazyp",
+        "nombre": "Tarjeta de Crédito Mercado Pago",
+        "fecha": "2026-09-18",
+        "monto": 55284.5,
+        "activo": true,
+        "repetir": false
+      },
+      {
+        "id": "mt3p7o4swt7l5ihptq",
+        "nombre": "Monotributo RK",
+        "fecha": "2026-09-20",
+        "monto": 11172,
+        "activo": true,
+        "repetir": true
+      },
+      {
+        "id": "mtb22572h6hzkewt54i",
+        "nombre": "Alquiler",
+        "fecha": "2026-09-25",
+        "monto": 355500,
+        "activo": true,
+        "repetir": true,
+        "tipoCiclo": "variable",
+        "diasCiclo": 30
+      },
+      {
+        "id": "mteqbg45irtqti8vypc",
+        "nombre": "Tarjeta de crédito Mercado Pago",
+        "fecha": "2026-10-18",
+        "monto": 28230,
+        "activo": true,
+        "repetir": true,
+        "tipoCiclo": "fijo",
+        "diasCiclo": 0
+      }
+    ],
+    "metas": [],
+    "snapshots": [
+      {
+        "fecha": "2026-06-30",
+        "neto": 10650118,
+        "activos": 10650118,
+        "deudas": 0
+      },
+      {
+        "fecha": "2026-07-01",
+        "neto": 10657866.8,
+        "activos": 10657866.8,
+        "deudas": 0
+      },
+      {
+        "fecha": "2026-08-09",
+        "neto": 10474901.445999999,
+        "activos": 10474901.445999999,
+        "deudas": 0,
+        "efectivo": 231033.24599999998,
+        "banco": 34854,
+        "usdValue": 10209014.2,
+        "usdFisico": 6620,
+        "usdDigital": 9.23
+      },
+      {
+        "fecha": "2026-08-24",
+        "neto": 11069460.549999999,
+        "activos": 11069460.549999999,
+        "deudas": 0,
+        "efectivo": 412557.76,
+        "banco": 282157.83999999997,
+        "usdValue": 10374744.95,
+        "usdFisico": 6620,
+        "usdDigital": 9.23
+      },
+      {
+        "fecha": "2026-09-03",
+        "neto": 11287814.16,
+        "activos": 11287814.16,
+        "deudas": 0,
+        "efectivo": 231224.44999999995,
+        "banco": 847575.51,
+        "usdValue": 10209014.2,
+        "usdFisico": 6620,
+        "usdDigital": 9.23,
+        "apartado": 322993
+      }
+    ],
+    "cotizacion": {
+      "Oficial": {
+        "moneda": "USD",
+        "casa": "oficial",
+        "nombre": "Oficial",
+        "compra": 1485,
+        "venta": 1535,
+        "fechaActualizacion": "2026-09-02T18:00:00.000Z"
+      },
+      "Blue": {
+        "moneda": "USD",
+        "casa": "blue",
+        "nombre": "Blue",
+        "compra": 1520,
+        "venta": 1540,
+        "fechaActualizacion": "2026-09-02T20:58:00.000Z"
+      },
+      "Bolsa": {
+        "moneda": "USD",
+        "casa": "bolsa",
+        "nombre": "Bolsa",
+        "compra": 1532,
+        "venta": 1535.2,
+        "fechaActualizacion": "2026-09-02T20:58:00.000Z"
+      },
+      "Contado con liquidación": {
+        "moneda": "USD",
+        "casa": "contadoconliqui",
+        "nombre": "Contado con liquidación",
+        "compra": 1593.5,
+        "venta": 1594.4,
+        "fechaActualizacion": "2026-09-02T20:58:00.000Z"
+      },
+      "Mayorista": {
+        "moneda": "USD",
+        "casa": "mayorista",
+        "nombre": "Mayorista",
+        "compra": 1502,
+        "venta": 1511,
+        "fechaActualizacion": "2026-09-02T17:01:00.000Z"
+      },
+      "Cripto": {
+        "moneda": "USD",
+        "casa": "cripto",
+        "nombre": "Cripto",
+        "compra": 1583.09,
+        "venta": 1586.34,
+        "fechaActualizacion": "2026-09-02T20:58:00.000Z"
+      },
+      "Tarjeta": {
+        "moneda": "USD",
+        "casa": "tarjeta",
+        "nombre": "Tarjeta",
+        "compra": 1930.5,
+        "venta": 1995.5,
+        "fechaActualizacion": "2026-09-02T18:00:00.000Z"
+      },
+      "Euro": {
+        "moneda": "EUR",
+        "casa": "oficial",
+        "nombre": "Euro",
+        "compra": 1739.1398,
+        "venta": 1753.3516,
+        "fechaActualizacion": "2026-09-04T16:57:00.000Z"
+      }
+    },
+    "budgets": {},
+    "budgetTotal": 650000,
+    "budgetTotalPendiente": null,
+    "ultimoCierreMostrado": "2026-08",
+    "lastCountry": "AR",
+    "ahorroApartado": [
+      {
+        "id": "mtopbg1wyv2qalw0i7h",
+        "fecha": "2026-09-05",
+        "mes": "2026-08",
+        "monto": 322993,
+        "metaId": null,
+        "metaNombre": null,
+        "usado": true
+      }
+    ],
+    "lastBackupDate": "2026-09-04",
+    "monotributoCategoria": "A",
+    "pinHash": "",
+    "pinHint": "",
+    "budgetHistory": [
+      {
+        "mes": "2026-08",
+        "totalLimit": 500000,
+        "budgets": {},
+        "savedAt": "2026-08-27"
+      },
+      {
+        "mes": "2026-09",
+        "totalLimit": 650000,
+        "budgets": {},
+        "savedAt": "2026-09-01"
+      }
+    ],
+    "schemaVersion": 5,
+    "economicInsights": [
+      {
+        "id": "mt4p2bct4ehpkzg6jue",
+        "at": 1787422260989,
+        "tipo": "gasto",
+        "eventoId": "mt4p2bai759czfiv4wo",
+        "principio": "Coste de oportunidad",
+        "icon": "⚖️",
+        "text": "Este gasto de $4.799 compite con tu capacidad de ahorro. Fin evaluará qué alternativa estás sacrificando: liquidez, deuda, meta o necesidad futura.",
+        "monto": 4799,
+        "cat": "Internet"
+      },
+      {
+        "id": "mt3p1qg01xg3w5q34n",
+        "at": 1787361767712,
+        "tipo": "gasto",
+        "eventoId": "mt3p1qf4jlyy9cgidnp",
+        "principio": "Coste de oportunidad",
+        "icon": "⚖️",
+        "text": "Este gasto de $11.700 compite con tu capacidad de ahorro. Fin evaluará qué alternativa estás sacrificando: liquidez, deuda, meta o necesidad futura.",
+        "monto": 11700,
+        "cat": "Delivery"
+      }
+    ],
+    "version": 1,
+    "exportDate": "2026-06-15T23:39:23.235Z",
+    "historial": [
+      {
+        "weekIndex": 23,
+        "weekLabel": "Sem 25 · 15 jun – 21 jun",
+        "dateStart": "2026-06-15T03:00:00.000Z",
+        "dateEnd": "2026-06-21T03:00:00.000Z",
+        "savedAt": "2026-06-15T18:28:03.949Z",
+        "totals": {
+          "base": 0,
+          "propina": 0,
+          "grupo": 0,
+          "logros": 0,
+          "efectivo": 0,
+          "total": 0,
+          "neto": -4865.88
+        },
+        "mondayNextEfe": 0,
+        "deductions": {
+          "gestorando": 0,
+          "seguro": 0,
+          "pedidosya": 0,
+          "ajustes": 4865.88,
+          "retencion": 0
+        },
+        "days": {
+          "Lunes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Martes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Miércoles": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Jueves": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Viernes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Sábado": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Domingo": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          }
+        },
+        "sessionDataSnap": {
+          "21_Viernes_NOCHE_base": "36833.78",
+          "21_Viernes_NOCHE_grupo": "2625",
+          "21_Viernes_NOCHE_propina": "7500",
+          "21_Viernes_NOCHE_efectivo": "33748",
+          "21_Sábado_NOCHE_efectivo": "1140",
+          "21_Sábado_NOCHE_base": "41506.28",
+          "21_Sábado_NOCHE_propina": "4700",
+          "21_Sábado_NOCHE_logros": "6900",
+          "21_Sábado_NOCHE_grupo": "2800",
+          "22_Martes_NOCHE_efectivo": "0",
+          "22_Viernes_NOCHE_efectivo": "42727",
+          "22_Viernes_NOCHE_base": "34586.12",
+          "22_Viernes_NOCHE_propina": "6850",
+          "22_Viernes_NOCHE_grupo": "3300",
+          "22_Viernes_NOCHE_logros": "300",
+          "23_Lunes_DIA_base": "0",
+          "23_Lunes_NOCHE_logros": "0",
+          "23_Lunes_DIA_propina": "0",
+          "23_Lunes_DIA_grupo": "0",
+          "23_Lunes_NOCHE_base": "0"
+        }
+      },
+      {
+        "weekIndex": 22,
+        "weekLabel": "Sem 24 · 8 jun – 14 jun",
+        "dateStart": "2026-06-08T03:00:00.000Z",
+        "dateEnd": "2026-06-14T03:00:00.000Z",
+        "savedAt": "2026-06-15T23:39:19.848Z",
+        "totals": {
+          "base": 34586.12,
+          "propina": 6850,
+          "grupo": 3300,
+          "logros": 300,
+          "efectivo": 42727,
+          "total": 38186.12,
+          "neto": -4865.879999999997
+        },
+        "mondayNextEfe": 0,
+        "deductions": {
+          "gestorando": 0,
+          "seguro": 325,
+          "pedidosya": 0,
+          "ajustes": 0,
+          "retencion": 0
+        },
+        "days": {
+          "Lunes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Martes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Miércoles": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Jueves": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Viernes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 34586.12,
+              "propina": 6850,
+              "grupo": 3300,
+              "logros": 300,
+              "efectivo": 42727
+            }
+          },
+          "Sábado": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Domingo": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          }
+        },
+        "sessionDataSnap": {
+          "22_Martes_NOCHE_efectivo": "0",
+          "22_Viernes_NOCHE_efectivo": "42727",
+          "22_Viernes_NOCHE_base": "34586.12",
+          "22_Viernes_NOCHE_propina": "6850",
+          "22_Viernes_NOCHE_grupo": "3300",
+          "22_Viernes_NOCHE_logros": "300",
+          "23_Lunes_DIA_base": "0",
+          "23_Lunes_NOCHE_logros": "0",
+          "23_Lunes_DIA_propina": "0",
+          "23_Lunes_DIA_grupo": "0",
+          "23_Lunes_NOCHE_base": "0"
+        }
+      },
+      {
+        "weekIndex": 21,
+        "weekLabel": "Sem 23 · 1 jun – 7 jun",
+        "dateStart": "2026-06-01T03:00:00.000Z",
+        "dateEnd": "2026-06-07T03:00:00.000Z",
+        "savedAt": "2026-06-14T03:17:10.376Z",
+        "totals": {
+          "base": 78340.06,
+          "propina": 12200,
+          "grupo": 5425,
+          "logros": 6900,
+          "efectivo": 34888,
+          "total": 90665.06,
+          "neto": 26810.472299999994
+        },
+        "mondayNextEfe": 0,
+        "deductions": {
+          "gestorando": 2000,
+          "seguro": 650,
+          "pedidosya": 22236.66,
+          "ajustes": 0,
+          "retencion": 4.5
+        },
+        "days": {
+          "Lunes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Martes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Miércoles": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Jueves": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          },
+          "Viernes": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 36833.78,
+              "propina": 7500,
+              "grupo": 2625,
+              "logros": 0,
+              "efectivo": 33748
+            }
+          },
+          "Sábado": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 41506.28,
+              "propina": 4700,
+              "grupo": 2800,
+              "logros": 6900,
+              "efectivo": 1140
+            }
+          },
+          "Domingo": {
+            "DIA": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            },
+            "NOCHE": {
+              "base": 0,
+              "propina": 0,
+              "grupo": 0,
+              "logros": 0,
+              "efectivo": 0
+            }
+          }
+        },
+        "sessionDataSnap": {
+          "22_Martes_NOCHE_efectivo": "0",
+          "23_Lunes_NOCHE_efectivo": "0",
+          "21_Viernes_NOCHE_base": "36833.78",
+          "21_Viernes_NOCHE_grupo": "2625",
+          "21_Viernes_NOCHE_propina": "7500",
+          "21_Viernes_NOCHE_efectivo": "33748",
+          "21_Sábado_NOCHE_efectivo": "1140",
+          "21_Sábado_NOCHE_base": "41506.28",
+          "21_Sábado_NOCHE_propina": "4700",
+          "21_Sábado_NOCHE_logros": "6900",
+          "21_Sábado_NOCHE_grupo": "2800"
+        }
+      }
+    ],
+    "lastWeek": "22",
+    "darkPref": "dark",
+    "weekSnaps": {
+      "delivery_v4_w21": "{\"weekIndex\":21,\"sessionData\":{\"22_Martes_NOCHE_efectivo\":\"0\",\"23_Lunes_NOCHE_efectivo\":\"0\",\"21_Viernes_NOCHE_base\":\"36833.78\",\"21_Viernes_NOCHE_grupo\":\"2625\",\"21_Viernes_NOCHE_propina\":\"7500\",\"21_Viernes_NOCHE_efectivo\":\"33748\",\"21_Sábado_NOCHE_efectivo\":\"1140\",\"21_Sábado_NOCHE_base\":\"41506.28\",\"21_Sábado_NOCHE_propina\":\"4700\",\"21_Sábado_NOCHE_logros\":\"6900\",\"21_Sábado_NOCHE_grupo\":\"2800\"},\"gestorando\":\"2000\",\"seguro\":\"650\",\"pedidosya\":\"22236.66\",\"ajustes\":\"0\",\"retencion\":\"4.5\"}",
+      "delivery_v4_w22": "{\"weekIndex\":22,\"sessionData\":{\"22_Martes_NOCHE_efectivo\":\"0\",\"22_Viernes_NOCHE_efectivo\":\"42727\",\"22_Viernes_NOCHE_base\":\"34586.12\",\"22_Viernes_NOCHE_propina\":\"6850\",\"22_Viernes_NOCHE_grupo\":\"3300\",\"22_Viernes_NOCHE_logros\":\"300\",\"23_Lunes_DIA_base\":\"0\",\"23_Lunes_NOCHE_logros\":\"0\",\"23_Lunes_DIA_propina\":\"0\",\"23_Lunes_DIA_grupo\":\"0\",\"23_Lunes_NOCHE_base\":\"0\"},\"gestorando\":\"0\",\"seguro\":\"325\",\"pedidosya\":\"0\",\"ajustes\":\"0\",\"retencion\":\"0\"}",
+      "delivery_v4_w23": "{\"weekIndex\":23,\"sessionData\":{\"21_Viernes_NOCHE_base\":\"36833.78\",\"21_Viernes_NOCHE_grupo\":\"2625\",\"21_Viernes_NOCHE_propina\":\"7500\",\"21_Viernes_NOCHE_efectivo\":\"33748\",\"21_Sábado_NOCHE_efectivo\":\"1140\",\"21_Sábado_NOCHE_base\":\"41506.28\",\"21_Sábado_NOCHE_propina\":\"4700\",\"21_Sábado_NOCHE_logros\":\"6900\",\"21_Sábado_NOCHE_grupo\":\"2800\",\"22_Martes_NOCHE_efectivo\":\"0\",\"22_Viernes_NOCHE_efectivo\":\"42727\",\"22_Viernes_NOCHE_base\":\"34586.12\",\"22_Viernes_NOCHE_propina\":\"6850\",\"22_Viernes_NOCHE_grupo\":\"3300\",\"22_Viernes_NOCHE_logros\":\"300\",\"23_Lunes_DIA_base\":\"0\",\"23_Lunes_NOCHE_logros\":\"0\",\"23_Lunes_DIA_propina\":\"0\",\"23_Lunes_DIA_grupo\":\"0\",\"23_Lunes_NOCHE_base\":\"0\"},\"gestorando\":\"0\",\"seguro\":\"0\",\"pedidosya\":\"0\",\"ajustes\":\"4865.88\",\"retencion\":\"0\"}"
+    },
+    "delConfig": {
+      "emoji": "🛵",
+      "nombre": "Delivery",
+      "cat1": "Delivery",
+      "cat2": "Propinas Delivery"
+    },
+    "lastAutoBackup": 1788632055862,
+    "cotizacionUpdatedAt": 1788388305680
+  }
+}
